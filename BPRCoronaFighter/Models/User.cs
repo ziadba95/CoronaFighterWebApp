@@ -9,6 +9,7 @@ using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 
 namespace BPRCoronaFighter.Models
 {
+    // Test
     public class User
     {
         [HiddenInput(DisplayValue = false)]
