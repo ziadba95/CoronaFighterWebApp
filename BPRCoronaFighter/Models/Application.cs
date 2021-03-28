@@ -25,11 +25,13 @@ namespace BPRCoronaFighter.Models
         [Required]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         [Display(Name = "Date of Birthday")]
+        [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
         [Required]
         [Display(Name = "Upload Your Licence")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase Document { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public DateTime? ApplicationDate { get; set; }
         public bool? ApplicationStatus { get; set; }
 
