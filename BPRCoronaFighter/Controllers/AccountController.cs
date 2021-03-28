@@ -22,7 +22,7 @@ namespace BPRCoronaFighter.Controllers
             ViewBag.Message = " User Sign Up";
             return View();
         }
-
+        //test from liu
         //Sign up method POST
         [HttpPost]
         [ValidateAntiForgeryToken]
