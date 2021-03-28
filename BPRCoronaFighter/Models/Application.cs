@@ -33,6 +33,7 @@ namespace BPRCoronaFighter.Models
         public HttpPostedFileBase Document { get; set; }
         [HiddenInput(DisplayValue = false)]
         public DateTime? ApplicationDate { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public bool? ApplicationStatus { get; set; }
 
 

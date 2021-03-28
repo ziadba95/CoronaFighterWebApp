@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BPRCoronaFighter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,17 @@ namespace BPRCoronaFighter.Controllers
         public ActionResult DoctorSignUp()
         {
             ViewBag.Message = "Doctors Application";
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DoctorSignUp(Application model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
     }
