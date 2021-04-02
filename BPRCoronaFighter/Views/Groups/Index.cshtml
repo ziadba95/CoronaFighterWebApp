@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<BPRCoronaFighter.Models.Post>
+@{
     ViewBag.Title = "Group";
 }
 
@@ -16,7 +17,9 @@
 
 </head>
 <body>
-
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
     <div class="jumbotron">
         <b>Group</b>
         <div class="container px-1 py-3">
@@ -64,121 +67,42 @@
                 </div>
                 <div class="col-md-6 gedf-main">
 
-                    <div class="card gedf-card">
-
-                        <div class="card-body" id="postcard">
-
-                            <div class="tab-content" id="myTabContent">
-
-                                <div class="form-group">
-                                    <label class="sr-only" for="message">post</label>
-                                    <textarea class="form-control pt-4" id="message" rows="5" placeholder="Write Something..." style="margin-left: 80px; margin-bottom: 0px; height: 60px; width: 100%; margin-top: 0px;"></textarea>
-                                </div>
-
-                                <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                                    <div class="form-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Upload image</label>
-                                        </div>
-                                    </div>
-                                    <div class="py-4"></div>
-                                </div>
-                            </div>
-                            <a href="#" class="card-link"><i class="fa fa-paperclip mr-3" style="margin-left: 120px;"></i></a>
-                            <a href="#" class="card-link"><i class="fa fa-map-marker mr-3"></i></a>
-                            <a href="#" class="card-link"><i class="fa fa-mail-forward mr-3"></i></a>
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-primary">Post</button>
-                            </div>
-
-                        </div>
-
+                    <p>
+                        @Html.ActionLink("Create New", "CreatePost")
+                    </p>
+@foreach (var item in Model)
+{
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center pt-5">
+                    <div class="mr-2">
                     </div>
-                    <div class="card gedf-card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center pt-5">
-                                    <div class="mr-2">
-                                    </div>
-                                    <div class="ml-2">
-                                        <div class="h5 m-0">Barbara Smith<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">35 mins ago</span></div>
-                                        <div class="h7 text-muted">Photographer</div>
-                                    </div>
-                                </div>
-                                <div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text text-muted">
-                                Best ever photoshoot for new female fashion show, enjoyed a lot. Really excited to show some event information.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
-                            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
-                            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
-                        </div>
+                    <div class="ml-2">
+                        <div class="h5 m-0">Barbara Smith<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">@Html.DisplayFor(modelItem => item.PostDate)</span></div>
+                        <div class="h7 text-muted">Photographer</div>
                     </div>
-                    <div class="card gedf-card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center pt-5">
-                                    <div class="mr-2">
-                                    </div>
-                                    <div class="ml-2">
-                                        <div class="h5 m-0">Barbara Smith<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">35 mins ago</span></div>
-                                        <div class="h7 text-muted">Photographer</div>
-                                    </div>
-                                </div>
-                                <div>
+                </div>
+                <div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text text-muted">
-                                Best ever photoshoot for new female fashion show, enjoyed a lot. Really excited to show some event information.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
-                            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
-                            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
-                        </div>
-                    </div>
-                    <div class="card gedf-card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center pt-5">
-                                    <div class="mr-2">
-                                    </div>
-                                    <div class="ml-2">
-                                        <div class="h5 m-0">Barbara Smith<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">35 mins ago</span></div>
-                                        <div class="h7 text-muted">Photographer</div>
-                                    </div>
-                                </div>
-                                <div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text text-muted">
-                                Best ever photoshoot for new female fashion show, enjoyed a lot. Really excited to show some event information.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
-                            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
-                            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @Html.DisplayFor(modelItem => item.PostTitle)
+            <p class="card-text text-muted">
+                @Html.DisplayFor(modelItem => item.PostContent)
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
+            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
+            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
+        </div>
+    </div>
+    <br />
+}
+                    
                 </div>
                 <div class="col-md-3" id="suggested">
                     <div class="card mb-5">
@@ -229,7 +153,7 @@
 
         </div>
     </div>
-
+}
 </body>
 </html>
 

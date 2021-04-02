@@ -45,13 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\LectureProcessor.cs" />
+    <Compile Include="BusinessLogic\PostProcessor.cs" />
     <Compile Include="BusinessLogic\UserProcessor.cs" />
     <Compile Include="DataAccess\DAO.cs" />
+    <Compile Include="Models\LectureModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoronaFighterDB\CoronaFighterDB.sqlproj">
+      <Project>{fbbc4f25-fce1-4619-b7be-67bf210c4a56}</Project>
+      <Name>CoronaFighterDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

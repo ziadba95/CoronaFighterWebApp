@@ -190,6 +190,8 @@
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Lecture\Index.cshtml" />
+    <Content Include="Views\Lecture\Create.cshtml" />
+    <Content Include="Views\Groups\CreatePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -208,6 +210,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoronaFighterDB\CoronaFighterDB.sqlproj">
+      <Project>{fbbc4f25-fce1-4619-b7be-67bf210c4a56}</Project>
+      <Name>CoronaFighterDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLibrary\DataLibrary.csproj">
       <Project>{0541280e-d0b2-4626-9bce-7daf618e6bc0}</Project>
       <Name>DataLibrary</Name>
