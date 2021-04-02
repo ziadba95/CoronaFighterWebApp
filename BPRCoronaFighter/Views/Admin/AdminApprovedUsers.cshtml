@@ -1,7 +1,7 @@
 ﻿@model BPRCoronaFighter.Models.Admin
 
 @{
-	ViewBag.Title = "Admin Dashboard";
+	ViewBag.Title = "Admin Approved Users";
 }
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
 					<th scope="col">User Type</th>
 					<th scope="col">Attached Licence</th>
 					<th scope="col">Current Application Status</th>
-					<th scope="col">Approve application?</th>
+					<th scope="col">Select application/s</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,11 +50,7 @@
 					<td>Doctor</td>
 					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
 					<td>None</td>
-
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
+					<td><input type="checkbox" id="entry1" name="application1" value=""></td>
 				</tr>
 				<tr>
 					<td>2</td>
@@ -66,10 +62,7 @@
 					<td>Doctor</td>
 					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
 					<td>None</td>
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
+					<td><input type="checkbox" id="entry2" name="application2" value=""></td>
 				</tr>
 				<tr>
 					<td>3</td>
@@ -81,10 +74,7 @@
 					<td>Doctor</td>
 					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
 					<td>None</td>
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
+					<td><input type="checkbox" id="entry3" name="application3" value=""></td>
 				</tr>
 				<tr>
 					<td>4</td>
@@ -96,13 +86,12 @@
 					<td>Doctor</td>
 					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
 					<td>None</td>
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
+					<td><input type="checkbox" id="entry4" name="application4" value=""></td>
 				</tr>
 			</tbody>
 		</table>
+		<button type="button" style="margin-left: 25%;">Move selected applications to declined list</button>
+		<button type="button">Clear all selected applications</button>
 	</div>
 </body>
 </html>
