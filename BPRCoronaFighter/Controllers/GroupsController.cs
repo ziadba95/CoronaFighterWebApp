@@ -26,6 +26,7 @@ namespace BPRCoronaFighter.Controllers
                     PostContent = item.PostContent,
                     PostDate = item.PostDate,
                 });
+            post.Reverse();
             }
             return View(post);
         }

@@ -26,6 +26,7 @@ namespace BPRCoronaFighter.Models
         [Required]
         [DisplayFormat(DataFormatString = "{0:U}")]
         [Display(Name = "Lecture Date")]
+        //[DataType(DataType.Time)]
         [DataType(DataType.Date)]
         public DateTime LectureDate { get; set; }
 

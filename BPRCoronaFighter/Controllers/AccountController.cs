@@ -22,16 +22,17 @@ namespace BPRCoronaFighter.Controllers
             ViewBag.Message = " User Sign Up";
             return View();
         }
-        //test from liu 2333
-        //Sign up method POST
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(User model)
         {
+
             if (ModelState.IsValid)
             {
                 int recordsCreated = CreateUser(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.RoleType);
-                return RedirectToAction("Index", "Home");
+                //ViewBag.username = model.FirstName + " " + model.LastName;
+                return RedirectToAction("Index", "Home","model.FirstName");
             }
             return View();
         }

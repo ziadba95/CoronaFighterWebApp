@@ -17,7 +17,7 @@ namespace BPRCoronaFighter.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Lecture model)
+        public ActionResult Create (Lecture model)
         {
             if (ModelState.IsValid)
             {
@@ -40,6 +40,7 @@ namespace BPRCoronaFighter.Controllers
                     LectureLink=item.LectureLink,
                     LectureDate = item.LectureDate,
                 });
+                lectures.Reverse();
             }
             return View(lectures);
         }
