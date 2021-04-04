@@ -1,0 +1,226 @@
+﻿
+@model IEnumerable<BPRCoronaFighter.Models.Lecture>
+@{
+    ViewBag.Title = "Lecture";
+}
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+    <link href="~/Content/group.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="jumbotron">
+        <b>Lecture</b>
+        <div class="container px-1 py-3">
+            <div class="row">
+                <div class="col-md-3" id="profile">
+                    <div class="card pl-3">
+                        @*white area*@
+                        <div class="card-body">
+                            @*up area*@
+                            <div class="input-group mb-5">
+                                @*one line*@
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <input type="text" placeholder="Search" id="search" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            </div>
+                            <div class="mr-2">
+                                <img class="rounded-circle" width="50" src="assets/images/7.jpg" alt="">
+                            </div>
+                            <div class="h5 mt-4">FirstName LastName</div>
+                            <div class="h6 text-muted mb-5">Patient</div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Lectures</div>
+                                <ul>Lecture 1</ul>
+                                <ul>Lecture 2</ul>
+                                <ul>Lecture 3</ul>
+                                <ul>Lecture 4</ul>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
+                            </li>
+                            <li class="list-group-item mb-5">
+                                <div class="h6 text-muted"><i class="fa fa-image mr-4"></i>Gallery</div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="h6 text-muted"><i class="fa fa-wrench mr-4"></i>Settings</div>
+                            </li>
+                            <li class="list-group-item mb-5">
+                                <div class="h6 text-muted"><i class="fa fa-power-off mr-4"></i>Logout</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 gedf-main">
+                    <br>
+                    <div class="card gedf-card">
+                        <div class="card-body">
+
+                            <p>
+                                @Html.ActionLink("Create New", "Create")
+                            </p>
+                           
+
+                        </div>
+                        <div class="card-body">
+                            @foreach (var item in Model)
+                            {
+                            <table class="table" border="1">
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.LectureTitle)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LectureTitle)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.LectureDescription)
+                                    </td>
+                                    <td>
+
+                                                @Html.DisplayFor(modelItem => item.LectureDescription)
+                  
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.LectureLink)
+                                    </td>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.LectureLink)*@
+                                            <a href="@Html.DisplayFor(modelItem => item.LectureLink)">Zoom link</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.LectureDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LectureDate)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <div class="card-footer">
+                                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                           }
+                        </div>
+                    </div>
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center pt-5">
+                                    <div class="mr-2">
+                                    </div>
+                                    <div class="ml-2">
+                                        <div class="h5 m-0">Barbara Smith<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">35 mins ago</span></div>
+                                        <div class="h7 text-muted">Doctor</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="card-footer">
+                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
+                            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
+                            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text text-muted">
+                            <p>
+                                Time:
+                                <text class="form-control pt-4" id="message" rows="5" placeholder="Write Something..." style="margin-left: 50px; margin-bottom: 0px; height: auto; width: auto; margin-top: -20px;">qqq</text>
+                            </p>
+                            <p>
+                                Link:
+                                <text class="form-control pt-4" id="message" rows="5" placeholder="Write Something..." style="margin-left: 50px; margin-bottom: 0px; height: auto; width: auto; margin-top: -20px;">qqq</text>
+                            </p>
+                            <p>
+                                Description:
+                                <textarea class="form-control pt-4" id="message" rows="5" placeholder="Write Something..." style="margin-left: 50px; margin-bottom: 0px; height: 60px; width: 100%; margin-top: 0px;"></textarea>
+                            </p>
+
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
+                            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
+                            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" id="suggested">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <p class="card-text" id="popular">Popular</p>
+                            <h6>Best Dressed this week</h6>
+                            <p class="card-text">Overseas, Natalie Portman gave the mo dark florals some love, stepping out in a black Valentino.</p>
+                            <p class="text-muted h7" style="font-size: 12px; margin-left: 140px;">30 Jan 2016</p>
+                        </div>
+                    </div>
+                    <div class="card gedf-card">
+                        <div class="card-body">
+                            <h6 class="card-title mt-3 mb-5">Suggested people<span class="ml-5">:</span></h6>
+
+                            <div class="d-flex mb-4">
+                                <div class="mr-1">
+                                    <img class="rounded-circle" width="45" src="assets/images/2.jpg" alt="">
+                                </div>
+                                <div class="ml-1">
+                                    <div class="h6 m-0 mt-1" style="font-size: 14px;">Susana Mendis</div>
+                                    <div class="h7 text-muted" style="font-size: 12px;">Fashion Designer<span><i class="fa fa-plus-circle fa-2x" style="margin-left: 42px;"></i></span></div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex mb-4">
+                                <div class="mr-1">
+                                    <img class="rounded-circle" width="45" src="assets/images/3.jpg" alt="">
+                                </div>
+                                <div class="ml-1">
+                                    <div class="h6 m-0 mt-1" style="font-size: 14px;">Neel Litoriya</div>
+                                    <div class="h7 text-muted" style="font-size: 12px;">Cyber Punk<span><i class="fa fa-plus-circle fa-2x" style="margin-left: 72px;"></i></span></div>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-4">
+                                <div class="mr-1">
+                                    <img class="rounded-circle" width="45" src="assets/images/4.jpg" alt="">
+                                </div>
+                                <div class="ml-1">
+                                    <div class="h6 m-0 mt-1" style="font-size: 14px;">Barbara Doe</div>
+                                    <div class="h7 text-muted" style="font-size: 12px;">Photographer<span><i class="fa fa-plus-circle fa-2x" style="margin-left: 60px;"></i></span></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+</body>
+</html>

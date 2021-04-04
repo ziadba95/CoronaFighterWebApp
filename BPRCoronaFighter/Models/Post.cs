@@ -17,7 +17,7 @@ namespace BPRCoronaFighter.Models
         [Required]
         [Display(Name = "Write Here:")]
         public string PostContent { get; set; }
-        public DateTime? PostDate { get; set; }
+        public string PostDate { get; set; }
 
 
 
