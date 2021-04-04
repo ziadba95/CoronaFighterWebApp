@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+@model  BPRCoronaFighter.Models.Lecture
+<head>
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+    <link href="~/Content/group.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="card gedf-card">
+
+    <div class="card-body" id="postcard">
+        <div class="tab-content" id="myTabContent">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LectureTitle, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.LectureTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LectureTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LectureDescription, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <br />
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(model => model.LectureDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LectureDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LectureLink, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <br />
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(model => model.LectureLink, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LectureLink, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LectureDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.LectureDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LectureDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <input type="submit" value="Post" class="btn btn-primary" style="display:block;margin:0 auto" />
+
+
+    </div>
+
+</div>
+}

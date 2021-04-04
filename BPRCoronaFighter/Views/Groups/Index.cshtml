@@ -1,0 +1,117 @@
+﻿@model IEnumerable<BPRCoronaFighter.Models.Post>
+@{
+    ViewBag.Title = "Group";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+
+    <link href="~/Content/group.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="jumbotron">
+        <b>Group</b>
+        <div class="container px-1 py-3">
+            <div class="row">
+                <div class="col-md-3" id="profile">
+                    <div class="card pl-3">
+                        <div class="card-body">
+                            <div class="input-group mb-5">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <input type="text" placeholder="Search" id="search" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            </div>
+                            <div class="mr-2">
+                                <img class="rounded-circle" width="50" src="assets/images/7.jpg" alt="">
+                            </div>
+                            <div class="h5 mt-4">FirstName LastName</div>
+                            <div class="h6 text-muted mb-5">Patient</div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Lectures</div>
+                                <ul>Lecture 1</ul>
+                                <ul>Lecture 2</ul>
+                                <ul>Lecture 3</ul>
+                                <ul>Lecture 4</ul>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
+                            </li>
+                            <li class="list-group-item mb-5">
+                                <div class="h6 text-muted"><i class="fa fa-image mr-4"></i>Gallery</div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="h6 text-muted"><i class="fa fa-wrench mr-4"></i>Settings</div>
+                            </li>
+                            <li class="list-group-item mb-5">
+                                <div class="h6 text-muted"><i class="fa fa-power-off mr-4"></i>Logout</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9 gedf-main">
+
+                    <p>
+                        @Html.ActionLink("Create New", "CreatePost")
+                    </p>
+@foreach (var item in Model)
+{
+    
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center pt-5">
+                    <div class="mr-2">
+                    </div>
+                    <div class="ml-2">
+                        <div class="h5 m-0">Barbara Smith<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">@Html.DisplayFor(modelItem => item.PostDate)</span></div>
+                        <div class="h7 text-muted">Photographer</div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @Html.DisplayFor(modelItem => item.PostTitle)
+            <p class="card-text text-muted">
+                @Html.DisplayFor(modelItem => item.PostContent)
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
+            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
+            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
+        </div>
+    </div>
+    <br />
+}
+                    
+                </div>
+               
+            </div>
+
+        </div>
+    </div>
+}
+</body>
+</html>
+
