@@ -17,6 +17,7 @@ namespace BPRCoronaFighter.Controllers
 
         public ActionResult DoctorSignUp()
         {
+            ViewBag.Gender = new SelectList(new[] { "Male", "Female" });
             ViewBag.Message = "Doctors Application";
             return View();
         }
@@ -25,6 +26,7 @@ namespace BPRCoronaFighter.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DoctorSignUp(Application model)
         {
+            ViewBag.Gender = new SelectList(new[] { "Male", "Female" });
             if (ModelState.IsValid)
             {
                 return RedirectToAction("Index", "Home");

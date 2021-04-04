@@ -202,6 +202,7 @@
     <Content Include="Views\Lecture\Index.cshtml" />
     <Content Include="Views\Lecture\Create.cshtml" />
     <Content Include="Views\Groups\CreatePost.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

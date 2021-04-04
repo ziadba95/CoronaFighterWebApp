@@ -15,10 +15,21 @@ namespace BPRCoronaFighter.Controllers
             return View();
         }
 
+        public ActionResult Login(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = LogIn(model.Email, model.Password);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
 
         //Sign up method
         public ActionResult SignUp()
         {
+            ViewBag.UserType = new SelectList(new[] {  "Patient", "Volunteer" });
+            ViewBag.Gender =    new SelectList(new[] {  "Male", "Female" });
             ViewBag.Message = " User Sign Up";
             return View();
         }
@@ -27,12 +38,13 @@ namespace BPRCoronaFighter.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(User model)
         {
-
+            ViewBag.UserType = new SelectList(new[] { "Patient", "Volunteer" });
+            ViewBag.Gender = new SelectList(new[] { "Male", "Female" });
             if (ModelState.IsValid)
             {
                 int recordsCreated = CreateUser(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.RoleType);
                 //ViewBag.username = model.FirstName + " " + model.LastName;
-                return RedirectToAction("Index", "Home","model.FirstName");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
