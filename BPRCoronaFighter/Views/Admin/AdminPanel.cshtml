@@ -1,0 +1,108 @@
+﻿@model BPRCoronaFighter.Models.Admin
+
+@{
+	ViewBag.Title = "Admin Dashboard";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="~/Content/admin-panel.css">
+	<script src="~/Scripts/admin-panel.js"></script>
+</head>
+<body>
+	<!-- Side navigation -->
+	<div class="sidenav">
+		<a href="AdminPanel">Dashboard</a>
+		<a href="AdminMyAccount">My account</a>
+		<a href="AdminApprovedUsers">Aprroved Users</a>
+		<a href="AdminDeclinedUsers">Declined Users</a>
+		<a href="AdminVideoLibrary">Video Library</a>
+	</div>
+
+	<!-- Page content -->
+	<div class="main">
+		<table class="table container col-11 m-auto">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">UserID</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Gender</th>
+					<th scope="col">Birthday</th>
+					<th scope="col">User Type</th>
+					<th scope="col">Attached Licence</th>
+					<th scope="col">Current Application Status</th>
+					<th scope="col">Approve application?</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Angel</td>
+					<td>Petrov</td>
+					<td>helloWorld@hotmail.com</td>
+					<td>Male</td>
+					<td>1-12-2020</td>
+					<td>Doctor</td>
+					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
+					<td>None</td>
+
+					<td class="recordsControl">
+						<span onclick="ReservEdit(this)">Decline</span> |
+						<span onclick="ReservEdit(this)">Accept</span>
+					</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Angel</td>
+					<td>Petrov</td>
+					<td>helloWorld@hotmail.com</td>
+					<td>Male</td>
+					<td>1-12-2020</td>
+					<td>Doctor</td>
+					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
+					<td>None</td>
+					<td class="recordsControl">
+						<span onclick="ReservEdit(this)">Decline</span> |
+						<span onclick="ReservEdit(this)">Accept</span>
+					</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Angel</td>
+					<td>Petrov</td>
+					<td>helloWorld@hotmail.com</td>
+					<td>Male</td>
+					<td>1-12-2020</td>
+					<td>Doctor</td>
+					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
+					<td>None</td>
+					<td class="recordsControl">
+						<span onclick="ReservEdit(this)">Decline</span> |
+						<span onclick="ReservEdit(this)">Accept</span>
+					</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Angel</td>
+					<td>Petrov</td>
+					<td>helloWorld@hotmail.com</td>
+					<td>Male</td>
+					<td>1-12-2020</td>
+					<td>Doctor</td>
+					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
+					<td>None</td>
+					<td class="recordsControl">
+						<span onclick="ReservEdit(this)">Decline</span> |
+						<span onclick="ReservEdit(this)">Accept</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
