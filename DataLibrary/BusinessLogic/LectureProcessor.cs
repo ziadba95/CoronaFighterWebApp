@@ -10,7 +10,7 @@ namespace DataLibrary.BusinessLogic
 {
     public static class LectureProcessor
     {
-        public static int CreateLecture(string lectureTitle, string lectureDescription, string lectureLink, DateTime lectureDate)
+        public static int CreateLecture(string lectureTitle, string lectureDescription, string lectureLink, DateTime lectureDate, DateTime lectureTime)
         {
             LectureModel data = new LectureModel
             {
@@ -18,14 +18,15 @@ namespace DataLibrary.BusinessLogic
                 LectureDescription = lectureDescription,
                 LectureLink= lectureLink,
                 LectureDate = lectureDate,
+                LectureTime= lectureTime,
             };
-            string sql = @"insert into dbo.[Lecture] (lectureTitle, lectureDescription, lectureLink,lectureDate)
-                                  values(@LectureTitle, @LectureDescription,@LectureLink ,@LectureDate);";
+            string sql = @"insert into dbo.[Lecture] (lectureTitle, lectureDescription, lectureLink,lectureDate,lectureTime)
+                                  values(@LectureTitle, @LectureDescription,@LectureLink ,@LectureDate,@LectureTime);";
             return DAO.SaveData(sql, data);
         }
         public static List<LectureModel> LoadLectures()
         {
-            string sql = @"select  lectureTitle, lectureDescription, lectureLink,lectureDate
+            string sql = @"select  lectureTitle, lectureDescription, lectureLink,lectureDate,lectureTime,numOfLike
                               from dbo.[Lecture];";
             return DAO.LoadData<LectureModel>(sql);
         }

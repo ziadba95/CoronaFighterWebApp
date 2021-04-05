@@ -93,9 +93,7 @@
                                         @Html.DisplayNameFor(model => model.LectureDescription)
                                     </td>
                                     <td>
-
                                                 @Html.DisplayFor(modelItem => item.LectureDescription)
-                  
                                     </td>
                                 </tr>
                                 <tr>
@@ -103,7 +101,6 @@
                                         @Html.DisplayNameFor(model => model.LectureLink)
                                     </td>
                                     <td>
-                                        @*@Html.DisplayFor(modelItem => item.LectureLink)*@
                                             <a href="@Html.DisplayFor(modelItem => item.LectureLink)">Zoom link</a>
                                     </td>
                                 </tr>
@@ -116,9 +113,19 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.LectureTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LectureTime)
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td colspan="2" align="center">
                                         <div class="card-footer">
-                                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
+                                            @*<a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>*@
+                                            @*<input type="submit"  class="fa fa-thumbs-up mr-2" formaction="Like" /> @ViewBag.Like*@
+                                            <button type="submit" class="fa fa-thumbs-up mr-2" name="Like" formaction="Like" /> @ViewBag.Like
                                         </div>
                                     </td>
                                 </tr>
@@ -126,49 +133,6 @@
 
                             </table>
                            }
-                        </div>
-                    </div>
-                    <div class="card gedf-card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center pt-5">
-                                    <div class="mr-2">
-                                    </div>
-                                    <div class="ml-2">
-                                        <div class="h5 m-0">Barbara Smith<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">35 mins ago</span></div>
-                                        <div class="h7 text-muted">Doctor</div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
-                            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
-                            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
-                        </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text text-muted">
-                            <p>
-                                Time:
-                                <text class="form-control pt-4" id="message" rows="5" placeholder="Write Something..." style="margin-left: 50px; margin-bottom: 0px; height: auto; width: auto; margin-top: -20px;">qqq</text>
-                            </p>
-                            <p>
-                                Link:
-                                <text class="form-control pt-4" id="message" rows="5" placeholder="Write Something..." style="margin-left: 50px; margin-bottom: 0px; height: auto; width: auto; margin-top: -20px;">qqq</text>
-                            </p>
-                            <p>
-                                Description:
-                                <textarea class="form-control pt-4" id="message" rows="5" placeholder="Write Something..." style="margin-left: 50px; margin-bottom: 0px; height: 60px; width: 100%; margin-top: 0px;"></textarea>
-                            </p>
-
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
-                            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
-                            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
                         </div>
                     </div>
                 </div>

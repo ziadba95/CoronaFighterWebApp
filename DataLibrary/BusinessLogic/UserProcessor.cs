@@ -39,7 +39,7 @@ namespace DataLibrary.BusinessLogic
                 Email = email,
                 Password = password,
             };
-            string sql = @"SELECT COUNT(userID) FROM dbo.[User] WHERE email=@Email and pass=@Password";
+            string sql = @"select count(userID) from dbo.[User] where email='@Email' and pass='@Password' ";
             return DAO.GetData(sql);
         }
     }

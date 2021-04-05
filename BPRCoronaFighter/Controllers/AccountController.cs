@@ -14,15 +14,28 @@ namespace BPRCoronaFighter.Controllers
         {
             return View();
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
 
         public ActionResult Login(User model)
         {
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Gender");
+            ModelState.Remove("RoleType");
+            ModelState.Remove("Dob");
+            ModelState.Remove("PasswordConfirm");
             if (ModelState.IsValid)
             {
-                int recordsCreated = LogIn(model.Email, model.Password);
-                return RedirectToAction("Index", "Home");
+                    int recordsCreated = LogIn(model.Email, model.Password);
+                    return RedirectToAction("Index", "Home");
             }
-            return View();
+               return View();
+
+
         }
 
         //Sign up method

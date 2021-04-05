@@ -13,5 +13,7 @@ namespace DataLibrary.Models
         public string LectureDescription { get; set; }
         public string LectureLink { get; set; }
         public DateTime LectureDate { get; set; }
+        public DateTime LectureTime { get; set; }
+        public int numOfLike { get; set; }
     }
 }

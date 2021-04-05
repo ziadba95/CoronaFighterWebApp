@@ -21,14 +21,15 @@ namespace BPRCoronaFighter.Controllers
         {
             if (ModelState.IsValid)
             {
-                int recordsCreated = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink,model.LectureDate);
+                int recordsCreated = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink,model.LectureDate, model.LectureTime);
                 return RedirectToAction("Index", "Lecture");
             }
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(Lecture model)
         {
+            ViewBag.Like = model.numOfLike;
             var data = LoadLectures();
             List<Lecture> lectures = new List<Lecture>();
             foreach (var item in data)
@@ -39,10 +40,16 @@ namespace BPRCoronaFighter.Controllers
                     LectureDescription = item.LectureDescription,
                     LectureLink=item.LectureLink,
                     LectureDate = item.LectureDate,
+                    LectureTime=item.LectureTime,
                 });
                 lectures.Reverse();
             }
             return View(lectures);
+        }
+        public ActionResult Like(Lecture model)
+        {
+            ViewBag.Like = 10;
+            return View();
         }
     }
 }
