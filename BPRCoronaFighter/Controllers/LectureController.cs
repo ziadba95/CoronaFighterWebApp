@@ -46,7 +46,7 @@ namespace BPRCoronaFighter.Controllers
             }
             return View(lectures);
         }
-        public ActionResult Like(Lecture model)
+        public ActionResult Like()
         {
             ViewBag.Like = 10;
             return View();

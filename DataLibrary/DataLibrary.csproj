@@ -49,6 +49,7 @@
     <Compile Include="BusinessLogic\PostProcessor.cs" />
     <Compile Include="BusinessLogic\UserProcessor.cs" />
     <Compile Include="DataAccess\DAO.cs" />
+    <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\LectureModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\UserModel.cs" />

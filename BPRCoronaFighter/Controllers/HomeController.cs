@@ -8,8 +8,10 @@ namespace BPRCoronaFighter.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
+            ViewBag.UserName = "Welcome: "+AccountController.username;
             return View();
         }
 

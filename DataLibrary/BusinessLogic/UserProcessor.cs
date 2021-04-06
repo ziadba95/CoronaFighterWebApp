@@ -26,6 +26,22 @@ namespace DataLibrary.BusinessLogic
                                   values(@FirstName, @LastName, @Gender, @Email, @Password, @Dob, @RoleType);"; 
             return DAO.SaveData(sql, data);
         }
+        public static int CreateDoctor(string fName, string lName, string email, string password, DateTime dob, string gender,byte[] doc)
+        {
+            DoctorModel data = new DoctorModel
+            {
+                FirstName = fName,
+                LastName = lName,
+                Email = email,
+                Password = password,
+                Dob = dob,
+                Gender = gender,
+                //Document=doc
+            };
+            string sql = @"insert into dbo.[User] (fName, lName, gender, email, pass, DOB, doc)
+                                  values(@FirstName, @LastName, @Gender, @Email, @Password, @Dob, @Document);";
+            return DAO.SaveData(sql, data);
+        }
         public static List<UserModel> LoadUsers()
         {
             string sql = @"select  fName, lName, gender, email, roleType
