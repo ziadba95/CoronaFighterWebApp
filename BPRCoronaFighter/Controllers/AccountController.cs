@@ -66,6 +66,7 @@ namespace BPRCoronaFighter.Controllers
             {
                 int recordsCreated = CreateUser(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.RoleType);
                 //ViewBag.username = model.FirstName + " " + model.LastName;
+                username = model.FirstName + " " + model.LastName;
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -90,6 +91,8 @@ namespace BPRCoronaFighter.Controllers
             }
             return View(users);
         }
+
+        public static string username;
 
     }
 }
