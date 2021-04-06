@@ -92,7 +92,7 @@ namespace BPRCoronaFighter.Controllers
             return View(users);
         }
 
-        public static string username;
+        public static string username = "New User";
 
     }
 }
