@@ -32,15 +32,14 @@ namespace DataLibrary.BusinessLogic
                               from dbo.[User];";
             return DAO.LoadData<UserModel>(sql);
         }
-        public static int LogIn(string email, string password)
+        public static bool LogIn(string email, string password)
         {
-            UserModel data = new UserModel
-            {
-                Email = email,
-                Password = password,
-            };
-            string sql = @"select count(userID) from dbo.[User] where email='@Email' and pass='@Password' ";
+
+            //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
+            string sql = @"select count(userID) from dbo.[User] where email='" + @email + "'and pass= '" + @password + "'";
+
             return DAO.GetData(sql);
         }
     }
 }
+ 

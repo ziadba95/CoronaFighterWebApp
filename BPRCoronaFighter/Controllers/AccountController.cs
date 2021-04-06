@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using static DataLibrary.BusinessLogic.UserProcessor;
+
 namespace BPRCoronaFighter.Controllers
 {
     public class AccountController : Controller
@@ -30,8 +31,16 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("PasswordConfirm");
             if (ModelState.IsValid)
             {
-                    int recordsCreated = LogIn(model.Email, model.Password);
-                    return RedirectToAction("Index", "Home");
+                bool recordsCreated = LogIn(model.Email, model.Password);
+                if (recordsCreated)
+                {
+                     return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Log in fail！');history.go(-1);location.reload();</script>");
+                }
+                        
             }
                return View();
 

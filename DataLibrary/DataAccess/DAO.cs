@@ -31,11 +31,13 @@ namespace DataLibrary.DataAccess
                 return cnn.Execute(sql, data);
             }
         }
-        public static int GetData(string sql)
+        public static bool GetData(string sql)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
-                return cnn.Execute(sql);
+                int count = cnn.Query<int>(sql).FirstOrDefault();
+                return count > 0 ? true : false;
+                //return cnn.QueryFirst<int>(sql);
             }
         }
     }
