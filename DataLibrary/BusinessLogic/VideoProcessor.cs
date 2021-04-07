@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLibrary.BusinessLogic
 {
-	class VideoProcessor
+	public static class VideoProcessor
 	{
         public static int AddVideo(string vtitle, string vURL, string imgLink)
         {
@@ -23,10 +23,10 @@ namespace DataLibrary.BusinessLogic
                                   values(@VideoTitle, @VideoURL, @ImageLink);";
             return DAO.SaveData(sql, data);
         }
-        public static List<VideoModel> LoadVideos()
+		public static List<VideoModel> LoadVideos()
         {
             string sql = @"select  videoTitle, videoUrl, imageLink
-                              from dbo.[User];";
+                              from dbo.[Video];";
             return DAO.LoadData<VideoModel>(sql);
         }
     }

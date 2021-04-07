@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLibrary.Models
 {
-	class VideoModel
+	public class VideoModel
 	{
 		public int? VideoId { get; set; }
 		public string VideoTitle { get; set; }
