@@ -50,11 +50,34 @@ namespace DataLibrary.BusinessLogic
         }
         public static bool LogIn(string email, string password)
         {
-
             //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
             string sql = @"select count(userID) from dbo.[User] where email='" + @email + "'and pass= '" + @password + "'";
 
             return DAO.GetData(sql);
+        }
+        public static bool CheckDup(string email)
+        {
+            string sql = @"select count(userID) from dbo.[User] where email='" + @email + "'";
+
+            return DAO.GetData(sql);
+        }
+        public static string GetFName(string email)
+        {
+            string sql = @"select fName from dbo.[User] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
+        }
+        public static string GetLName(string email)
+        {
+            string sql = @"select lName from dbo.[User] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
+        }
+        public static string GetUserID(string email)
+        {
+            string sql = @"select userID from dbo.[User] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
         }
     }
 }

@@ -30,5 +30,14 @@ namespace DataLibrary.BusinessLogic
                               from dbo.[Lecture];";
             return DAO.LoadData<LectureModel>(sql);
         }
+        public static int LikeAdd(int numOfLike)
+        {
+            LectureModel data = new LectureModel
+            {
+                numOfLike = numOfLike,
+            };
+            string sql = @"update dbo.[Lecture] set numOfLike = numOfLike + 1;";
+            return DAO.SaveData(sql, data);
+        }
     }
 }

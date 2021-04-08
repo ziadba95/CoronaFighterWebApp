@@ -16,6 +16,7 @@ namespace BPRCoronaFighter.Controllers
         // GET: Groups
         public ActionResult Index()
         {
+            ViewBag.UserName =  AccountController.username;
             var data = LoadPosts();
             List<Post> post = new List<Post>();
             foreach (var item in data)
@@ -25,16 +26,14 @@ namespace BPRCoronaFighter.Controllers
                     PostTitle = item.PostTitle,
                     PostContent = item.PostContent,
                     PostDate = item.PostDate,
+                    PostAuthor=item.PostAuthor,
+                    UserID=item.UserID,
                 });
             post.Reverse();
             }
             return View(post);
         }
 
-        // GET: Groups/Details/5
-     
-
-        // GET: Groups/Create
         public ActionResult CreatePost()
         {
             return View();
@@ -44,30 +43,15 @@ namespace BPRCoronaFighter.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreatePost(Post model)
         {
+            ModelState.Remove("PostAuthor");
             if (ModelState.IsValid)
             {
-
-                int recordsCreated = CreatePosts(model.PostTitle, model.PostContent, DateTime.Now.ToString());
+                model.UserID = AccountController.userID;
+                model.PostAuthor = AccountController.username;
+                int recordsCreated = CreatePosts(model.PostTitle, model.PostContent, DateTime.Now.ToString(), model.PostAuthor, model.UserID);
                 return RedirectToAction("Index", "Groups");
             }
             return View();
-        }
-
-
-        // POST: Groups/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupId,GroupName")] Group group)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(group).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(group);
         }
        
     }

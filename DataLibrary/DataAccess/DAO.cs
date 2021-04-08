@@ -40,5 +40,12 @@ namespace DataLibrary.DataAccess
                 //return cnn.QueryFirst<int>(sql);
             }
         }
+        public static string GetUserName(string sql)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.QueryFirst<string>(sql);
+            }
+        }
     }
 }

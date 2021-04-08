@@ -29,7 +29,6 @@ namespace BPRCoronaFighter.Controllers
 
         public ActionResult Index(Lecture model)
         {
-            ViewBag.Like = model.numOfLike;
             var data = LoadLectures();
             List<Lecture> lectures = new List<Lecture>();
             foreach (var item in data)
@@ -38,18 +37,27 @@ namespace BPRCoronaFighter.Controllers
                 {
                     LectureTitle = item.LectureTitle,
                     LectureDescription = item.LectureDescription,
-                    LectureLink=item.LectureLink,
+                    LectureLink = item.LectureLink,
                     LectureDate = item.LectureDate,
-                    LectureTime=item.LectureTime,
+                    LectureTime = item.LectureTime,
+                    numOfLike = item.numOfLike
                 });
                 lectures.Reverse();
             }
             return View(lectures);
         }
-        public ActionResult Like()
+        
+        public ActionResult Like(Lecture model)
         {
-            ViewBag.Like = 10;
-            return View();
+            bool flag = true;
+            if (flag)
+            {
+                LikeAdd(model.numOfLike);
+                flag = false;
+            }
+            
+            return RedirectToAction("Index");
         }
+
     }
 }

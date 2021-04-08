@@ -35,7 +35,11 @@ namespace BPRCoronaFighter.Controllers
                 bool recordsCreated = LogIn(model.Email, model.Password);
                 if (recordsCreated)
                 {
-                    username = "liu";
+                    string fname = GetFName(model.Email);
+                    string lname = GetLName(model.Email);
+                    string ID = GetUserID(model.Email);
+                    userID = ID;
+                    username = fname+" "+ lname;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -66,9 +70,20 @@ namespace BPRCoronaFighter.Controllers
             ViewBag.Gender = new SelectList(new[] { "Male", "Female" });
             if (ModelState.IsValid)
             {
-                int recordsCreated = CreateUser(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.RoleType);
-                username = model.FirstName + " " + model.LastName;
-                return RedirectToAction("Index", "Home");
+                bool isdup = CheckDup(model.Email);
+                if (isdup)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Email already used！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    int recordsCreated = CreateUser(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.RoleType);
+                    username = model.FirstName + " " + model.LastName;
+                    string ID = GetUserID(model.Email);
+                    userID = ID;
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             return View();
         }
@@ -93,5 +108,6 @@ namespace BPRCoronaFighter.Controllers
             return View(users);
         }
         public static string username="New user";
+        public static string userID ;
     }
 }
