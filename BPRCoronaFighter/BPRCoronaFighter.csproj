@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
+    <Compile Include="Controllers\CommentAndPostController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LectureController.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\BPRCoronaFighterContext.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentAndPost.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\Post.cs" />
@@ -194,18 +197,17 @@
     <Content Include="Views\Admin\AdminDeclinedUsers.cshtml" />
     <Content Include="Views\Admin\AdminVideoLibrary.cshtml" />
     <Content Include="Views\Admin\AdminMyAccount.cshtml" />
-    <Content Include="Views\Groups\Create.cshtml" />
     <Content Include="Views\Groups\Delete.cshtml" />
-    <Content Include="Views\Groups\Details.cshtml" />
-    <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Lecture\Index.cshtml" />
     <Content Include="Views\Lecture\Create.cshtml" />
     <Content Include="Views\Groups\CreatePost.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Groups\CreateComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CommentAndPost\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

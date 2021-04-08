@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<BPRCoronaFighter.Models.Post>
+@*@using BPRCoronaFighter.Models
+@model CommentAndPost*@
 @{
     ViewBag.Title = "Group";
 
@@ -81,8 +83,21 @@
                     <div class="mr-2">
                     </div>
                     <div class="ml-2">
-                        <div class="h5 m-0">@Html.DisplayFor(modelItem => item.PostAuthor)<span class="text-muted h7" style="margin-left: 260px; font-size: 12px;">@Html.DisplayFor(modelItem => item.PostDate)</span></div>
-                        <div class="h7 text-muted">Photographer</div>
+                        @*<div class="h5 m-0">Author:@Html.DisplayFor(modelItem => item.PostAuthor) 
+                        Title:@Html.DisplayFor(modelItem => item.PostTitle)*@
+                        <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                            Author:
+                            @Html.DisplayFor(modelItem => item.PostAuthor)
+                        </span>
+                        <br />
+                            <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;"> Title:
+                                @Html.DisplayFor(modelItem => item.PostTitle)
+                        </span>
+                        <br />
+                            <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                                @Html.DisplayFor(modelItem => item.PostDate)
+                        </span>
+                    </div>
                     </div>
                 </div>
                 <div>
@@ -91,17 +106,17 @@
             </div>
         </div>
         <div class="card-body">
-            @Html.DisplayFor(modelItem => item.PostTitle)
+           
             <p class="card-text text-muted">
                 @Html.DisplayFor(modelItem => item.PostContent)
             </p>
         </div>
         <div class="card-footer">
-            <a href="#" class="card-link"><i class="fa fa-thumbs-up mr-2"></i> 26</a>
-            <a href="#" class="card-link"><i class="fa fa-comment mr-2"></i> 05</a>
-            <a href="#" class="card-link"><i class="fa fa-share-alt mr-2"></i> 01</a>
+            <button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)
+            <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />
+            @*<a href="#" class="card-link"><i class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'"></i> </a>*@
         </div>
-    </div>
+    @*</div>*@
     <br />
 }
                     

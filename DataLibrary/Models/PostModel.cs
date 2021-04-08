@@ -14,5 +14,6 @@ namespace DataLibrary.Models
         public string PostContent { get; set; }
         public string PostDate { get; set; }
         public string UserID { get; set; }
+        public int numOfLike { get; set; }
     }
 }

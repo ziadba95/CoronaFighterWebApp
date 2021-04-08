@@ -26,9 +26,30 @@ namespace DataLibrary.BusinessLogic
         }
         public static List<PostModel> LoadPosts()
         {
-            string sql = @"select  postTitle, postContent, postDate,postAuthor,userID
+            string sql = @"select  postTitle, postContent, postDate,postAuthor,userID,numOfLike
                               from dbo.[Post];";
             return DAO.LoadData<PostModel>(sql);
+        }
+        public static int LikeAddP(int numOfLike)
+        {
+            PostModel data = new PostModel
+            {
+                numOfLike = numOfLike,
+            };
+            string sql = @"update dbo.[Post] set numOfLike = numOfLike + 1;";
+            return DAO.SaveData(sql, data);
+        }
+        public static string GetPostID(string postTitle)
+        {
+            string sql = @"select postID from dbo.[Post] where postTitle='" + postTitle + "'";
+
+            return DAO.GetUserName(sql);
+        }
+        public static bool CheckDup(string postTitle)
+        {
+            string sql = @"select count(postTitle) from dbo.[Post] where postTitle='" + postTitle + "'";
+
+            return DAO.GetData(sql);
         }
     }
 }

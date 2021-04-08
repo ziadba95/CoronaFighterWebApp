@@ -79,6 +79,12 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetUserName(sql);
         }
+        public static string GetRoleType(string email)
+        {
+            string sql = @"select roleType from dbo.[User] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
+        }
     }
 }
  

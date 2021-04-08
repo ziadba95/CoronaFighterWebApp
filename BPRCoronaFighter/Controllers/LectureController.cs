@@ -21,8 +21,20 @@ namespace BPRCoronaFighter.Controllers
         {
             if (ModelState.IsValid)
             {
-                int recordsCreated = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink,model.LectureDate, model.LectureTime);
-                return RedirectToAction("Index", "Lecture");
+                bool isdup = CheckDup(model.LectureTitle);
+                if (isdup)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Title already exist！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    //string ID = GetLectureID(model.LectureTitle);
+                    //lectureID = ID;
+                    model.UserID = AccountController.userID;
+                    model.LectureAuthor = AccountController.username;
+                    int recordsCreated = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink, model.LectureDate, model.LectureTime, model.LectureAuthor,model.UserID);
+                    return RedirectToAction("Index", "Lecture");
+                }
             }
             return View();
         }
@@ -40,7 +52,8 @@ namespace BPRCoronaFighter.Controllers
                     LectureLink = item.LectureLink,
                     LectureDate = item.LectureDate,
                     LectureTime = item.LectureTime,
-                    numOfLike = item.numOfLike
+                    numOfLike = item.numOfLike,
+                    LectureAuthor = item.LectureAuthor,
                 });
                 lectures.Reverse();
             }
@@ -52,12 +65,12 @@ namespace BPRCoronaFighter.Controllers
             bool flag = true;
             if (flag)
             {
-                LikeAdd(model.numOfLike);
+                LikeAddL(model.numOfLike,model.LectureId);
                 flag = false;
             }
             
             return RedirectToAction("Index");
         }
-
+        public static string lectureID;
     }
 }

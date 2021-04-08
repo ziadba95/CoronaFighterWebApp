@@ -31,6 +31,7 @@ namespace BPRCoronaFighter.Models
         [DataType(DataType.Time)]
         public DateTime LectureTime { get; set; }
         public int numOfLike { get; set; }
-
+        public string UserID { get; set; }
+        public string LectureAuthor { get; set; }
     }
 }

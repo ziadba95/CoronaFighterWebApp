@@ -38,8 +38,9 @@ namespace BPRCoronaFighter.Controllers
                     string fname = GetFName(model.Email);
                     string lname = GetLName(model.Email);
                     string ID = GetUserID(model.Email);
+                    string role = GetRoleType(model.Email);
                     userID = ID;
-                    username = fname+" "+ lname;
+                    username = fname+" "+ lname + " (" + role + ")";
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -78,7 +79,7 @@ namespace BPRCoronaFighter.Controllers
                 else
                 {
                     int recordsCreated = CreateUser(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.RoleType);
-                    username = model.FirstName + " " + model.LastName;
+                    username = model.FirstName + " " + model.LastName+" ("+ model.RoleType + ")";
                     string ID = GetUserID(model.Email);
                     userID = ID;
                     return RedirectToAction("Index", "Home");
