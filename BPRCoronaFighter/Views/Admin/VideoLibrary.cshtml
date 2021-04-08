@@ -3,12 +3,15 @@
 	ViewBag.Title = "VideoLibrary";
 }
 
+@{ int counter = 0; }
+
 <!DOCTYPE html>
 <html>
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="~/Content/admin-video-library.css">
+	<script language="javascript" type="text/javascript" src="~/scripts/admin-v-library.js"></script>
 </head>
 <body>
 	<!-- Side navigation -->
@@ -25,30 +28,32 @@
 	{
 		@Html.AntiForgeryToken()
 
-		<p>
-			@Html.ActionLink("Create New", "AdminVideoLibrary")
-		</p>
+<p>
+	@Html.ActionLink("Create New", "AdminVideoLibrary")
+</p>
 
 
 		<div class="container2" style="margin-left:15%;">
 			<h3 class="page-header" id="youtube-gallery">Current coronavirus videos in user library</h3>
 			<b style="margin-top:10%;">Total selected:</b>
-			<button id="button_delete" type="button" style="margin-bottom:2%; margin-left:72.8%;">Delete selected videos from user library</button>
+			<button id="button_delete" type="button" style="margin-bottom:2%; margin-left:72.8%;" onclick="location.href='@Url.Action("RemoveVideos", "Admin")'">Delete selected videos from user library</button>
 			<div class="row">
 				<div class="card-body">
 					@foreach (var item in Model)
 					{
-					
+
+						string checkCounter = "checkbox" + counter.ToString();
+						string nameCounter = "name" + counter.ToString();
 						<a href="@Html.DisplayFor(modelItem => item.VideoURL)" target="_blank" data-title="@Html.DisplayFor(modelItem => item.VideoTitle)" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-						<img src="@Html.DisplayFor(modelItem => item.ImageLink)" class="img-responsive" style="width: 320px; height: 220px;">
 							<button type="button" class="btn btn-play">
-							<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-						</button>
-						
-						<div class="box-title">
-							<span>@Html.DisplayFor(modelItem => item.VideoTitle)</span>
-						</div>
-					</a>
+								<input type="checkbox" id="@checkCounter" name="@nameCounter" value="" style="margin-right: 45%" onclick="videoChecked(@counter)">
+								<span class="glyphicon glyphicon-play" aria-label="Play" style="margin-right: 65%;"></span>
+							</button>
+							<img src="@Html.DisplayFor(modelItem => item.ImageLink)" class="img-responsive" style="width: 320px; height: 220px;"><div class="box-title">
+								<span>@Html.DisplayFor(modelItem => item.VideoTitle)</span>
+							</div>
+						</a>
+						counter++;
 					}
 				</div>
 			</div>

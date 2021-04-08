@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLibrary.BusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -26,5 +27,10 @@ namespace BPRCoronaFighter.Models
 		[DisplayName("Image Link")]
 		public string ImageLink { get; set; }
 
+		[ActionName("Delete")]
+		public void CallDelete(int id)
+		{
+			VideoProcessor.DeleteVideos(id);
+		}
 	}
 }

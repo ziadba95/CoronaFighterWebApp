@@ -62,5 +62,14 @@ namespace BPRCoronaFighter.Controllers
             return View(videos);
         }
 
+        public ActionResult RemoveVideos()
+        {
+            int index = 2;
+            
+            DeleteVideos(index);
+            
+            return RedirectToAction("VideoLibrary");
+        }
+
     }
 }

@@ -23,11 +23,19 @@ namespace DataLibrary.BusinessLogic
                                   values(@VideoTitle, @VideoURL, @ImageLink);";
             return DAO.SaveData(sql, data);
         }
+
+
 		public static List<VideoModel> LoadVideos()
         {
             string sql = @"select  videoTitle, videoUrl, imageLink
                               from dbo.[Video];";
             return DAO.LoadData<VideoModel>(sql);
+        }
+
+        public static void DeleteVideos(int index)
+        {
+            string sql = @"DELETE FROM dbo.Video WHERE videoID=" + index;
+            DAO.DeleteData(sql);	
         }
     }
 }
