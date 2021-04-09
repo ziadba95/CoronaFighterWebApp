@@ -41,38 +41,35 @@
                             <div class="mr-2">
                                 <img class="rounded-circle" width="50" src="assets/images/7.jpg" alt="">
                             </div>
-                            <div class="h5 mt-4">FirstName LastName</div>
-                            <div class="h6 text-muted mb-5">Patient</div>
+                            <div class="h5 mt-4">@ViewBag.UserName </div>
+
                         </div>
                         <ul class="list-group list-group-flush">
 
                             <li class="list-group-item">
-                                <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Lectures</div>
-                                <ul>Lecture 1</ul>
-                                <ul>Lecture 2</ul>
-                                <ul>Lecture 3</ul>
-                                <ul>Lecture 4</ul>
+                                <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
+                                <ul>Group 1</ul>
+                                <ul>Group 2</ul>
+                                <ul>Group 3</ul>
+                                <ul>Group 4</ul>
                             </li>
                             <li class="list-group-item">
                                 <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
                             </li>
                             <li class="list-group-item mb-5">
-                                <div class="h6 text-muted"><i class="fa fa-image mr-4"></i>Gallery</div>
+                                @Html.ActionLink("Create New Post", "CreatePost")
                             </li>
                             <li class="list-group-item">
-                                <div class="h6 text-muted"><i class="fa fa-wrench mr-4"></i>Settings</div>
+                                @Html.ActionLink("Create New Group", "CreateGroups")
                             </li>
                             <li class="list-group-item mb-5">
-                                <div class="h6 text-muted"><i class="fa fa-power-off mr-4"></i>Logout</div>
+                                @Html.ActionLink("View Lecture List", "Index","Lecture")
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-9 gedf-main">
 
-                    <p>
-                        @Html.ActionLink("Create New", "CreatePost")
-                    </p>
 @foreach (var item in Model)
 {
     

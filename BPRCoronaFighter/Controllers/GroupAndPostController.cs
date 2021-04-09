@@ -6,12 +6,12 @@ using System.Web.Mvc;
 using BPRCoronaFighter.Models;
 namespace BPRCoronaFighter.Controllers
 {
-    public class CommentAndPostController : Controller
+    public class GroupAndPostController : Controller
     {
         // GET: CommentAndPost
         public ActionResult Index()
         {
-            CommentAndPost cp = new CommentAndPost();
+            GroupAndPost cp = new GroupAndPost();
             return View(cp);
         }
     }

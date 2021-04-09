@@ -45,7 +45,7 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetUserName(sql);
         }
-        public static bool CheckDup(string postTitle)
+        public static bool CheckDupP(string postTitle)
         {
             string sql = @"select count(postTitle) from dbo.[Post] where postTitle='" + postTitle + "'";
 

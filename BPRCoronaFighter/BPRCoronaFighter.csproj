@@ -204,6 +204,7 @@
     <Content Include="Views\Groups\CreatePost.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Groups\CreateComments.cshtml" />
+    <Content Include="Views\Groups\CreateGroups.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

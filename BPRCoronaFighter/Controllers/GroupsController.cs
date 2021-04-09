@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using static DataLibrary.BusinessLogic.PostProcessor;
 using static DataLibrary.BusinessLogic.CommentProcessor;
+using static DataLibrary.BusinessLogic.GroupProcessor;
 namespace BPRCoronaFighter.Controllers
 {
     public class GroupsController : Controller
@@ -18,6 +19,7 @@ namespace BPRCoronaFighter.Controllers
         public ActionResult Index()
         {
             ViewBag.UserName =  AccountController.username;
+            ViewBag.UserRole = AccountController.userRole;
             var data = LoadPosts();
             List<Post> post = new List<Post>();
             foreach (var item in data)
@@ -48,7 +50,7 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("PostAuthor");
             if (ModelState.IsValid)
             {
-                bool isdup = CheckDup(model.PostTitle);
+                bool isdup = CheckDupP(model.PostTitle);
                 if (isdup)
                 {
                     return Content("<script language='javascript' type='text/javascript'>alert('Title already exist！');history.go(-1);location.reload();</script>");
@@ -63,6 +65,49 @@ namespace BPRCoronaFighter.Controllers
                 }
             }
             return View();
+        }
+        public ActionResult CreateGroups()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateGroups(Group model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isdup = CheckDupG(model.GroupName);
+                if (isdup)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Group already exist！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    model.UserID = AccountController.userID;
+                    model.GroupCreater = AccountController.username;
+                    int recordsCreated = CreateGroup(model.GroupName,DateTime.Now.ToString(), model.GroupCreater, model.UserID);
+                    groupID = GetGroupID(model.GroupName);
+                    return RedirectToAction("Index", "Groups");
+                }
+            }
+            return View();
+        }
+        public ActionResult ViewGroup()
+        {
+            var data = LoadGroups();
+            List<Group> group = new List<Group>();
+            foreach (var item in data)
+            {
+                group.Add(new Group
+                {
+                    GroupName = item.GroupName,
+                    GroupTime = item.GroupTime,
+                    GroupCreater = item.GroupCreater,
+                    UserID=item.UserID,
+                });
+                group.Reverse();
+            }
+            return View(group);
         }
         public ActionResult Like(Post model)
         {
@@ -89,6 +134,7 @@ namespace BPRCoronaFighter.Controllers
                 model.UserID = AccountController.userID;
                 model.CommentAuthor = AccountController.username;
                 model.PostID = postID;
+                //model.PostID = GetPostID(model1.PostTitle);
                 int recordsCreated = CreateComment( model.CommentText,model.UserID,model.PostID, DateTime.Now.ToString(), model.CommentAuthor);
                 return RedirectToAction("Index", "Groups");
                 
@@ -106,11 +152,13 @@ namespace BPRCoronaFighter.Controllers
                     PostID = item.PostID,
                     UserID = item.UserID,
                     CommentText = item.CommentText,
+                    CommentDate=item.CommentDate,
                 });
                 comment.Reverse();
             }
             return View(comment);
         }
         public static string postID;
+        public static string groupID;
     }
 }

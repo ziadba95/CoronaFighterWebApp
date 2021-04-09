@@ -5,15 +5,15 @@ using System.Web;
 
 namespace BPRCoronaFighter.Models
 {
-    public class CommentAndPost
+    public class GroupAndPost
     {
         public IEnumerable<Post> Posts { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }
-        public CommentAndPost()
+        public IEnumerable<Group> Group { get; set; }
+        public GroupAndPost()
         {
             BPRCoronaFighterContext db = new BPRCoronaFighterContext();
             this.Posts = db.Posts.ToList();
-            this.Comments = db.Comments.ToList();
+            this.Group = db.Group.ToList();
         }
 
     }

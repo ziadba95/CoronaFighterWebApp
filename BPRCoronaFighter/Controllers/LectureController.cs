@@ -62,13 +62,7 @@ namespace BPRCoronaFighter.Controllers
         
         public ActionResult Like(Lecture model)
         {
-            bool flag = true;
-            if (flag)
-            {
-                LikeAddL(model.numOfLike,model.LectureId);
-                flag = false;
-            }
-            
+            LikeAddL(model.numOfLike,model.LectureId);
             return RedirectToAction("Index");
         }
         public static string lectureID;

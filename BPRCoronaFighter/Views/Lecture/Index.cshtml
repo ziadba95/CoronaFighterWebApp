@@ -54,13 +54,10 @@
                                 <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
                             </li>
                             <li class="list-group-item mb-5">
-                                <div class="h6 text-muted"><i class="fa fa-image mr-4"></i>Gallery</div>
+                                @Html.ActionLink("Create New Lecture", "Create")
                             </li>
                             <li class="list-group-item">
-                                <div class="h6 text-muted"><i class="fa fa-wrench mr-4"></i>Settings</div>
-                            </li>
-                            <li class="list-group-item mb-5">
-                                <div class="h6 text-muted"><i class="fa fa-power-off mr-4"></i>Logout</div>
+                                @Html.ActionLink("Go to Group", "Index","Groups")
                             </li>
                         </ul>
                     </div>
@@ -69,12 +66,7 @@
                     <br>
                     <div class="card gedf-card">
                         <div class="card-body">
-
-                            <p>
-                                @Html.ActionLink("Create New", "Create")
-                            </p>
-                           
-
+                         
                         </div>
                         <div class="card-body">
                             @foreach (var item in Model)
