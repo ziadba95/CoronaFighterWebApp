@@ -21,6 +21,7 @@ namespace DataLibrary.BusinessLogic
             };
             string sql = @"insert into dbo.[Video] (videoTitle, videoUrl, imageLink)
                                   values(@VideoTitle, @VideoURL, @ImageLink);";
+            
             return DAO.SaveData(sql, data);
         }
 

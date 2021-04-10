@@ -62,9 +62,8 @@ namespace BPRCoronaFighter.Controllers
             return View(videos);
         }
 
-        public ActionResult RemoveVideos()
+        public ActionResult RemoveVideos(int index)
         {
-            int index = 2;
             
             DeleteVideos(index);
             
