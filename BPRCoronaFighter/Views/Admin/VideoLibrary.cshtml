@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BPRCoronaFighter.Models.Video>
+@{
+	ViewBag.Title = "VideoLibrary";
+}
+
+@{  int counter = 0;
+	string buttonID = "button" + counter.ToString();
+	string buttonName = "name" + counter.ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="~/Content/admin-video-library.css">
+	<script language="javascript" type="text/javascript" src="~/scripts/admin-v-library.js"></script>
+</head>
+<body>
+	<!-- Side navigation -->
+	<div class="sidenav">
+		<a href="AdminPanel">Dashboard</a>
+		<a href="AdminMyAccount">My account</a>
+		<a href="AdminApprovedUsers">Aprroved Users</a>
+		<a href="AdminDeclinedUsers">Declined Users</a>
+		<a href="AdminVideoLibrary">Add Videos</a>
+		<a href="VideoLibrary">Video Library</a>
+	</div>
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+<p>
+	@Html.ActionLink("Create New", "AdminVideoLibrary")
+</p>
+
+
+<div class="container2" style="margin-left:15%;">
+	<h3 class="page-header" id="youtube-gallery">Current coronavirus videos in user library</h3>
+	<b style="margin-top:10%;">Click entry to delete:</b>
+	@foreach (var item in Model)
+	{
+		<button type="button" id="@buttonID" name="@buttonName"  onclick="location.href='@Url.Action("RemoveVideos", "Admin", new { index = counter })'">@counter</button>
+		counter++;
+	}
+	<div class="row">
+		<br />
+		<div class="card-body">
+			@foreach (var item in Model)
+			{
+				counter = 0;
+
+				<a href="@Html.DisplayFor(modelItem => item.VideoURL)" target="_blank" data-title="@Html.DisplayFor(modelItem => item.VideoTitle)" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
+					<button type="button" class="btn btn-play">
+						<span class="glyphicon glyphicon-play" aria-label="Play"></span>
+					</button>
+					<img src="@Html.DisplayFor(modelItem => item.ImageLink)" class="img-responsive" style="width: 320px; height: 220px;"><div class="box-title">
+						<span>@Html.DisplayFor(modelItem => item.VideoTitle)</span>
+					</div>
+				</a>
+				counter++;
+			}
+		</div>
+	</div>
+</div>
+	}

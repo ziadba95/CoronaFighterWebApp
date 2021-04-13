@@ -1,4 +1,4 @@
-﻿@model BPRCoronaFighter.Models.Admin
+@model BPRCoronaFighter.Models.Video
 
 @{
 	ViewBag.Title = "Admin Video Library";
@@ -7,414 +7,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Required meta tags -->
+	<!-- required meta tags -->
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="~/Content/admin-video-library.css">
-	<script src="~/Scripts/admin-video-library.js"></script>
+	<link rel="stylesheet" href="~/content/admin-video-library.css">
+	<script src="~/scripts/jquery-3.4.1.js"></script>
+	<script src="~/scripts/bootstrap-4.0.0-dist.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js" integrity="sha512-y2iivzeabwxg1wsv7f13plqlmfox8mdjuhyyfvoyzhyrr3nh/nmdjtbsswijzaddnzmywnetblmfopipl6cv9g==" crossorigin="anonymous"></script>
+	<script language="javascript" type="text/javascript" src="~/scripts/admin-video-library.js"></script>
 </head>
 <body>
+
 	<!-- Side navigation -->
 	<div class="sidenav">
 		<a href="AdminPanel">Dashboard</a>
 		<a href="AdminMyAccount">My account</a>
 		<a href="AdminApprovedUsers">Aprroved Users</a>
 		<a href="AdminDeclinedUsers">Declined Users</a>
-		<a href="AdminVideoLibrary">Video Library</a>
+		<a href="AdminVideoLibrary">Add Videos</a>
+		<a href="VideoLibrary">Video Library</a>
 	</div>
-
 	<!-- Page content -->
 	<div class="main">
-		<h2>Add Video to Library</h2>
-		<form action="/action_page.php">
-			<label for="vtitle">Video Title:</label><br>
-			<input type="text" id="vtitle" name="vtitle"><br>
-			<label for="vurl">Video URL:</label><br>
-			<input type="text" id="vurl" name="vurl"><br><br>
-			<label for="vthumbnail">Video Thumbnail:</label><br>
-			<input type="text" id="vurl" name="vthumbnail"><br><br>
-			<input type="submit" value="Submit">
-		</form>
-	</div>
-	<div class="container2" style="margin-left:15%;">
-		<h3 class="page-header" id="youtube-gallery">Current coronavirus videos in user library</h3>
-		
-        <div class="row">
-			<a href="https://youtu.be/sHP0UIdZyI4" target="_blank" data-title="What Is Coronavirus (COVID-19)?" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://cdn.the-scientist.com/assets/articleNo/67209/aImg/36270/coronavirus-two-deaths-washington-state-l.png" class="img-responsive" style="width: 320px; height: 220px;"><div class="box-title">
-					<span>What Is Coronavirus (COVID-19)?</span>
-				</div>
-			</a>
-			<a href="https://www.youtube.com/watch?v=h4tsN7InkPM" target="_blank" data-title="6 recommendations for dealing with stress during the COVID-19 pandemic" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://image.freepik.com/free-vector/illustrated-man-fighting-virus_23-2148490981.jpg" class="img-responsive" style="width: 320px; height: 220px;"><div class="box-title">
-					<span>6 recommendations for dealing with stress during the COVID-19 pandemic</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/v8dhUytMG28" target="_blank" data-title="Tips for everyday life during COVID-19" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video" style="width: 33.3%; height: 30%;">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.consilium.europa.eu/media/46372/10-things-highlight.png" class="img-responsive" style="width: 320px; height: 220px;"><div class="box-title">
-					<span>Tips for everyday life during COVID-19</span>
-				</div>
-			</a>
-		</div>
-		<div class="row">
-			<a href="https://youtu.be/QN_OKwMXLJY" target="_blank" data-title="Resumen Deportivo 27 de julio - PANAMERICANOS" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%203%20-1.png" class="img-responsive"><div class="box-title">
-					<span>Resumen Deportivo 27 de julio - Juegos Panamericanos</span>
-				</div>
-			</a>
-			<a href="https://www.youtube.com/watch?v=392LcsC7J8k" target="_blank" data-title="Resumen Deportivo 28 de julio - PANAMERICANOS" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%203%20-%202.png" class="img-responsive"><div class="box-title">
-					<span>Resumen Deportivo 28 de julio - Juegos Panamericanos</span>
-				</div>
-			</a>
-			<a href="https://www.youtube.com/watch?v=sAqoy90zt3I" target="_blank" data-title="Resumen Deportivo 29 de julio - PANAMERICANOS" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%204%20-%201.png" class="img-responsive"><div class="box-title">
-					<span>Resumen Deportivo 29 de julio - Juegos Panamericanos</span>
-				</div>
-			</a>
-		</div>
-		<div class="row">
-			<a href="https://www.youtube.com/watch?v=-o8VXDGvPeo&amp;feature" target="_blank" data-title="Resumen Deportivo 30 de julio - PANAMERICANOS" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%204%20-%202.png" class="img-responsive"><div class="box-title">
-					<span>Resumen Deportivo 30 de julio - Juegos Panamericanos</span>
-				</div>
-			</a>
 
-			<a href="https://www.youtube.com/watch?v=Va5eTHj4vAQ&feature=youtu.be" target="_blank" data-title="Resumen Deportivo 31 de julio - PANAMERICANOS
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%205%20-%201.png" class="img-responsive">
-				<div class="box-title">
-					<span>Resumen Deportivo 31 de julio - Juegos Panamericanos</span>
-				</div>
-			</a>
-			<a href="https://www.youtube.com/watch?v=XuolFKEC-zQ&feature=youtu.be" target="_blank" data-title="Resumen Deportivo 1 de agosto - PANAMERICANOS" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%205%20-%202.png" class="img-responsive">
-				<div class="box-title">
-					<span>Resumen Deportivo 1 de agosto - Juegos Panamericanos</span>
-				</div>
-			</a>
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			<div class="card gedf-card">
+				
+				<div class="card-body" id="postcard">
+					<div class="tab-content" id="myTabContent">
+						<div class="form-horizontal">
+							<hr />
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div class="form-group">
+								@Html.LabelFor(model => model.VideoTitle, htmlAttributes: new { @class = "control-label col-md-4" })
 
-			<a href="https://www.youtube.com/watch?v=-o8VXDGvPeo&amp;feature" target="_blank" data-title="Ceremonia de Clausura de los Juegos Panamericanos" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%206.png" class="img-responsive"><div class="box-title">
-					<span>Ceremonia de Clausura de los Juegos Panamericanos</span>
-				</div>
-			</a>
-			<a href="https://www.youtube.com/watch?v=Va5eTHj4vAQ&feature=youtu.be" target="_blank" data-title="Ceremonia de Inauguración de los Juegos Parapanamericanos" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%207.png" class="img-responsive">
-				<div class="box-title">
-					<span>Ceremonia de Inauguración de los Juegos Parapanamericanos</span>
-				</div>
-			</a>
-			<a href="https://www.youtube.com/watch?v=XuolFKEC-zQ&feature=youtu.be" target="_blank" data-title="Resumen Deportivo 2 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%208%20-%201.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 2 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
+								<div class="col-md-8">
+									@Html.EditorFor(model => model.VideoTitle, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.VideoTitle, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<hr />
+							<div class="form-group">
+								@Html.LabelFor(model => model.VideoURL, htmlAttributes: new { @class = "control-label col-md-4" })
+								<br />
+								<div class="col-md-8">
+									@Html.TextAreaFor(model => model.VideoURL, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.VideoURL, "", new { @class = "text-danger" })
+								</div>
+							</div>
+							<hr />
+							<div class="form-group">
+								@Html.LabelFor(model => model.ImageLink, htmlAttributes: new { @class = "control-label col-md-4" })
+								<br />
+								<div class="col-md-8">
+									@Html.TextAreaFor(model => model.ImageLink, new { htmlAttributes = new { @class = "form-control" } })
+									@Html.ValidationMessageFor(model => model.ImageLink, "", new { @class = "text-danger" })
+								</div>
+							</div>
+						</div>
+					</div>
 
-			<a href="https://www.youtube.com/watch?v=xRjwtE1fJm0&feature=youtu.be" target="_blank" data-title="Resumen Deportivo 3 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%208%20-%202.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 3 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/Mfhq7YQWQOI" target="_blank" data-title="Resumen Deportivo 4 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%209%20-%201.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 4 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/H5jFXGeHx4o" target="_blank" data-title="Resumen Deportivo 5 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%AFa%209%20-%202.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 5 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/0HVqq8EXGwA" target="_blank" data-title="Resumen Deportivo 6 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%2010%20-%201.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 6 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
+					<input type="submit" value="Post" class="btn btn-primary" style="display:block;margin:0 auto" />
 
 
+				</div>
 
-
-			<a href="https://youtu.be/Vvd4yzk9Vto" target="_blank" data-title="Resumen Deportivo 7 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%2010%20-%202.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 7 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/utCGkYR6Wxc" target="_blank" data-title="Resumen Deportivo 8 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%AFa%2011%20-%201.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 8 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/OhRqqxy_Sv4" target="_blank" data-title="Resumen Deportivo 9 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%2011%20-%202.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 9 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/lxgvKEV30qM" target="_blank" data-title="Resumen Deportivo 10 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%2012%20-%201.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 10 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/0JHHHtte1iM" target="_blank" data-title="Resumen Deportivo 11 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%2012%20-%202.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 11 de agosto - Juegos Panamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/_8q07Y-zsVw" target="_blank" data-title="Documental de la Competencia Deportivo" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%2013.png" class="img-responsive">
-				<div class="box-title">
-					<span>Documental de la Competencia Deportiva</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/GltyfmUDKxM" target="_blank" data-title="Ceremonia de Clausura Juegos Parapanamericanos" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/D%C3%ADa%2014.png" class="img-responsive">
-				<div class="box-title">
-					<span>Ceremonia de Clausura Juegos Parapanamericanos</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/o37INAqX3Nw" target="_blank" data-title="Resumen Deportivo 23 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/dia-15-1.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 23 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/2f0Wf8k6TXc" target="_blank" data-title="Resumen Deportivo 24 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/dia-15-2.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 24 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-
-
-
-
-
-			<a href="https://youtu.be/La0uRIjyrVw" target="_blank" data-title="Resumen Deportivo 25 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/dia-16-1.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 25 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/Lbfgt1ESnqw" target="_blank" data-title="Resumen Deportivo 26 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/dia-16-2.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 26 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/Q-HVjJL3UB4" target="_blank" data-title="Resumen Deportivo 27 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/dia-17-2.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 27 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/hZZhT_cNBOI" target="_blank" data-title="Resumen Deportivo 28 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/dia-18-1.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 28 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/wIMBE6I1UAU" target="_blank" data-title="Resumen Deportivo 29 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/dia-18-2.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 29 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/3bue5nvGxeo" target="_blank" data-title="Resumen Deportivo 30 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/dia-19-1.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 30 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/pJ9p_mdg1Fk" target="_blank" data-title="Resumen Deportivo 31 de agosto - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-03/dia-15-2.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 31 de agosto - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/S-RnVlhRwXI" target="_blank" data-title="Resumen Deportivo 01 de septiembre - Juegos Panamericanos
-" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/D%C3%ADa%2019%20-%202.png" class="img-responsive">
-				<div class="box-title">
-					<span>
-						Resumen Deportivo 01 de septiembre - Juegos Parapanamericanos
-					</span>
-				</div>
-			</a>
-			<a href="https://youtu.be/uEkYCZIjHJ8" target="_blank" data-title="Detrás de la Clausura de los Juegos Parapanamericanos" data-width="1024" data-toggle="lightbox" data-gallery="youtubevideos" class="col-sm-4 video">
-				<button type="button" class="btn btn-play">
-					<span class="glyphicon glyphicon-play" aria-label="Play"></span>
-				</button>
-				<img src="https://www.lima2019.pe/sites/default/files/2020-04/D%C3%ADa%2020.png" class="img-responsive">
-				<div class="box-title">
-					<span>Detrás de la Clausura de los Juegos Parapanamericanos</span>
-				</div>
-			</a>
-		</div>
+			</div>
+		}
 	</div>
 </body>
 </html>
