@@ -21,13 +21,25 @@ namespace BPRCoronaFighter.Controllers
         {
             if (ModelState.IsValid)
             {
-                int recordsCreated = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink,model.LectureDate);
-                return RedirectToAction("Index", "Lecture");
+                bool isdup = CheckDup(model.LectureTitle);
+                if (isdup)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Title already exist！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    //string ID = GetLectureID(model.LectureTitle);
+                    //lectureID = ID;
+                    model.UserID = AccountController.userID;
+                    model.LectureAuthor = AccountController.username;
+                    int recordsCreated = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink, model.LectureDate, model.LectureTime, model.LectureAuthor,model.UserID);
+                    return RedirectToAction("Index", "Lecture");
+                }
             }
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(Lecture model)
         {
             var data = LoadLectures();
             List<Lecture> lectures = new List<Lecture>();
@@ -37,12 +49,22 @@ namespace BPRCoronaFighter.Controllers
                 {
                     LectureTitle = item.LectureTitle,
                     LectureDescription = item.LectureDescription,
-                    LectureLink=item.LectureLink,
+                    LectureLink = item.LectureLink,
                     LectureDate = item.LectureDate,
+                    LectureTime = item.LectureTime,
+                    numOfLike = item.numOfLike,
+                    LectureAuthor = item.LectureAuthor,
                 });
                 lectures.Reverse();
             }
             return View(lectures);
         }
+        
+        public ActionResult Like(Lecture model)
+        {
+            LikeAddL(model.numOfLike,model.LectureId);
+            return RedirectToAction("Index");
+        }
+        public static string lectureID;
     }
 }

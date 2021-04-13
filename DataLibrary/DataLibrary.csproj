@@ -45,10 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\CommentProcessor.cs" />
+    <Compile Include="BusinessLogic\GroupProcessor.cs" />
     <Compile Include="BusinessLogic\LectureProcessor.cs" />
     <Compile Include="BusinessLogic\PostProcessor.cs" />
     <Compile Include="BusinessLogic\UserProcessor.cs" />
     <Compile Include="DataAccess\DAO.cs" />
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\DoctorModel.cs" />
+    <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\LectureModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\UserModel.cs" />

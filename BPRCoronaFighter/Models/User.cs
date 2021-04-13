@@ -23,7 +23,8 @@ namespace BPRCoronaFighter.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-       
+        [Required]
+        [Display(Name = "Gender")]
         public string Gender { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -43,4 +44,5 @@ namespace BPRCoronaFighter.Models
         [DisplayName("User Type")]
         public string RoleType { get; set; }
     }
+
 }
