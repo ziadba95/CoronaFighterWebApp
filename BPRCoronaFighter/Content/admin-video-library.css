@@ -62,6 +62,11 @@ tr:hover{
   background-color: #d9d9d9;
   cursor: pointer;
 }
+.checkboxvid{
+  left: 150px;
+  bottom: 50px;
+}
+
 img {
   border: 2.5px solid #446;
 }

@@ -31,6 +31,13 @@ namespace DataLibrary.DataAccess
                 return cnn.Execute(sql, data);
             }
         }
+        public static void DeleteData(string sql)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                cnn.Execute(sql);
+            }
+        }
         public static bool GetData(string sql)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
