@@ -16,33 +16,93 @@ namespace BPRCoronaFighter.Controllers
         private BPRCoronaFighterContext db = new BPRCoronaFighterContext();
 
         // GET: Groups
-        public ActionResult Index()
+        public ActionResult Index(Post model,Group model1, Comment model2)
         {
-            ViewBag.UserName =  AccountController.username;
+            ViewBag.UserName = AccountController.username;
             ViewBag.UserRole = AccountController.userRole;
             var data = LoadPosts();
-            List<Post> post = new List<Post>();
-            foreach (var item in data)
-            {
-                post.Add(new Post
+            List<Post> listOfPosts = new List<Post>();
+                for (int i = 0; i < data.Count; i++) { 
+                listOfPosts.Add(new Post()
                 {
-                    PostTitle = item.PostTitle,
-                    PostContent = item.PostContent,
-                    PostDate = item.PostDate,
-                    PostAuthor=item.PostAuthor,
-                    UserID=item.UserID,
-                    numOfLike = item.numOfLike
+                    PostTitle = data[i].PostTitle,
+                    PostContent = data[i].PostContent,
+                    PostDate = data[i].PostDate,
+                    PostAuthor = data[i].PostAuthor,
+                    UserID = data[i].UserID,
+                    numOfLike = data[i].numOfLike
                 });
-            post.Reverse();
+                listOfPosts.Reverse();
             }
-            return View(post);
+            var data1 = LoadGroups();
+            List<Group> listOfGroups = new List<Group>();
+            for (int i = 0; i < data1.Count; i++)
+            {
+                listOfGroups.Add(new Group
+                {
+                    GroupName = data1[i].GroupName,
+                    GroupTime = data1[i].GroupTime,
+                    GroupCreater = data1[i].GroupCreater,
+                    UserID = data1[i].UserID,
+                });
+                listOfGroups.Reverse();
+            }
+            var data3 = LoadComments();
+            List<Comment> listOfComments = new List<Comment>();
+            for (int i = 0; i < data3.Count; i++)
+            {
+                listOfComments.Add(new Comment()
+                {
+                    PostID = data3[i].PostID,
+                    UserID = data3[i].UserID,
+                    CommentText = data3[i].CommentText,
+                    CommentDate = data3[i].CommentDate,
+                });
+                listOfComments.Reverse();
+            }
+            GroupAndPost cp = new GroupAndPost();
+            cp.Comments = listOfComments;
+            cp.Groups = listOfGroups;
+            cp.Posts = listOfPosts;
+            return View(cp);
+        }
+        //public ActionResult ViewGroup(Group model)
+        //{
+        //    var data = LoadGroups();
+        //    List<Group> listOfGroups = new List<Group>();
+        //    for (int i = 0; i < data.Count; i++)
+        //    {
+        //        listOfGroups.Add(new Group
+        //        {
+        //            GroupName = data[i].GroupName,
+        //            GroupTime = data[i].GroupTime,
+        //            GroupCreater = data[i].GroupCreater,
+        //            UserID = data[i].UserID,
+        //        });
+        //        listOfGroups.Reverse();
+        //    }
+        //    GroupAndPost cp = new GroupAndPost();
+        //    cp.Groups = listOfGroups;
+
+        //    return View(cp);
+        //}
+
+        public ActionResult Like(Post model)
+        {
+            bool flag = true;
+            if (flag)
+            {
+                LikeAddP(model.numOfLike);
+                flag = false;
+            }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult CreatePost()
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreatePost(Post model)
@@ -66,6 +126,8 @@ namespace BPRCoronaFighter.Controllers
             }
             return View();
         }
+
+
         public ActionResult CreateGroups()
         {
             return View();
@@ -92,34 +154,8 @@ namespace BPRCoronaFighter.Controllers
             }
             return View();
         }
-        public ActionResult ViewGroup()
-        {
-            var data = LoadGroups();
-            List<Group> group = new List<Group>();
-            foreach (var item in data)
-            {
-                group.Add(new Group
-                {
-                    GroupName = item.GroupName,
-                    GroupTime = item.GroupTime,
-                    GroupCreater = item.GroupCreater,
-                    UserID=item.UserID,
-                });
-                group.Reverse();
-            }
-            return View(group);
-        }
-        public ActionResult Like(Post model)
-        {
-            bool flag = true;
-            if (flag)
-            {
-                LikeAddP(model.numOfLike);
-                flag = false;
-            }
 
-            return RedirectToAction("Index");
-        }
+
         public ActionResult CreateComments(Post model)
         {
             
@@ -141,23 +177,28 @@ namespace BPRCoronaFighter.Controllers
             }
             return View();
         }
-        public ActionResult ViewComment()
-        {
-            var data = LoadComments();
-            List<Comment> comment = new List<Comment>();
-            foreach (var item in data)
-            {
-                comment.Add(new Comment
-                {
-                    PostID = item.PostID,
-                    UserID = item.UserID,
-                    CommentText = item.CommentText,
-                    CommentDate=item.CommentDate,
-                });
-                comment.Reverse();
-            }
-            return View(comment);
-        }
+
+        //public ActionResult ViewComment(Comment model)
+        //{
+        //    var data = LoadComments();
+        //    List<Comment> listOfComments = new List<Comment>();
+        //    for (int i = 0; i < data.Count; i++)
+        //    {
+        //        listOfComments.Add(new Comment()
+        //        {
+        //            PostID = data[i].PostID,
+        //            UserID = data[i].UserID,
+        //            CommentText = data[i].CommentText,
+        //            CommentDate = data[i].CommentDate,
+        //        });
+        //        listOfComments.Reverse();
+        //    }
+        //    GroupAndPost cp = new GroupAndPost();
+        //    cp.Comments = listOfComments;
+
+        //    return View(cp);
+        //}
+
         public static string postID;
         public static string groupID;
     }

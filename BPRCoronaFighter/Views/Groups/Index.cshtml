@@ -1,15 +1,13 @@
-﻿@model IEnumerable<BPRCoronaFighter.Models.Post>
-@*@using BPRCoronaFighter.Models
-@model CommentAndPost*@
+﻿@using BPRCoronaFighter.Models
+@model GroupAndPost
+
 @{
     ViewBag.Title = "Group";
-
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <script src="https://kit.fontawesome.com/a166556e40.js"></script>
@@ -48,10 +46,11 @@
 
                             <li class="list-group-item">
                                 <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
-                                <ul>Group 1</ul>
-                                <ul>Group 2</ul>
-                                <ul>Group 3</ul>
-                                <ul>Group 4</ul>
+                            @foreach (var item in Model.Groups)
+                            {
+                                <ul>@Html.DisplayFor(modelItem => item.GroupName)</ul>
+                            }
+                                
                             </li>
                             <li class="list-group-item">
                                 <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
@@ -70,9 +69,8 @@
                 </div>
                 <div class="col-md-9 gedf-main">
 
-@foreach (var item in Model)
+@foreach (var item in Model.Posts)
 {
-    
     <div class="card gedf-card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">

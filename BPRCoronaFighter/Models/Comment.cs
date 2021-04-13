@@ -9,7 +9,7 @@ namespace BPRCoronaFighter.Models
     public class Comment
     {
         [HiddenInput(DisplayValue = false)]
-        public int? CommentId { get; set; }
+        public int CommentId { get; set; }
         public string UserID { get; set; }
         public string PostID { get; set; }
         [Required]

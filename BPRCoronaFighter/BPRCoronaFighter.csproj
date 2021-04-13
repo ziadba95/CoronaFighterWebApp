@@ -131,7 +131,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\CommentAndPostController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LectureController.cs" />
@@ -142,7 +141,7 @@
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\BPRCoronaFighterContext.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\CommentAndPost.cs" />
+    <Compile Include="Models\GroupAndPost.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Lecture.cs" />
     <Compile Include="Models\Post.cs" />

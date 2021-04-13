@@ -10,7 +10,7 @@ namespace BPRCoronaFighter.Models
     public class Post
     {
         [HiddenInput(DisplayValue = false)]
-        public int? PostId { get; set; }
+        public int PostId { get; set; }
         [Required]
         [Display(Name = "Post Author")]
         public string PostAuthor { get; set; }
