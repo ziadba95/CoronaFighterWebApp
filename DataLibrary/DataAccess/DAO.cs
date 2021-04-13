@@ -36,7 +36,6 @@ namespace DataLibrary.DataAccess
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
                 cnn.Execute(sql);
-            }    
             }
         }
         public static bool GetData(string sql)
@@ -56,3 +55,4 @@ namespace DataLibrary.DataAccess
             }
         }
     }
+}
