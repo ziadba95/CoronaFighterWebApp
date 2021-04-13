@@ -206,6 +206,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Groups\CreateComments.cshtml" />
     <Content Include="Views\Groups\CreateGroups.cshtml" />
+    <Content Include="Views\Account\ChangePass.cshtml" />
+    <Content Include="Views\Lecture\MyLecture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

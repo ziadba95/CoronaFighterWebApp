@@ -16,6 +16,23 @@ namespace BPRCoronaFighter.Controllers
         {
             return View();
         }
+
+        public ActionResult ChangePass(User model)
+        {
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Gender");
+            ModelState.Remove("RoleType");
+            ModelState.Remove("Dob");
+            ModelState.Remove("PasswordConfirm");
+            ModelState.Remove("Email");
+            if (ModelState.IsValid)
+            {
+                string UserID = userID;
+                int recordsCreated = ChangePassword(model.Password, UserID);
+            }
+            return View();
+        }
         public ActionResult Login()
         {
             return View();
@@ -92,24 +109,24 @@ namespace BPRCoronaFighter.Controllers
         }
 
         //TEST Method To View Users
-        public ActionResult ViewUsers()
-        {
-            ViewBag.Message = "Users List";
-            var data = LoadUsers();
-            List<User> users = new List<User>();
-            foreach (var item in data)
-            {
-                users.Add(new User
-                {
-                    FirstName = item.FirstName,
-                    LastName = item.LastName,
-                    Email = item.Email,
-                    Gender = item.Gender,
-                    RoleType = item.RoleType
-                });
-            }
-            return View(users);
-        }
+        //public ActionResult ViewUsers()
+        //{
+        //    ViewBag.Message = "Users List";
+        //    var data = LoadUsers();
+        //    List<User> users = new List<User>();
+        //    foreach (var item in data)
+        //    {
+        //        users.Add(new User
+        //        {
+        //            FirstName = item.FirstName,
+        //            LastName = item.LastName,
+        //            Email = item.Email,
+        //            Gender = item.Gender,
+        //            RoleType = item.RoleType
+        //        });
+        //    }
+        //    return View(users);
+        //}
         public static string username="New user";
         public static string userID ;
         public static string userRole;

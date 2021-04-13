@@ -35,7 +35,7 @@ namespace BPRCoronaFighter.Models
         [HiddenInput(DisplayValue = false)]
         public DateTime? ApplicationDate { get; set; }
         [HiddenInput(DisplayValue = false)]
-        public bool? ApplicationStatus { get; set; }
+        public string ApplicationStatus { get; set; }
         [Required]
         [Display(Name = "Gender")]
         public string Gender { get; set; }

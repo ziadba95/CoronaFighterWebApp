@@ -26,6 +26,15 @@ namespace DataLibrary.BusinessLogic
                                   values(@FirstName, @LastName, @Gender, @Email, @Password, @Dob, @RoleType);"; 
             return DAO.SaveData(sql, data);
         }
+        public static int ChangePassword(string password,string userID)
+        {
+            UserModel data = new UserModel
+            {
+                Password = password,
+            };
+            string sql = @"UPDATE  dbo.[User] set pass='" + @password + "'where userID= '" + @userID + "'";
+            return DAO.SaveData(sql, data);
+        }
         public static int CreateDoctor(string fName, string lName, string email, string password, DateTime dob, string gender,byte[] doc)
         {
             DoctorModel data = new DoctorModel
@@ -44,8 +53,7 @@ namespace DataLibrary.BusinessLogic
         }
         public static List<UserModel> LoadUsers()
         {
-            string sql = @"select  fName, lName, gender, email, roleType
-                              from dbo.[User];";
+            string sql = @"select  fName, lName, gender, email, roleType from dbo.[User];";
             return DAO.LoadData<UserModel>(sql);
         }
         public static bool LogIn(string email, string password)
