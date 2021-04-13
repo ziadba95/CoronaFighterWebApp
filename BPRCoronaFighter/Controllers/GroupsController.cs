@@ -198,7 +198,6 @@ namespace BPRCoronaFighter.Controllers
 
         //    return View(cp);
         //}
-
         public static string postID;
         public static string groupID;
     }

@@ -36,7 +36,7 @@ namespace DataLibrary.BusinessLogic
             {
                 numOfLike = numOfLike,
             };
-            string sql = @"update dbo.[Post] set numOfLike = numOfLike + 1;";
+            string sql = @"update dbo.[Post] set numOfLike = numOfLike + 1 where postID =" + 10;
             return DAO.SaveData(sql, data);
         }
         public static string GetPostID(string postTitle)
