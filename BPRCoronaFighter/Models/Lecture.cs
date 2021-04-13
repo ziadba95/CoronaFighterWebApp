@@ -24,13 +24,14 @@ namespace BPRCoronaFighter.Models
         [Display(Name = "Lecture Link")]
         public string LectureLink { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0:U}")]
         [Display(Name = "Lecture Date")]
-        //[DataType(DataType.Time)]
         [DataType(DataType.Date)]
         public DateTime LectureDate { get; set; }
-
-
-
+        [Required]
+        [DataType(DataType.Time)]
+        public DateTime LectureTime { get; set; }
+        public int numOfLike { get; set; }
+        public string UserID { get; set; }
+        public string LectureAuthor { get; set; }
     }
 }

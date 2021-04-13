@@ -39,5 +39,20 @@ namespace DataLibrary.DataAccess
             }    
             }
         }
-
+        public static bool GetData(string sql)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                int count = cnn.Query<int>(sql).FirstOrDefault();
+                return count > 0 ? true : false;
+                //return cnn.QueryFirst<int>(sql);
+            }
+        }
+        public static string GetUserName(string sql)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.QueryFirst<string>(sql);
+            }
+        }
     }

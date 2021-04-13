@@ -10,7 +10,10 @@ namespace BPRCoronaFighter.Models
     public class Post
     {
         [HiddenInput(DisplayValue = false)]
-        public int? PostId { get; set; }
+        public int PostId { get; set; }
+        [Required]
+        [Display(Name = "Post Author")]
+        public string PostAuthor { get; set; }
         [Required]
         [Display(Name = "Post Title")]
         public string PostTitle { get; set; }
@@ -18,8 +21,8 @@ namespace BPRCoronaFighter.Models
         [Display(Name = "Write Here:")]
         public string PostContent { get; set; }
         public string PostDate { get; set; }
-
-
+        public string UserID { get; set; }
+        public int numOfLike { get; set; }
 
 
 

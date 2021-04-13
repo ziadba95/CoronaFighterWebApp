@@ -20,5 +20,7 @@ namespace BPRCoronaFighter.Models
         }
 
         public System.Data.Entity.DbSet<BPRCoronaFighter.Models.Group> Groups { get; set; }
+        public System.Data.Entity.DbSet<BPRCoronaFighter.Models.Comment> Comments { get; set; }
+        public System.Data.Entity.DbSet<BPRCoronaFighter.Models.Post> Posts { get; set; }
     }
 }
