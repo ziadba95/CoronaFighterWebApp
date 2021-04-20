@@ -1,0 +1,124 @@
+﻿@using BPRCoronaFighter.Models
+@model GroupAndPost
+@{
+    ViewBag.Title = "OwnGroup";
+}
+
+<h2>GroupName: @ViewBag.GroupName</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+
+    <link href="~/Content/group.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="jumbotron">
+            <b>Group</b>
+            <div class="container px-1 py-3">
+                <div class="row">
+                    <div class="col-md-3" id="profile">
+                        <div class="card pl-3">
+                            <div class="card-body">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="50" src="assets/images/7.jpg" alt="">
+                                </div>
+                                <div class="h5 mt-4">@ViewBag.UserName </div>
+
+                            </div>
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item">
+                                    <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
+                                    @foreach (var item in Model.Groups)
+                                    {
+                                        @*<ul>@Html.DisplayFor(modelItem => item.GroupName)></ul>*@
+                                        
+                                        <ul><button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />@Html.DisplayFor(modelItem => item.GroupName)
+                                        </ul>
+                                        ViewBag.GroupName =  item.GroupName;
+                                    }
+                                    
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Create New Post", "CreatePost")
+                                </li>
+                                <li class="list-group-item">
+                                    @Html.ActionLink("Create New Group", "CreateGroups")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("View Lecture List", "Index", "Lecture")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Search Posts", "SearchPost", "Groups")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-9 gedf-main">
+
+                        @foreach (var item in Model.Posts)
+                        {
+                            <div class="card gedf-card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center pt-5">
+                                            <div class="mr-2">
+                                            </div>
+                                            <div class="ml-2">
+                                                <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                                                    Author:
+                                                    @Html.DisplayFor(modelItem => item.PostAuthor)
+                                                </span>
+                                                <br />
+                                                <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                                                    Title:
+                                                    @Html.DisplayFor(modelItem => item.PostTitle)
+                                                </span>
+                                                <br />
+                                                <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                                                    @Html.DisplayFor(modelItem => item.PostDate)
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <p class="card-text text-muted">
+
+                                    @Html.DisplayFor(modelItem => item.PostContent)
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)
+                                <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />
+                                @*<a href="#" class="card-link"><i class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'"></i> </a>*@
+                            </div>
+                            @*</div>*@
+                            <br />
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    }
+</body>
+</html>
+

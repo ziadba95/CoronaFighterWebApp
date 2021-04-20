@@ -208,6 +208,9 @@
     <Content Include="Views\Groups\CreateGroups.cshtml" />
     <Content Include="Views\Account\ChangePass.cshtml" />
     <Content Include="Views\Lecture\MyLecture.cshtml" />
+    <Content Include="Views\Groups\SearchPost.cshtml" />
+    <Content Include="Views\Groups\ListSearchP.cshtml" />
+    <Content Include="Views\Groups\OwnGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

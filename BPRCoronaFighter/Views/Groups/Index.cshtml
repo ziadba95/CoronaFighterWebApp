@@ -28,14 +28,6 @@
                 <div class="col-md-3" id="profile">
                     <div class="card pl-3">
                         <div class="card-body">
-                            <div class="input-group mb-5">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                                <input type="text" placeholder="Search" id="search" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            </div>
                             <div class="mr-2">
                                 <img class="rounded-circle" width="50" src="assets/images/7.jpg" alt="">
                             </div>
@@ -48,7 +40,11 @@
                                 <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
                             @foreach (var item in Model.Groups)
                             {
-                                <ul>@Html.DisplayFor(modelItem => item.GroupName)</ul>
+                                @*<ul>@Html.DisplayFor(modelItem => item.GroupName)</ul>*@
+                            //ViewBag.GroupName = item.GroupName;
+                                <ul>
+                                    <button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />@Html.DisplayFor(modelItem => item.GroupName)
+                                </ul>
                             }
                                 
                             </li>
@@ -64,6 +60,9 @@
                             <li class="list-group-item mb-5">
                                 @Html.ActionLink("View Lecture List", "Index","Lecture")
                             </li>
+                            <li class="list-group-item mb-5">
+                                @Html.ActionLink("Search Posts", "SearchPost", "Groups")
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -78,8 +77,6 @@
                     <div class="mr-2">
                     </div>
                     <div class="ml-2">
-                        @*<div class="h5 m-0">Author:@Html.DisplayFor(modelItem => item.PostAuthor) 
-                        Title:@Html.DisplayFor(modelItem => item.PostTitle)*@
                         <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
                             Author:
                             @Html.DisplayFor(modelItem => item.PostAuthor)
@@ -95,14 +92,12 @@
                     </div>
                     </div>
                 </div>
-                <div>
-
-                </div>
             </div>
         </div>
         <div class="card-body">
            
             <p class="card-text text-muted">
+
                 @Html.DisplayFor(modelItem => item.PostContent)
             </p>
         </div>

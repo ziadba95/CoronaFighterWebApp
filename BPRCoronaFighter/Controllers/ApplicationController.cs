@@ -30,10 +30,12 @@ namespace BPRCoronaFighter.Controllers
             ViewBag.Gender = new SelectList(new[] { "Male", "Female" });
             if (ModelState.IsValid)
             {
-                //int recordsCreated = CreateDoctor(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.Document);
-                return RedirectToAction("Index", "Home");
+                model.AppStatus = "waiting";
+                int recordsCreated = CreateDoctor(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.AppStatus, DateTime.Now.ToString());
+                return Content("<script language='javascript' type='text/javascript'>alert('Please wait for approvement！');</script>");
+                //return RedirectToAction("Index", "Home");
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
     }

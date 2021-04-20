@@ -10,7 +10,7 @@ namespace DataLibrary.BusinessLogic
 {
     public static class PostProcessor
     {
-        public static int CreatePosts(string postTitle, string postContent, string postDate, string postAuthor, string userID)
+        public static int CreatePosts(string postTitle, string postContent, string postDate, string postAuthor, string userID,string groupID)
         {
             PostModel data = new PostModel
             {
@@ -19,15 +19,22 @@ namespace DataLibrary.BusinessLogic
                 PostDate = postDate,
                 PostAuthor= postAuthor,
                 UserID= userID,
+                GroupID= groupID
             };
-            string sql = @"insert into dbo.[Post] (postTitle, postContent, postDate,postAuthor,userID)
-                                  values(@PostTitle, @PostContent,@PostDate,@PostAuthor,@UserID );";
+            string sql = @"insert into dbo.[Post] (postTitle, postContent, postDate,postAuthor,userID,groupID)
+                                  values(@PostTitle, @PostContent,@PostDate,@PostAuthor,@UserID,@GroupID );";
             return DAO.SaveData(sql, data);
         }
         public static List<PostModel> LoadPosts()
         {
-            string sql = @"select  postTitle, postContent, postDate,postAuthor,userID,numOfLike
+            string sql = @"select  postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
                               from dbo.[Post];";
+            return DAO.LoadData<PostModel>(sql);
+        }
+        public static List<PostModel> LoadOwnPosts(string groupID)
+        {
+            string sql = @"select  postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
+                              from dbo.[Post] where groupID='" + @groupID + "'";
             return DAO.LoadData<PostModel>(sql);
         }
         public static int LikeAddP(int numOfLike)
@@ -50,6 +57,23 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select count(postTitle) from dbo.[Post] where postTitle='" + postTitle + "'";
 
             return DAO.GetData(sql);
+        }
+        public static int SearchPosts(string postTitle)
+        {
+            PostModel data = new PostModel
+            {
+                PostTitle = postTitle,
+            };
+            string sql = @"select groupName, groupTime, groupCreater,userID
+                        from dbo.[Group] where groupName like '%" + @postTitle + "%'";
+            return DAO.SaveData(sql, data);
+        }
+
+        public static List<PostModel> ListSearch(string postTitle)
+        {
+            string sql = @"select postTitle, postContent, postDate,postAuthor,userID
+                        from dbo.[Post] where postTitle like '%" + @postTitle + "%'";
+            return DAO.LoadData<PostModel>(sql);
         }
     }
 }

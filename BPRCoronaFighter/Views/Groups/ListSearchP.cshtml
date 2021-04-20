@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BPRCoronaFighter.Models.Post>
+@{
+    ViewBag.Title = "ListSearchP";
+}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+
+    <link href="~/Content/group.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<h2>ListSearch</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.ActionLink("Back", "Index")
+    </div>
+    foreach (var item in Model)
+    {
+        <div class="card gedf-card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center pt-5">
+                        <div class="mr-2">
+                        </div>
+                        <div class="ml-2">
+                            <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                                Author:
+                                @Html.DisplayFor(modelItem => item.PostAuthor)
+                            </span>
+                            <br />
+                            <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                                Title:
+                                @Html.DisplayFor(modelItem => item.PostTitle)
+                            </span>
+                            <br />
+                            <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                                @Html.DisplayFor(modelItem => item.PostDate)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <p class="card-text text-muted">
+                @Html.DisplayFor(modelItem => item.PostContent)
+            </p>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)
+            <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />
+            @*<a href="#" class="card-link"><i class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'"></i> </a>*@
+        </div>
+        @*</div>*@
+        <br />
+    }
+
+}
+

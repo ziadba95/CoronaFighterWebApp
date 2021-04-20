@@ -31,15 +31,16 @@ namespace DataLibrary.BusinessLogic
         }
         public static string GetGroupID(string groupName)
         {
-            string sql = @"select groupID from dbo.[Group] where groupName='" + groupName + "'";
+            string sql = @"select groupID from dbo.[Group] where groupName='" + @groupName + "'";
 
             return DAO.GetUserName(sql);
         }
         public static bool CheckDupG(string groupName)
         {
-            string sql = @"select count(groupName) from dbo.[Group] where groupName='" + groupName + "'";
+            string sql = @"select count(groupName) from dbo.[Group] where groupName='" + @groupName + "'";
 
             return DAO.GetData(sql);
         }
+       
     }
 }

@@ -35,7 +35,7 @@ namespace DataLibrary.BusinessLogic
             string sql = @"UPDATE  dbo.[User] set pass='" + @password + "'where userID= '" + @userID + "'";
             return DAO.SaveData(sql, data);
         }
-        public static int CreateDoctor(string fName, string lName, string email, string password, DateTime dob, string gender,byte[] doc)
+        public static int CreateDoctor(string fName, string lName, string email, string password, DateTime dob, string gender,string appStatus,string subDate)
         {
             DoctorModel data = new DoctorModel
             {
@@ -45,10 +45,12 @@ namespace DataLibrary.BusinessLogic
                 Password = password,
                 Dob = dob,
                 Gender = gender,
-                //Document=doc
+                //Document=doc,
+                AppStatus= appStatus,
+                ApplicationDate = subDate
             };
-            string sql = @"insert into dbo.[User] (fName, lName, gender, email, pass, DOB, doc)
-                                  values(@FirstName, @LastName, @Gender, @Email, @Password, @Dob, @Document);";
+            string sql = @"insert into dbo.[Applications] (firstName, lastName, gender, email, password, dob, appStatus,subDate)
+                                  values(@FirstName, @LastName, @Gender, @Email, @Password, @Dob, @AppStatus,@ApplicationDate);";
             return DAO.SaveData(sql, data);
         }
         public static List<UserModel> LoadUsers()

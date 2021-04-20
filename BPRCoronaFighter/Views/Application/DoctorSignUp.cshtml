@@ -71,8 +71,9 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Document, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Document, new { type="file", name="Files" })
-            @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })
+            <p>Upload your licence(PDF) to this email <a href="https://lch19990429@gmail.com">lch19990429@gmail.com</a></p>
+            @*@Html.TextBoxFor(model => model.Document, new { type="file", name="Files" })
+            @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })*@
         </div>
     </div>
     @*<div class="form-group">
