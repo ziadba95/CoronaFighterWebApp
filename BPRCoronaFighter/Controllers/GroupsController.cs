@@ -212,6 +212,11 @@ namespace BPRCoronaFighter.Controllers
             return View();
         }
 
+        public ActionResult LeaveGroups()
+		{
+            return RedirectToAction("Index", "Groups");
+        }
+
 
         public ActionResult CreateComments(Post model)
         {

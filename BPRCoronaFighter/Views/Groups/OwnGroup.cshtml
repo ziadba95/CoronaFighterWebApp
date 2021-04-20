@@ -35,36 +35,41 @@
                                 <div class="h5 mt-4">@ViewBag.UserName </div>
 
                             </div>
-                            <ul class="list-group list-group-flush">
+							<ul class="list-group list-group-flush">
 
-                                <li class="list-group-item">
-                                    <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
-                                    @foreach (var item in Model.Groups)
-                                    {
-                                        @*<ul>@Html.DisplayFor(modelItem => item.GroupName)></ul>*@
-                                        
-                                        <ul><button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />@Html.DisplayFor(modelItem => item.GroupName)
-                                        </ul>
-                                        ViewBag.GroupName =  item.GroupName;
-                                    }
-                                    
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
-                                </li>
-                                <li class="list-group-item mb-5">
-                                    @Html.ActionLink("Create New Post", "CreatePost")
-                                </li>
-                                <li class="list-group-item">
-                                    @Html.ActionLink("Create New Group", "CreateGroups")
-                                </li>
-                                <li class="list-group-item mb-5">
-                                    @Html.ActionLink("View Lecture List", "Index", "Lecture")
-                                </li>
-                                <li class="list-group-item mb-5">
-                                    @Html.ActionLink("Search Posts", "SearchPost", "Groups")
-                                </li>
-                            </ul>
+								<li class="list-group-item">
+									<div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
+									@foreach (var item in Model.Groups)
+									{
+										@*<ul>@Html.DisplayFor(modelItem => item.GroupName)></ul>*@
+
+										<ul>
+											<button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />
+											@Html.DisplayFor(modelItem => item.GroupName)
+										</ul>
+										ViewBag.GroupName = item.GroupName;
+									}
+
+								</li>
+								<li class="list-group-item">
+									<div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
+								</li>
+								<li class="list-group-item mb-5">
+									@Html.ActionLink("Create New Post", "CreatePost")
+								</li>
+								<li class="list-group-item">
+									@Html.ActionLink("Create New Group", "CreateGroups")
+								</li>
+								<li class="list-group-item">
+									@Html.ActionLink("Leave Group", "LeaveGroups")
+								</li>
+								<li class="list-group-item mb-5">
+									@Html.ActionLink("View Lecture List", "Index", "Lecture")
+								</li>
+								<li class="list-group-item mb-5">
+									@Html.ActionLink("Search Posts", "SearchPost", "Groups")
+								</li>
+							</ul>
                         </div>
                     </div>
                     <div class="col-md-9 gedf-main">
