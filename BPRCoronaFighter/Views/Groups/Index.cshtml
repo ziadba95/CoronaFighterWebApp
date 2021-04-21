@@ -15,7 +15,12 @@
     <link href="~/Content/group.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    @*@{ 
+        if(@ViewBag.UserName != "New user")
+        {
+            Layout = "~/Views/Shared/layout2.cshtml";
+        }
+    }*@
 </head>
 <body>
 @using (Html.BeginForm())
@@ -38,14 +43,18 @@
 
                             <li class="list-group-item">
                                 <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
-                            @foreach (var item in Model.Groups)
-                            {
+                            
                                 @*<ul>@Html.DisplayFor(modelItem => item.GroupName)</ul>*@
-                            //ViewBag.GroupName = item.GroupName;
+                            @*//ViewBag.GroupName = item.GroupName;*@
                                 <ul>
-                                    <button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />@Html.DisplayFor(modelItem => item.GroupName)
-                                </ul>
-                            }
+                                @foreach (var item in Model.Groups)
+                                {
+                                    <li>
+                                    <button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups",@Html.DisplayFor(modelItem => item.GroupName))">@Html.DisplayFor(modelItem => item.GroupName)
+                                     </li>
+                                }
+                                 </ul>
+                            
                                 
                             </li>
                             <li class="list-group-item">

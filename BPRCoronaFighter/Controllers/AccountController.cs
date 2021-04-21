@@ -37,6 +37,10 @@ namespace BPRCoronaFighter.Controllers
         {
             return View();
         }
+        public ActionResult Adminlogin()
+        {
+            return View();
+        }
         [HttpPost]
 
         public ActionResult Login(User model)
@@ -71,7 +75,29 @@ namespace BPRCoronaFighter.Controllers
 
 
         }
+        [HttpPost]
+        public ActionResult Adminlogin(Admin model)//insert into dbo.[Admin] (email,password) values ('Admin01@coronafighter.com','111111')
+        {
+            if (ModelState.IsValid)
+            {
+                bool recordsCreated = AdminLogIn(model.Email, model.Password);
+                if (recordsCreated)
+                {
+                    //string ID = GetUserID(model.Email);
+                    //userID = ID;
+                    username = "Admin";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Log in fail！');history.go(-1);location.reload();</script>");
+                }
 
+            }
+            return View();
+
+
+        }
         //Sign up method
         public ActionResult SignUp()
         {

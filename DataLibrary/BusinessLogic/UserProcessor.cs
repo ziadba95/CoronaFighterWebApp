@@ -65,6 +65,13 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetData(sql);
         }
+        public static bool AdminLogIn(string email, string password)
+        {
+            //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
+            string sql = @"select count(adminID) from dbo.[Admin] where email='" + @email + "'and password= '" + @password + "'";
+
+            return DAO.GetData(sql);
+        }
         public static bool CheckDup(string email)
         {
             string sql = @"select count(userID) from dbo.[User] where email='" + @email + "'";

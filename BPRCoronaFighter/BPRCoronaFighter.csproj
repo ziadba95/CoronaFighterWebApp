@@ -211,6 +211,8 @@
     <Content Include="Views\Groups\SearchPost.cshtml" />
     <Content Include="Views\Groups\ListSearchP.cshtml" />
     <Content Include="Views\Groups\OwnGroup.cshtml" />
+    <Content Include="Views\Shared\layout2.cshtml" />
+    <Content Include="Views\Account\Adminlogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
