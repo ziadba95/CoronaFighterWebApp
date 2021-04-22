@@ -37,6 +37,6 @@ namespace BPRCoronaFighter.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
+        
     }
 }

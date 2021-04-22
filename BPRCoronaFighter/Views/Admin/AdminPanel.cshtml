@@ -1,10 +1,8 @@
-﻿@model BPRCoronaFighter.Models.Admin
+﻿@model IEnumerable<BPRCoronaFighter.Models.Application> 
 
 @{
 	ViewBag.Title = "Admin Dashboard";
 }
-
-<!DOCTYPE html>
 <html>
 <head>
 	<!-- Required meta tags -->
@@ -13,6 +11,9 @@
 	<script src="~/Scripts/admin-panel.js"></script>
 </head>
 <body>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 	<!-- Side navigation -->
 	<div class="sidenav">
 		<a href="AdminPanel">Dashboard</a>
@@ -22,88 +23,48 @@
 		<a href="AdminVideoLibrary">Add Videos</a>
 		<a href="VideoLibrary">Video Library</a>
 	</div>
-
-	<!-- Page content -->
+    
 	<div class="main">
 		<table class="table container col-11 m-auto">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">UserID</th>
-					<th scope="col">First Name</th>
-					<th scope="col">Last Name</th>
-					<th scope="col">Email</th>
-					<th scope="col">Gender</th>
-					<th scope="col">Birthday</th>
-					<th scope="col">User Type</th>
-					<th scope="col">Attached Licence</th>
-					<th scope="col">Current Application Status</th>
+					<th scope="col">@Html.DisplayNameFor(model => model.ApplicationId)</th>
+					<th scope="col">@Html.DisplayNameFor(model => model.FirstName)</th>
+					<th scope="col">@Html.DisplayNameFor(model => model.LastName)</th>
+					<th scope="col">@Html.DisplayNameFor(model => model.Email)l</th>
+					@*<th scope="col">@Html.DisplayNameFor(model => model.Password)</th>
+					<th scope="col">@Html.DisplayNameFor(model => model.Dob)</th>
+					<th scope="col">@Html.DisplayNameFor(model => model.Gender)</th>*@
+					<th scope="col">@Html.DisplayNameFor(model => model.ApplicationDate)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.AppStatus)</th>
 					<th scope="col">Approve application?</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Angel</td>
-					<td>Petrov</td>
-					<td>helloWorld@hotmail.com</td>
-					<td>Male</td>
-					<td>1-12-2020</td>
-					<td>Doctor</td>
-					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
-					<td>None</td>
+           @foreach (var item in Model)
+           {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ApplicationId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    @*<td>@Html.DisplayFor(modelItem => item.Password)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Dob)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Gender)</td>*@
+                    <td>@Html.DisplayFor(modelItem => item.ApplicationDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AppStatus)</td>
 
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Angel</td>
-					<td>Petrov</td>
-					<td>helloWorld@hotmail.com</td>
-					<td>Male</td>
-					<td>1-12-2020</td>
-					<td>Doctor</td>
-					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
-					<td>None</td>
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Angel</td>
-					<td>Petrov</td>
-					<td>helloWorld@hotmail.com</td>
-					<td>Male</td>
-					<td>1-12-2020</td>
-					<td>Doctor</td>
-					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
-					<td>None</td>
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Angel</td>
-					<td>Petrov</td>
-					<td>helloWorld@hotmail.com</td>
-					<td>Male</td>
-					<td>1-12-2020</td>
-					<td>Doctor</td>
-					<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
-					<td>None</td>
-					<td class="recordsControl">
-						<span onclick="ReservEdit(this)">Decline</span> |
-						<span onclick="ReservEdit(this)">Accept</span>
-					</td>
-				</tr>
-			</tbody>
+                    
+                    @*<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
+                    <td>None</td>*@
+                    <td class="recordsControl">
+                        <span onclick="ReservEdit(this)">Decline</span> |
+                        <span onclick="ReservEdit(this)">Accept</span>
+                    </td>
+                </tr>
+           }
 		</table>
 	</div>
+    
+}
 </body>
 </html>

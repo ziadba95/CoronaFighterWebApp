@@ -32,9 +32,7 @@ namespace BPRCoronaFighter.Models
         [Display(Name = "Upload Your Licence")]
         //[DataType(DataType.Upload)]
         public string  Document { get; set; }
-        [HiddenInput(DisplayValue = false)]
         public string ApplicationDate { get; set; }
-        [HiddenInput(DisplayValue = false)]
         public string AppStatus { get; set; }
         [Required]
         [Display(Name = "Gender")]

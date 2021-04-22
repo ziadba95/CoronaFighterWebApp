@@ -58,6 +58,11 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select  fName, lName, gender, email, roleType from dbo.[User];";
             return DAO.LoadData<UserModel>(sql);
         }
+        public static List<DoctorModel> LoadDoctorsWaiting()
+        {
+            string sql = @"select  appID,firstName,lastName,email,subDate,appStatus,gender,password,dob from dbo.[Applications] where appStatus='waiting';";
+            return DAO.LoadData<DoctorModel>(sql);
+        }
         public static bool LogIn(string email, string password)
         {
             //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
