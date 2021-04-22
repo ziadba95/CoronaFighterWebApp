@@ -42,14 +42,34 @@ namespace BPRCoronaFighter.Controllers
         }
 
         // GET: ApprovedUsers
-        public ActionResult AdminApprovedUsers()
+        public ActionResult AdminApprovedUsers(Application model)
         {
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Dob");
+            ModelState.Remove("Gender");
+            ModelState.Remove("Password");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = ApproveApp(model.Email);
+                return RedirectToAction("AdminPanel", "Admin");
+            }
             return View();
         }
 
         // GET: DeclinedUsers
-        public ActionResult AdminDeclinedUsers()
+        public ActionResult AdminDeclinedUsers(Application model)
         {
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Dob");
+            ModelState.Remove("Gender");
+            ModelState.Remove("Password");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = DeclineApp(model.Email);
+                return RedirectToAction("AdminPanel", "Admin");
+            }
             return View();
         }
 

@@ -50,7 +50,8 @@
                                 @foreach (var item in Model.Groups)
                                 {
                                     <li>
-                                    <button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups",@Html.DisplayFor(modelItem => item.GroupName))">@Html.DisplayFor(modelItem => item.GroupName)
+                                        @Html.DisplayFor(modelItem => item.GroupName)
+                                    @*<button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups",@Html.DisplayFor(modelItem => item.GroupName))">@Html.DisplayFor(modelItem => item.GroupName)*@
                                      </li>
                                 }
                                  </ul>
@@ -71,6 +72,12 @@
                             </li>
                             <li class="list-group-item mb-5">
                                 @Html.ActionLink("Search Posts", "SearchPost", "Groups")
+                            </li>
+                            <li class="list-group-item mb-5">
+                                @Html.ActionLink("Go to group", "SearchGroup", "Groups")
+                            </li>
+                            <li class="list-group-item mb-5">
+                                @Html.ActionLink("Go to post", "SeePost", "Groups")
                             </li>
                         </ul>
                     </div>
@@ -111,7 +118,7 @@
             </p>
         </div>
         <div class="card-footer">
-            <button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)
+            @*<button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)*@
             <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />
             @*<a href="#" class="card-link"><i class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'"></i> </a>*@
         </div>

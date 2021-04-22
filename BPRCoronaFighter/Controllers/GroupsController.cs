@@ -16,7 +16,7 @@ namespace BPRCoronaFighter.Controllers
         private BPRCoronaFighterContext db = new BPRCoronaFighterContext();
        
         // GET: Groups 
-        public ActionResult Index(Post model,Group model1, Comment model2)
+        public ActionResult Index(Post model,Group model1)
         {
             ViewBag.UserName = AccountController.username;
             ViewBag.UserRole = AccountController.userRole;
@@ -48,21 +48,22 @@ namespace BPRCoronaFighter.Controllers
                 });
                 listOfGroups.Reverse();
             }
-            var data3 = LoadComments();
-            List<Comment> listOfComments = new List<Comment>();
-            for (int i = 0; i < data3.Count; i++)
-            {
-                listOfComments.Add(new Comment()
-                {
-                    PostID = data3[i].PostID,
-                    UserID = data3[i].UserID,
-                    CommentText = data3[i].CommentText,
-                    CommentDate = data3[i].CommentDate,
-                });
-                listOfComments.Reverse();
-            }
+
+            //var data3 = LoadComments(int.Parse(groupID));
+            //List<Comment> listOfComments = new List<Comment>();
+            //for (int i = 0; i < data3.Count; i++)
+            //{
+            //    listOfComments.Add(new Comment()
+            //    {
+            //        PostID = data3[i].PostID,
+            //        UserID = data3[i].UserID,
+            //        CommentText = data3[i].CommentText,
+            //        CommentDate = data3[i].CommentDate,
+            //    });
+            //    listOfComments.Reverse();
+            //}
             GroupAndPost cp = new GroupAndPost();
-            cp.Comments = listOfComments;
+            //cp.Comments = listOfComments;
             cp.Groups = listOfGroups;
             cp.Posts = listOfPosts;
             return View(cp);
@@ -87,13 +88,13 @@ namespace BPRCoronaFighter.Controllers
 
         //    return View(cp);
         //}
-        public ActionResult OwnGroup(Post model, Group model1, Comment model2,string GroupName)
+        public ActionResult OwnGroup(Post model, Group model1, Comment model2)
         {
             ViewBag.UserName = AccountController.username;
             ViewBag.UserRole = AccountController.userRole;
-            //ViewBag.GroupName = GroupName;
+            ViewBag.GroupName = GroupName;
             //string groupN = ViewBag.GroupName;
-            groupID = GetGroupID("rt");
+           //model.GroupID= groupID ;
             var data = LoadOwnPosts(groupID);
             List<Post> listOfOwnPosts = new List<Post>();
             for (int i = 0; i < data.Count; i++)
@@ -123,21 +124,21 @@ namespace BPRCoronaFighter.Controllers
                 });
                 listOfGroups.Reverse();
             }
-            var data3 = LoadComments();
-            List<Comment> listOfComments = new List<Comment>();
-            for (int i = 0; i < data3.Count; i++)
-            {
-                listOfComments.Add(new Comment()
-                {
-                    PostID = data3[i].PostID,
-                    UserID = data3[i].UserID,
-                    CommentText = data3[i].CommentText,
-                    CommentDate = data3[i].CommentDate,
-                });
-                listOfComments.Reverse();
-            }
+            //var data3 = LoadComments(int.Parse(groupID));
+            //List<Comment> listOfComments = new List<Comment>();
+            //for (int i = 0; i < data3.Count; i++)
+            //{
+            //    listOfComments.Add(new Comment()
+            //    {
+            //        PostID = data3[i].PostID,
+            //        UserID = data3[i].UserID,
+            //        CommentText = data3[i].CommentText,
+            //        CommentDate = data3[i].CommentDate,
+            //    });
+            //    listOfComments.Reverse();
+            //}
             GroupAndPost cp = new GroupAndPost();
-            cp.Comments = listOfComments;
+            //cp.Comments = listOfComments;
             cp.Groups = listOfGroups;
             cp.Posts = listOfOwnPosts;
             return View(cp);
@@ -153,11 +154,12 @@ namespace BPRCoronaFighter.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
         public ActionResult CreatePost()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreatePost(Post model)
@@ -273,6 +275,70 @@ namespace BPRCoronaFighter.Controllers
             }
             return View();
         }
+        public ActionResult SearchGroup(Group model)
+        {
+            if (ModelState.IsValid)
+            {
+                groupID = GetGroupID(model.GroupName);
+                int recordsCreated = SearchGroups(int.Parse(groupID));
+                GroupName = model.GroupName;
+                ViewBag.GroupName = GroupName;
+                return RedirectToAction("OwnGroup", "Groups");
+            }
+            return View();
+        }
+        public ActionResult SeePost(Post model)
+        {
+            ModelState.Remove("PostAuthor");
+            ModelState.Remove("PostContent");
+            if (ModelState.IsValid)
+            {
+                postID = GetPostID(model.PostTitle);
+                int recordsCreated = Postdetail(int.Parse(postID));
+                postTitle = model.PostTitle;
+                ViewBag.PostTitle = postTitle;
+                return RedirectToAction("PostDetail", "Groups");
+            }
+            return View();
+        }
+        public ActionResult PostDetail(Post model,Comment model1)
+        {
+            var data = Postdetails(int.Parse(postID));
+            List<Post> listOfOwnPosts = new List<Post>();
+            for (int i = 0; i < data.Count; i++)
+            {
+                listOfOwnPosts.Add(new Post()
+                {
+                    PostId = data[i].PostId,
+                    PostTitle = data[i].PostTitle,
+                    PostContent = data[i].PostContent,
+                    PostDate = data[i].PostDate,
+                    PostAuthor = data[i].PostAuthor,
+                    UserID = data[i].UserID,
+                    numOfLike = data[i].numOfLike
+                });
+                listOfOwnPosts.Reverse();
+            }
+            var data1 = LoadComments(int.Parse(postID));
+            List<Comment> listOfComments = new List<Comment>();
+            for (int i = 0; i < data.Count; i++)
+            {
+                listOfComments.Add(new Comment()
+                {
+                    PostID = data1[i].PostID,
+                    UserID = data1[i].UserID,
+                    CommentText = data1[i].CommentText,
+                    CommentDate = data1[i].CommentDate,
+                });
+                listOfComments.Reverse();
+                return View();
+            }
+            GroupAndPost cp = new GroupAndPost();
+            //cp.Comments = listOfComments;
+            cp.Comments = listOfComments;
+            cp.Posts = listOfOwnPosts;
+            return View(cp);
+        }
         public ActionResult ListSearchP(Post model)
         {
             string PostTitle= postTitle;
@@ -296,5 +362,6 @@ namespace BPRCoronaFighter.Controllers
         public static string groupID;
         public static string postTitle;
         public static string GroupName;
+        public static string PostName;
     }
 }

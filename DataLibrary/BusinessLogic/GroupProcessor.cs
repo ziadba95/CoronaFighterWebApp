@@ -41,6 +41,16 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetData(sql);
         }
-       
+        public static int SearchGroups(int groupID)
+        {
+            GroupModel data = new GroupModel
+            {
+                GroupId = groupID,
+            };
+            string sql = @"select groupName, groupTime, groupCreater,userID
+                        from dbo.[Group] where groupID ='" + @groupID + "'";
+            return DAO.SaveData(sql, data);
+        }
+
     }
 }

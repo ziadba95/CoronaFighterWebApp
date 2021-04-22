@@ -18,8 +18,8 @@
 	<div class="sidenav">
 		<a href="AdminPanel">Dashboard</a>
 		<a href="AdminMyAccount">My account</a>
-		<a href="AdminApprovedUsers">Aprroved Users</a>
-		<a href="AdminDeclinedUsers">Declined Users</a>
+		<a href="AdminApprovedUsers">Go to approve</a>
+		<a href="AdminDeclinedUsers">Go to Decline</a>
 		<a href="AdminVideoLibrary">Add Videos</a>
 		<a href="VideoLibrary">Video Library</a>
 	</div>
@@ -28,38 +28,38 @@
 		<table class="table container col-11 m-auto">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">@Html.DisplayNameFor(model => model.ApplicationId)</th>
+					@*<th scope="col">@Html.DisplayNameFor(model => model.ApplicationId)</th>*@
 					<th scope="col">@Html.DisplayNameFor(model => model.FirstName)</th>
 					<th scope="col">@Html.DisplayNameFor(model => model.LastName)</th>
 					<th scope="col">@Html.DisplayNameFor(model => model.Email)l</th>
 					@*<th scope="col">@Html.DisplayNameFor(model => model.Password)</th>
 					<th scope="col">@Html.DisplayNameFor(model => model.Dob)</th>
 					<th scope="col">@Html.DisplayNameFor(model => model.Gender)</th>*@
-					<th scope="col">@Html.DisplayNameFor(model => model.ApplicationDate)</th>
+					@*<th scope="col">@Html.DisplayNameFor(model => model.ApplicationDate)</th>*@
                     <th scope="col">@Html.DisplayNameFor(model => model.AppStatus)</th>
-					<th scope="col">Approve application?</th>
+					@*<th scope="col">Approve application?</th>*@
 				</tr>
 			</thead>
            @foreach (var item in Model)
            {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.ApplicationId)</td>
+                    @*<td>@Html.DisplayFor(modelItem => item.ApplicationId)</td>*@
                     <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
                     <td>@Html.DisplayFor(modelItem => item.LastName)</td>
                     <td>@Html.DisplayFor(modelItem => item.Email)</td>
                     @*<td>@Html.DisplayFor(modelItem => item.Password)</td>
                     <td>@Html.DisplayFor(modelItem => item.Dob)</td>
                     <td>@Html.DisplayFor(modelItem => item.Gender)</td>*@
-                    <td>@Html.DisplayFor(modelItem => item.ApplicationDate)</td>
+                    @*<td>@Html.DisplayFor(modelItem => item.ApplicationDate)</td>*@
                     <td>@Html.DisplayFor(modelItem => item.AppStatus)</td>
 
                     
                     @*<td><button style="color: transparent; background-color: transparent; border-color: transparent; cursor: default;" onclick="window.open('http://google.com','_blank')"><img src="~/Resources/file_icon.png"></button></td>
                     <td>None</td>*@
-                    <td class="recordsControl">
+                    @*<td class="recordsControl">
                         <span onclick="ReservEdit(this)">Decline</span> |
                         <span onclick="ReservEdit(this)">Accept</span>
-                    </td>
+                    </td>*@
                 </tr>
            }
 		</table>

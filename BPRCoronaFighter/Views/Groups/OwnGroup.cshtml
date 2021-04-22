@@ -44,7 +44,7 @@
 										@*<ul>@Html.DisplayFor(modelItem => item.GroupName)></ul>*@
 
 										<ul>
-											<button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />
+											@*<button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />*@
 											@Html.DisplayFor(modelItem => item.GroupName)
 										</ul>
 										ViewBag.GroupName = item.GroupName;
@@ -69,6 +69,12 @@
 								<li class="list-group-item mb-5">
 									@Html.ActionLink("Search Posts", "SearchPost", "Groups")
 								</li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Go to group", "SearchGroup", "Groups")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Go to post", "SeePost", "Groups")
+                                </li>
 							</ul>
                         </div>
                     </div>

@@ -35,6 +35,16 @@ namespace DataLibrary.BusinessLogic
             string sql = @"UPDATE  dbo.[User] set pass='" + @password + "'where userID= '" + @userID + "'";
             return DAO.SaveData(sql, data);
         }
+        public static int ChangeUsername(string fname,string lname, string userID)
+        {
+            UserModel data = new UserModel
+            {
+                FirstName = fname,
+                LastName = lname,
+            };
+            string sql = @"UPDATE  dbo.[User] set fName='" + @fname +"',lName='"+ @lname + "'where userID= '" + @userID + "'";
+            return DAO.SaveData(sql, data);
+        }
         public static int CreateDoctor(string fName, string lName, string email, string password, DateTime dob, string gender,string appStatus,string subDate)
         {
             DoctorModel data = new DoctorModel
@@ -70,6 +80,20 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetData(sql);
         }
+        public static bool LogInDoctor(string email, string password)
+        {
+            //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
+            string sql = @"select count(appID) from dbo.[Applications] where email='" + @email + "'and password= '" + @password + "'";
+
+            return DAO.GetData(sql);
+        }
+        public static string ckeckDoctor(string email)
+        {
+            //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
+            string sql = @"select appStatus from dbo.[Applications] where email='" + @email+"'";
+
+            return DAO.GetDataString(sql);
+        }
         public static bool AdminLogIn(string email, string password)
         {
             //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
@@ -101,11 +125,47 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetUserName(sql);
         }
+        public static string GetDoctorFName(string email)
+        {
+            string sql = @"select firstName from dbo.[Applications] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
+        }
+        public static string GetDoctorLName(string email)
+        {
+            string sql = @"select lastName from dbo.[Applications] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
+        }
+        public static string GetDoctorID(string email)
+        {
+            string sql = @"select appID from dbo.[Applications] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
+        }
         public static string GetRoleType(string email)
         {
             string sql = @"select roleType from dbo.[User] where email='" + @email + "'";
 
             return DAO.GetUserName(sql);
+        }
+        public static int ApproveApp(string email)
+        {
+            UserModel data = new UserModel
+            {        
+                Email = email,
+            };
+            string sql = @"UPDATE  dbo.[Applications] set appStatus='Approve' where email= '" + @email + "'";
+            return DAO.SaveData(sql, data);
+        }
+        public static int DeclineApp(string email)
+        {
+            UserModel data = new UserModel
+            {
+                Email = email,
+            };
+            string sql = @"UPDATE  dbo.[Applications] set appStatus='Decline' where email= '" + @email + "'";
+            return DAO.SaveData(sql, data);
         }
     }
 }

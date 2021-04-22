@@ -30,6 +30,23 @@ namespace BPRCoronaFighter.Controllers
             {
                 string UserID = userID;
                 int recordsCreated = ChangePassword(model.Password, UserID);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        public ActionResult ChangeUserName(User model)
+        {
+            ModelState.Remove("Password");
+            ModelState.Remove("Gender");
+            ModelState.Remove("RoleType");
+            ModelState.Remove("Dob");
+            ModelState.Remove("PasswordConfirm");
+            ModelState.Remove("Email");
+            if (ModelState.IsValid)
+            {
+                string UserID = userID;
+                int recordsCreated = ChangeUsername(model.FirstName,model.LastName, UserID);
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
@@ -72,8 +89,6 @@ namespace BPRCoronaFighter.Controllers
                         
             }
                return View();
-
-
         }
         [HttpPost]
         public ActionResult Adminlogin(Admin model)//insert into dbo.[Admin] (email,password) values ('Admin01@coronafighter.com','111111')
@@ -95,8 +110,54 @@ namespace BPRCoronaFighter.Controllers
 
             }
             return View();
+        }
+        public ActionResult Doctorlogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Doctorlogin(Application model)
+        {
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Gender");
+            ModelState.Remove("RoleType");
+            ModelState.Remove("Dob");
+            if (ModelState.IsValid)
+            {
+                bool recordsCreated = LogInDoctor(model.Email, model.Password);
+                if (recordsCreated)
+                {
+                    string status = ckeckDoctor(model.Email);
+                    if(status=="Approve")
+                    {
+                        string fname = GetDoctorFName(model.Email);
+                        string lname = GetDoctorLName(model.Email);
+                        string ID = GetDoctorID(model.Email);
+                        string role = "Doctor";
+                        userID = ID;
+                        username = fname + " " + lname + " (" + role + ")";
+                        userRole = role;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    if (status == "waiting")
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('Please wait！');history.go(-1);location.reload();</script>");
+                    }
+                    if (status == "Decline")
+                    {
+                        return Content("<script language='javascript' type='text/javascript'>alert('You are declined！');history.go(-1);location.reload();</script>");
+                    }
 
 
+                }
+                else
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Log in fail！');history.go(-1);location.reload();</script>");
+                }
+
+            }
+            return View();
         }
         //Sign up method
         public ActionResult SignUp()

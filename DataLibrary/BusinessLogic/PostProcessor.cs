@@ -27,13 +27,13 @@ namespace DataLibrary.BusinessLogic
         }
         public static List<PostModel> LoadPosts()
         {
-            string sql = @"select  postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
-                              from dbo.[Post];";
+            string sql = @"select  postID,postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
+                              from dbo.[Post] where groupID is null;";
             return DAO.LoadData<PostModel>(sql);
         }
         public static List<PostModel> LoadOwnPosts(string groupID)
         {
-            string sql = @"select  postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
+            string sql = @"select  postID,postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
                               from dbo.[Post] where groupID='" + @groupID + "'";
             return DAO.LoadData<PostModel>(sql);
         }
@@ -64,11 +64,26 @@ namespace DataLibrary.BusinessLogic
             {
                 PostTitle = postTitle,
             };
-            string sql = @"select groupName, groupTime, groupCreater,userID
-                        from dbo.[Group] where groupName like '%" + @postTitle + "%'";
+            string sql = @"select postTitle, postContent, postDate,postAuthor,userID
+                        from dbo.[Post] where postTitle like '%" + @postTitle + "%'";
             return DAO.SaveData(sql, data);
         }
-
+        public static int Postdetail(int postID)
+        {
+            PostModel data = new PostModel
+            {
+                PostId = postID,
+            };
+            string sql = @"select postTitle, postContent, postDate,postAuthor,userID
+                        from dbo.[Post] where postID ='" + @postID + "'";
+            return DAO.SaveData(sql, data);
+        }
+        public static List<PostModel> Postdetails(int postID)
+        {
+            string sql = @"select postTitle, postContent, postDate,postAuthor,userID
+                        from dbo.[Post] where postID ='" + @postID + "'";
+            return DAO.LoadData<PostModel>(sql);
+        }
         public static List<PostModel> ListSearch(string postTitle)
         {
             string sql = @"select postTitle, postContent, postDate,postAuthor,userID

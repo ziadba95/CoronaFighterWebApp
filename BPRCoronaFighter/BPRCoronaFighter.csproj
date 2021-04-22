@@ -213,6 +213,11 @@
     <Content Include="Views\Groups\OwnGroup.cshtml" />
     <Content Include="Views\Shared\layout2.cshtml" />
     <Content Include="Views\Account\Adminlogin.cshtml" />
+    <Content Include="Views\Account\ChangeUserName.cshtml" />
+    <Content Include="Views\Groups\SearchGroup.cshtml" />
+    <Content Include="Views\Groups\SeePost.cshtml" />
+    <Content Include="Views\Groups\PostDetail.cshtml" />
+    <Content Include="Views\Account\Doctorlogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
