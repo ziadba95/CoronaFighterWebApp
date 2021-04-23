@@ -179,7 +179,7 @@ namespace BPRCoronaFighter.Controllers
                     model.GroupID = groupID;
                     int recordsCreated = CreatePosts(model.PostTitle, model.PostContent, DateTime.Now.ToString(), model.PostAuthor, model.UserID, model.GroupID);
                     postID = GetPostID(model.PostTitle);
-                    return RedirectToAction("OwnGroup", "Groups");
+                    return RedirectToAction("Index", "Groups");
                 }
             }
             return View();
@@ -321,20 +321,19 @@ namespace BPRCoronaFighter.Controllers
             }
             var data1 = LoadComments(int.Parse(postID));
             List<Comment> listOfComments = new List<Comment>();
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < data1.Count; i++)
             {
                 listOfComments.Add(new Comment()
                 {
                     PostID = data1[i].PostID,
                     UserID = data1[i].UserID,
+                    CommentAuthor = data1[i].CommentAuthor,
                     CommentText = data1[i].CommentText,
                     CommentDate = data1[i].CommentDate,
                 });
                 listOfComments.Reverse();
-                return View();
             }
             GroupAndPost cp = new GroupAndPost();
-            //cp.Comments = listOfComments;
             cp.Comments = listOfComments;
             cp.Posts = listOfOwnPosts;
             return View(cp);

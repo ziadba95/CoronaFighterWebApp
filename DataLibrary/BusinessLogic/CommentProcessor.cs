@@ -26,7 +26,7 @@ namespace DataLibrary.BusinessLogic
 
         public static List<CommentModel> LoadComments(int postID)
         {
-            string sql = @"select  commentText, userID, postID,commentDate,commentAuthor
+            string sql = @"select  commentID,commentText, userID, postID,commentDate,commentAuthor
                               from dbo.[Comment] where postID ='" + @postID + "'";
             return DAO.LoadData<CommentModel>(sql);
         }

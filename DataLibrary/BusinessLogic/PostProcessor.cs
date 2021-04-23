@@ -80,7 +80,7 @@ namespace DataLibrary.BusinessLogic
         }
         public static List<PostModel> Postdetails(int postID)
         {
-            string sql = @"select postTitle, postContent, postDate,postAuthor,userID
+            string sql = @"select postID,postTitle, postContent, postDate,postAuthor,userID
                         from dbo.[Post] where postID ='" + @postID + "'";
             return DAO.LoadData<PostModel>(sql);
         }
