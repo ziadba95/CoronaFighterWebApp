@@ -1,0 +1,49 @@
+﻿@model  BPRCoronaFighter.Models.Video
+@{
+    ViewBag.Title = "RemoveVideos";
+}
+
+<h2>RemoveVideos</h2>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+    <link href="~/Content/group.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="card gedf-card">
+        <div class="card-body" id="postcard">
+            <div class="tab-content" id="myTabContent">
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.VideoTitle, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.VideoTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.VideoTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Delete" class="btn btn-primary" style="display:block;margin:0 auto" />
+
+
+        </div>
+
+    </div>
+}
+<div>
+    @Html.ActionLink("Back", "AdminPanel")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

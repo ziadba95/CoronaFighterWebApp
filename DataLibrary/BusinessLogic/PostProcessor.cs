@@ -10,16 +10,16 @@ namespace DataLibrary.BusinessLogic
 {
     public static class PostProcessor
     {
-        public static int CreatePosts(string postTitle, string postContent, string postDate, string postAuthor, string userID,string groupID)
+        public static int CreatePosts(string postTitle, string postContent, string postDate, string postAuthor, string userID, string groupID)
         {
             PostModel data = new PostModel
             {
                 PostTitle = postTitle,
                 PostContent = postContent,
                 PostDate = postDate,
-                PostAuthor= postAuthor,
-                UserID= userID,
-                GroupID= groupID
+                PostAuthor = postAuthor,
+                UserID = userID,
+                GroupID = groupID
             };
             string sql = @"insert into dbo.[Post] (postTitle, postContent, postDate,postAuthor,userID,groupID)
                                   values(@PostTitle, @PostContent,@PostDate,@PostAuthor,@UserID,@GroupID );";
@@ -29,6 +29,12 @@ namespace DataLibrary.BusinessLogic
         {
             string sql = @"select  postID,postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
                               from dbo.[Post] where groupID is null;";
+            return DAO.LoadData<PostModel>(sql);
+        }
+        public static List<PostModel> LoadPostsByUser(string UserID)
+        {
+            string sql = @"select  postID,postTitle, postContent, postDate,postAuthor,userID,numOfLike,groupID
+                              from dbo.[Post] where userID=" + @UserID;
             return DAO.LoadData<PostModel>(sql);
         }
         public static List<PostModel> LoadOwnPosts(string groupID)
@@ -89,6 +95,16 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select postTitle, postContent, postDate,postAuthor,userID
                         from dbo.[Post] where postTitle like '%" + @postTitle + "%'";
             return DAO.LoadData<PostModel>(sql);
+        }
+        public static int DeletePosts(string postTitle)
+        {
+            PostModel data = new PostModel
+            {
+                PostTitle = postTitle,
+            };
+            string sql = @"delete from dbo.[Post] where postTitle ='" + @postTitle + "'";
+
+            return DAO.SaveData(sql, data);
         }
     }
 }

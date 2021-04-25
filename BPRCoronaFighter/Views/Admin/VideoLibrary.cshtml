@@ -37,12 +37,7 @@
 
 <div class="container2" style="margin-left:15%;">
 	<h3 class="page-header" id="youtube-gallery">Current coronavirus videos in user library</h3>
-	<b style="margin-top:10%;">Click entry to delete:</b>
-	@foreach (var item in Model)
-	{
-		<button type="button" id="@buttonID" name="@buttonName"  onclick="location.href='@Url.Action("RemoveVideos", "Admin", new { index = counter })'">@counter</button>
-		counter++;
-	}
+	<b style="margin-top:10%;">Click entry to delete:</b><input type="submit" value="Delete" class="btn btn-primary"  onclick="location.href='@Url.Action("RemoveVideos", "Admin", new { index = counter })'" />
 	<div class="row">
 		<br />
 		<div class="card-body">
@@ -64,3 +59,5 @@
 	</div>
 </div>
 	}
+    </body>
+</html>

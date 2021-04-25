@@ -73,6 +73,24 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select  appID,firstName,lastName,email,subDate,appStatus,gender,password,dob from dbo.[Applications] where appStatus='waiting';";
             return DAO.LoadData<DoctorModel>(sql);
         }
+        public static int JoinGroups(int userID, string username, int groupID, string groupname)
+        {
+            UserGroupModel data = new UserGroupModel
+            {
+                UserId = userID,
+                UserName = username,
+                GroupId = groupID,
+                GroupName = groupname,
+            };
+            string sql = @"insert into dbo.[UserGroup] (userID, userName, groupID, groupName)
+                                  values(@UserId, @UserName, @GroupId, @GroupName);";
+            return DAO.SaveData(sql, data);
+        }
+        public static List<UserGroupModel> LoadJoinedGroups(string userName)
+        {
+            string sql = @"select groupName from dbo.[UserGroup] where userName= '" + @userName + "'";
+            return DAO.LoadData<UserGroupModel>(sql);
+        }
         public static bool LogIn(string email, string password)
         {
             //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
@@ -165,6 +183,16 @@ namespace DataLibrary.BusinessLogic
                 Email = email,
             };
             string sql = @"UPDATE  dbo.[Applications] set appStatus='Decline' where email= '" + @email + "'";
+            return DAO.SaveData(sql, data);
+        }
+        public static int LeaveGroupss(string groupName)
+        {
+            UserGroupModel data = new UserGroupModel
+            {
+                GroupName = groupName,
+            };
+            string sql = @"delete from dbo.[UserGroup] where groupName ='" + @groupName + "'";
+
             return DAO.SaveData(sql, data);
         }
     }

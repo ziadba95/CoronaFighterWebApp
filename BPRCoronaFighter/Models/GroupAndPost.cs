@@ -10,6 +10,6 @@ namespace BPRCoronaFighter.Models
         public IEnumerable<Post> Posts { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
         public IEnumerable<Group> Groups { get; set; }
-
+        public IEnumerable<UserGroup> UserGroups { get; set; }
     }
 }

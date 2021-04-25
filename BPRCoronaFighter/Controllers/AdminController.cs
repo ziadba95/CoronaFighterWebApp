@@ -100,13 +100,23 @@ namespace BPRCoronaFighter.Controllers
             }
             return View(videos);
         }
-
-        public ActionResult RemoveVideos(int index)
+        public ActionResult RemoveVideos()
         {
-            
-            DeleteVideos(index);
-            
-            return RedirectToAction("VideoLibrary");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveVideos(Video model)
+        {
+            ModelState.Remove("VideoURL");
+            ModelState.Remove("ImageLink");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = RemoveVideo(model.VideoTitle);
+                return RedirectToAction("VideoLibrary");
+
+            }
+            return View();
         }
 
     }

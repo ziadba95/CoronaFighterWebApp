@@ -59,5 +59,28 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetData(sql);
         }
+        public static int DeleteLectures(string lectureTitle)
+        {
+            LectureModel data = new LectureModel
+            {
+                LectureTitle = lectureTitle,
+            };
+            string sql = @"delete from dbo.[Lecture] where lectureTitle ='" + @lectureTitle + "'";
+
+            return DAO.SaveData(sql, data);
+        }
+        public static int EditLectures(string lectureTitle, DateTime lectureDate, DateTime lectureTime)
+        {
+            LectureModel data = new LectureModel
+            {
+                LectureTitle = lectureTitle,
+                LectureDate = lectureDate,
+                LectureTime = lectureTime,
+            };
+            string sql = @"update dbo.[Lecture] set lectureDate='" + @lectureDate + "',lectureTime='" +
+                @lectureTime + "' where lectureTitle='" + @lectureTitle + "'";
+                                  
+            return DAO.SaveData(sql, data);
+        }
     }
 }
