@@ -32,6 +32,12 @@ namespace DataLibrary.BusinessLogic
                               from dbo.[Lecture];";
             return DAO.LoadData<LectureModel>(sql);
         }
+        public static List<LectureModel> LoadLecturesByUser(string UserID)
+        {
+            string sql = @"select  lectureTitle, lectureDescription, lectureLink,lectureDate,lectureTime,numOfLike
+                              from dbo.[Lecture] where userID=" + @UserID;
+            return DAO.LoadData<LectureModel>(sql);
+        }
         public static int LikeAddL(int numOfLike,int? lectureId)
         {
             LectureModel data = new LectureModel

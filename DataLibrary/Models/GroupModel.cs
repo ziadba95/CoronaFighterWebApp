@@ -8,7 +8,7 @@ namespace DataLibrary.Models
 {
     public class GroupModel
     {
-        public int? GroupId { get; set; }
+        public int GroupId { get; set; }
         public string GroupName { get; set; }
         public string UserID { get; set; }
         public string GroupTime { get; set; }

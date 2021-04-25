@@ -206,10 +206,22 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Groups\CreateComments.cshtml" />
     <Content Include="Views\Groups\CreateGroups.cshtml" />
+    <Content Include="Views\Account\ChangePass.cshtml" />
+    <Content Include="Views\Lecture\MyLecture.cshtml" />
+    <Content Include="Views\Groups\SearchPost.cshtml" />
+    <Content Include="Views\Groups\ListSearchP.cshtml" />
+    <Content Include="Views\Groups\OwnGroup.cshtml" />
+    <Content Include="Views\Shared\layout2.cshtml" />
+    <Content Include="Views\Account\Adminlogin.cshtml" />
+    <Content Include="Views\Account\ChangeUserName.cshtml" />
+    <Content Include="Views\Groups\SearchGroup.cshtml" />
+    <Content Include="Views\Groups\SeePost.cshtml" />
+    <Content Include="Views\Groups\PostDetail.cshtml" />
+    <Content Include="Views\Account\Doctorlogin.cshtml" />
+    <Content Include="Views\Shared\layout3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CommentAndPost\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

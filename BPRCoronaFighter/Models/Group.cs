@@ -10,7 +10,7 @@ namespace BPRCoronaFighter.Models
     public class Group
     {
         [HiddenInput(DisplayValue = false)]
-        public int? GroupId { get; set; }
+        public int GroupId { get; set; }
         [Required]
         [Display(Name = "Group Name")]
         public string GroupName { get; set; }

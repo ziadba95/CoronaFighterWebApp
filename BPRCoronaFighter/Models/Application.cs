@@ -12,7 +12,7 @@ namespace BPRCoronaFighter.Models
     public class Application
     {
         [HiddenInput(DisplayValue=false)]
-        public int? ApplicationId { get; set; }
+        public int ApplicationId { get; set; }
         [Required]
         [DisplayName("First Name")]
         public string FirstName { get; set; }
@@ -28,14 +28,12 @@ namespace BPRCoronaFighter.Models
         [Display(Name = "Date of Birthday")]
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "Upload Your Licence")]
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase Document { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public DateTime? ApplicationDate { get; set; }
-        [HiddenInput(DisplayValue = false)]
-        public bool? ApplicationStatus { get; set; }
+        //[DataType(DataType.Upload)]
+        public string  Document { get; set; }
+        public string ApplicationDate { get; set; }
+        public string AppStatus { get; set; }
         [Required]
         [Display(Name = "Gender")]
         public string Gender { get; set; }

@@ -12,19 +12,14 @@ namespace BPRCoronaFighter.Models
     public class Admin
     {
         [HiddenInput(DisplayValue = false)]
-        public int? UserId { get; set; }
-        [Required]
-        [DisplayName("First Name")]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
+        public int UserId { get; set; }
+       
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        public string Gender { get; set; }
+
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -32,13 +27,6 @@ namespace BPRCoronaFighter.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string PasswordConfirm { get; set; }
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
-        [Display(Name = "Date of Birthday")]
-        [DataType(DataType.Date)]
-        public DateTime Dob { get; set; }
-        [Required]
-        [DisplayName("User Type")]
-        public string RoleType { get; set; }
+
     }
 }

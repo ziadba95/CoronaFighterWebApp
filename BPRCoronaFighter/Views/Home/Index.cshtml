@@ -4,6 +4,20 @@
 
 <div class="jumbotron">
     <label>@ViewBag.UserName</label>  
+    @{
+        if (ViewBag.UserName == "Welcome: Admin")
+        {
+            Layout = "~/Views/Shared/layout3.cshtml";
+        }
+        else if (ViewBag.UserName=="Welcome: New user")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/layout2.cshtml";
+        }
+    }
     <h1>Corona Statistics</h1>
     <iframe src="https://www.bing.com/covid?ref=embedding" style="width: 100%; height: 500px; max-width: 1272px; border: none;"></iframe>
 

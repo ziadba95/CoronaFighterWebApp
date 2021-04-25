@@ -5,15 +5,34 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using static DataLibrary.BusinessLogic.VideoProcessor;
+using static DataLibrary.BusinessLogic.UserProcessor;
 
 namespace BPRCoronaFighter.Controllers
 {
     public class AdminController : Controller
     {
         // GET: AdminPanel
-        public ActionResult AdminPanel()
+        public ActionResult AdminPanel(Application model)
         {
-            return View();
+            var data = LoadDoctorsWaiting();
+            List<Application> application = new List<Application>();
+            foreach (var item in data)
+            {
+                application.Add(new Application
+                {
+                    ApplicationId = item.ApplicationId,
+                    FirstName = item.FirstName,
+                    LastName = item.LastName,
+                    Email = item.Email,
+                    Password = item.Password,
+                    Dob = item.Dob,
+                    Gender = item.Gender,
+                    AppStatus = item.AppStatus,
+                    ApplicationDate = item.ApplicationDate,
+                });
+                application.Reverse();
+            }
+            return View(application);
         }
 
         // GET: AdminMyAccount
@@ -23,14 +42,34 @@ namespace BPRCoronaFighter.Controllers
         }
 
         // GET: ApprovedUsers
-        public ActionResult AdminApprovedUsers()
+        public ActionResult AdminApprovedUsers(Application model)
         {
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Dob");
+            ModelState.Remove("Gender");
+            ModelState.Remove("Password");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = ApproveApp(model.Email);
+                return RedirectToAction("AdminPanel", "Admin");
+            }
             return View();
         }
 
         // GET: DeclinedUsers
-        public ActionResult AdminDeclinedUsers()
+        public ActionResult AdminDeclinedUsers(Application model)
         {
+            ModelState.Remove("FirstName");
+            ModelState.Remove("LastName");
+            ModelState.Remove("Dob");
+            ModelState.Remove("Gender");
+            ModelState.Remove("Password");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = DeclineApp(model.Email);
+                return RedirectToAction("AdminPanel", "Admin");
+            }
             return View();
         }
 

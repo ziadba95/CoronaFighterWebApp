@@ -23,6 +23,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Posts", "Index", "Groups")</li>
                     <li>@Html.ActionLink("VideoLibrary", "VideoLibrary", "Admin")</li>
+                    <li>@Html.ActionLink("Manage", "AdminPanel", "Admin")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Sign Up", "SignUP", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
@@ -44,3 +45,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

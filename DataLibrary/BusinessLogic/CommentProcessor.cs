@@ -24,10 +24,10 @@ namespace DataLibrary.BusinessLogic
             return DAO.SaveData(sql, data);
         }
 
-        public static List<CommentModel> LoadComments()
+        public static List<CommentModel> LoadComments(int postID)
         {
-            string sql = @"select  commentText, userID, postID,commentDate,commentAuthor
-                              from dbo.[Comment];";
+            string sql = @"select  commentID,commentText, userID, postID,commentDate,commentAuthor
+                              from dbo.[Comment] where postID ='" + @postID + "'";
             return DAO.LoadData<CommentModel>(sql);
         }
     }

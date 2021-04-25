@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BPRCoronaFighter.Models.Lecture>
+@{
+    ViewBag.Title = "MyLecture";
+}
+
+<h2>MyLecture</h2>
+
+@foreach (var item in Model)
+{
+    <table class="table" border="1">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.LectureTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LectureTitle)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.LectureDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LectureDescription)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.LectureLink)
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.LectureLink)">Zoom link</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.LectureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LectureDate)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.LectureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LectureTime)
+            </td>
+        </tr>
+
+
+
+    </table>
+}

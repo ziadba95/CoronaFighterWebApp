@@ -24,6 +24,13 @@ namespace DataLibrary.DataAccess
                 return cnn.Query<T>(sql).ToList();
             }
         }
+        public static List<T> LoadData<T>(string sql, T data)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql,data).ToList();
+            }
+        }
         public static int SaveData<T>(string sql, T data)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
@@ -45,6 +52,13 @@ namespace DataLibrary.DataAccess
                 int count = cnn.Query<int>(sql).FirstOrDefault();
                 return count > 0 ? true : false;
                 //return cnn.QueryFirst<int>(sql);
+            }
+        }
+        public static string GetDataString(string sql)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.QueryFirst<string>(sql);
             }
         }
         public static string GetUserName(string sql)

@@ -59,7 +59,26 @@ namespace BPRCoronaFighter.Controllers
             }
             return View(lectures);
         }
-        
+        public ActionResult MyLecture(Lecture model)
+        {
+            string UserID = AccountController.userID;
+            var data = LoadLecturesByUser(UserID);
+            List<Lecture> lectures = new List<Lecture>();
+            foreach (var item in data)
+            {
+                lectures.Add(new Lecture
+                {
+                    LectureTitle = item.LectureTitle,
+                    LectureDescription = item.LectureDescription,
+                    LectureLink = item.LectureLink,
+                    LectureDate = item.LectureDate,
+                    LectureTime = item.LectureTime,
+                });
+                lectures.Reverse();
+            }
+            return View(lectures);
+        }
+
         public ActionResult Like(Lecture model)
         {
             LikeAddL(model.numOfLike,model.LectureId);
