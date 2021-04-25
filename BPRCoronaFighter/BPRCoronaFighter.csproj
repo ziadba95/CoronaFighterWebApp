@@ -218,6 +218,7 @@
     <Content Include="Views\Groups\SeePost.cshtml" />
     <Content Include="Views\Groups\PostDetail.cshtml" />
     <Content Include="Views\Account\Doctorlogin.cshtml" />
+    <Content Include="Views\Shared\layout3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
