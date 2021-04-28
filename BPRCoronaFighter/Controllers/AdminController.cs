@@ -14,6 +14,7 @@ namespace BPRCoronaFighter.Controllers
         // GET: AdminPanel
         public ActionResult AdminPanel(Application model)
         {
+            ViewBag.UserName=AccountController.username;
             var data = LoadDoctorsWaiting();
             List<Application> application = new List<Application>();
             foreach (var item in data)
@@ -86,6 +87,7 @@ namespace BPRCoronaFighter.Controllers
         // GET: AdminVideoLibrary
         public ActionResult VideoLibrary()
         {
+            ViewBag.UserName = AccountController.username;
             ViewBag.Message = "Video List";
             var data = LoadVideos();
             List<Video> videos = new List<Video>();
@@ -100,13 +102,23 @@ namespace BPRCoronaFighter.Controllers
             }
             return View(videos);
         }
-
-        public ActionResult RemoveVideos(int index)
+        public ActionResult RemoveVideos()
         {
-            
-            DeleteVideos(index);
-            
-            return RedirectToAction("VideoLibrary");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveVideos(Video model)
+        {
+            ModelState.Remove("VideoURL");
+            ModelState.Remove("ImageLink");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = RemoveVideo(model.VideoTitle);
+                return RedirectToAction("VideoLibrary");
+
+            }
+            return View();
         }
 
     }

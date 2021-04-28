@@ -58,6 +58,7 @@
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\LectureModel.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\UserGroupModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VideoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

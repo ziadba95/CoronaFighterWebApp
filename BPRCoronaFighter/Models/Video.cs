@@ -27,10 +27,6 @@ namespace BPRCoronaFighter.Models
 		[DisplayName("Image Link")]
 		public string ImageLink { get; set; }
 
-		[ActionName("Delete")]
-		public void CallDelete(int id)
-		{
-			VideoProcessor.DeleteVideos(id);
-		}
 	}
+
 }

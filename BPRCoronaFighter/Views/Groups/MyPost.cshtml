@@ -1,12 +1,7 @@
-﻿@using BPRCoronaFighter.Models
-@model GroupAndPost
+﻿@model IEnumerable<BPRCoronaFighter.Models.Post>
 @{
-    ViewBag.Title = "OwnGroup";
+    ViewBag.Title = "MyPost";
 }
-
-<h2>GroupName: @ViewBag.GroupName</h2>
-
-<!DOCTYPE html>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -16,14 +11,12 @@
     <link href="~/Content/group.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <div class="jumbotron">
-            <b>Group</b>
             <div class="container px-1 py-3">
                 <div class="row">
                     <div class="col-md-3" id="profile">
@@ -35,52 +28,37 @@
                                 <div class="h5 mt-4">@ViewBag.UserName </div>
 
                             </div>
-							<ul class="list-group list-group-flush">
-
-								<li class="list-group-item">
-									<div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group Members</div>
-									@foreach (var item in Model.UserGroups)
-									{
-										@*<ul>@Html.DisplayFor(modelItem => item.GroupName)></ul>*@
-
-										<ul>
-											@*<button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />*@
-											@Html.DisplayFor(modelItem => item.UserName)
-										</ul>
-										//ViewBag.GroupName = item.UserName;
-									}
-
-								</li>
-								<li class="list-group-item">
-									<div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
-								</li>
-								<li class="list-group-item mb-5">
-									@Html.ActionLink("Create New Post", "CreatePost")
-								</li>
-								<li class="list-group-item">
-									@Html.ActionLink("Create New Group", "CreateGroups")
-								</li>
-								<li class="list-group-item">
-									@Html.ActionLink("Leave Group", "LeaveGroups")
-								</li>
-								<li class="list-group-item mb-5">
-									@Html.ActionLink("View Lecture List", "Index", "Lecture")
-								</li>
-								<li class="list-group-item mb-5">
-									@Html.ActionLink("Search Posts", "SearchPost", "Groups")
-								</li>
+                            <ul class="list-group list-group-flush">
                                 <li class="list-group-item mb-5">
-                                    @Html.ActionLink("Go to group", "SearchGroup", "Groups")
+                                    @Html.ActionLink("Create New Post", "CreatePost")
                                 </li>
+                                @*<li class="list-group-item">
+                                    @Html.ActionLink("Create New Group", "CreateGroups")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("View Lecture List", "Index", "Lecture")
+                                </li>*@
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Search Posts", "SearchPost", "Groups")
+                                </li>
+                                @*<li class="list-group-item mb-5">
+                                    @Html.ActionLink("Go to group", "SearchGroup", "Groups")
+                                </li>*@
                                 <li class="list-group-item mb-5">
                                     @Html.ActionLink("Go to post", "SeePost", "Groups")
                                 </li>
-							</ul>
+                                @*<li class="list-group-item mb-5">
+                                    @Html.ActionLink("My post", "MyPost", "Groups")
+                                </li>*@
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Delete post", "DeletePost", "Groups")
+                                </li>
+                                
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-9 gedf-main">
-
-                        @foreach (var item in Model.Posts)
+                        @foreach (var item in Model)
                         {
                             <div class="card gedf-card">
                                 <div class="card-header">
@@ -115,21 +93,20 @@
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)
+                                @*<button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)*@
                                 <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />
                                 @*<a href="#" class="card-link"><i class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'"></i> </a>*@
                             </div>
                             @*</div>*@
                             <br />
                         }
-
                     </div>
-
                 </div>
-
             </div>
         </div>
-    }
-</body>
-</html>
+        
 
+
+    }
+    </body>
+</html>

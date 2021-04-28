@@ -11,6 +11,7 @@ namespace BPRCoronaFighter.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.UserRole = AccountController.userRole;
             ViewBag.UserName = "Welcome: "+AccountController.username;
             return View();
         }

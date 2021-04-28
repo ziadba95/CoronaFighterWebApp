@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using static DataLibrary.BusinessLogic.PostProcessor;
 using static DataLibrary.BusinessLogic.CommentProcessor;
 using static DataLibrary.BusinessLogic.GroupProcessor;
+using static DataLibrary.BusinessLogic.UserProcessor;
 namespace BPRCoronaFighter.Controllers
 {
     public class GroupsController : Controller
@@ -16,7 +17,7 @@ namespace BPRCoronaFighter.Controllers
         private BPRCoronaFighterContext db = new BPRCoronaFighterContext();
        
         // GET: Groups 
-        public ActionResult Index(Post model,Group model1)
+        public ActionResult Index(Post model, UserGroup model1)
         {
             ViewBag.UserName = AccountController.username;
             ViewBag.UserRole = AccountController.userRole;
@@ -35,36 +36,20 @@ namespace BPRCoronaFighter.Controllers
                 });
                 listOfPosts.Reverse();
             }
-            var data1 = LoadGroups();
-            List<Group> listOfGroups = new List<Group>();
+            var data1 = LoadJoinedGroups(AccountController.username);
+            List<UserGroup> listOfGroups = new List<UserGroup>();
             for (int i = 0; i < data1.Count; i++)
             {
-                listOfGroups.Add(new Group
+                listOfGroups.Add(new UserGroup
                 {
                     GroupName = data1[i].GroupName,
-                    GroupTime = data1[i].GroupTime,
-                    GroupCreater = data1[i].GroupCreater,
-                    UserID = data1[i].UserID,
+                    UserName = data1[i].UserName,
                 });
                 listOfGroups.Reverse();
             }
 
-            //var data3 = LoadComments(int.Parse(groupID));
-            //List<Comment> listOfComments = new List<Comment>();
-            //for (int i = 0; i < data3.Count; i++)
-            //{
-            //    listOfComments.Add(new Comment()
-            //    {
-            //        PostID = data3[i].PostID,
-            //        UserID = data3[i].UserID,
-            //        CommentText = data3[i].CommentText,
-            //        CommentDate = data3[i].CommentDate,
-            //    });
-            //    listOfComments.Reverse();
-            //}
             GroupAndPost cp = new GroupAndPost();
-            //cp.Comments = listOfComments;
-            cp.Groups = listOfGroups;
+            cp.UserGroups = listOfGroups;
             cp.Posts = listOfPosts;
             return View(cp);
         }
@@ -88,7 +73,7 @@ namespace BPRCoronaFighter.Controllers
 
         //    return View(cp);
         //}
-        public ActionResult OwnGroup(Post model, Group model1, Comment model2)
+        public ActionResult OwnGroup(Post model, UserGroup model1)
         {
             ViewBag.UserName = AccountController.username;
             ViewBag.UserRole = AccountController.userRole;
@@ -111,18 +96,17 @@ namespace BPRCoronaFighter.Controllers
                 });
                 listOfOwnPosts.Reverse();
             }
-            var data1 = LoadGroups();
-            List<Group> listOfGroups = new List<Group>();
+            //var data1 = LoadJoinedGroups(AccountController.username);
+            var data1 = LoadJoinedGroupsMembers(groupID);
+            List<UserGroup> listOfGroupsMembers = new List<UserGroup>();
             for (int i = 0; i < data1.Count; i++)
             {
-                listOfGroups.Add(new Group
+                listOfGroupsMembers.Add(new UserGroup
                 {
                     GroupName = data1[i].GroupName,
-                    GroupTime = data1[i].GroupTime,
-                    GroupCreater = data1[i].GroupCreater,
-                    UserID = data1[i].UserID,
+                    UserName = data1[i].UserName,
                 });
-                listOfGroups.Reverse();
+                listOfGroupsMembers.Reverse();
             }
             //var data3 = LoadComments(int.Parse(groupID));
             //List<Comment> listOfComments = new List<Comment>();
@@ -139,7 +123,7 @@ namespace BPRCoronaFighter.Controllers
             //}
             GroupAndPost cp = new GroupAndPost();
             //cp.Comments = listOfComments;
-            cp.Groups = listOfGroups;
+            cp.UserGroups = listOfGroupsMembers;
             cp.Posts = listOfOwnPosts;
             return View(cp);
         }
@@ -192,8 +176,11 @@ namespace BPRCoronaFighter.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateGroups(Group model)
+        public ActionResult CreateGroups(Group model,UserGroup model1)
         {
+            ModelState.Remove("UserId");
+            ModelState.Remove("UserName");
+            ModelState.Remove("GroupId");
             if (ModelState.IsValid)
             {
                 bool isdup = CheckDupG(model.GroupName);
@@ -203,11 +190,14 @@ namespace BPRCoronaFighter.Controllers
                 }
                 else
                 {
+                    model1.UserId = int.Parse(AccountController.userID);
+                    model1.UserName = AccountController.username;
                     model.UserID = AccountController.userID;
                     model.GroupCreater = AccountController.username;
                     int recordsCreated = CreateGroup(model.GroupName,DateTime.Now.ToString(), model.GroupCreater, model.UserID);
                     groupID = GetGroupID(model.GroupName);
                     GroupName = model.GroupName;
+                    int recordsCreated1 = JoinGroups(model1.UserId, model1.UserName, int.Parse(groupID), model.GroupName);
                     return RedirectToAction("OwnGroup", "Groups");
                 }
             }
@@ -262,7 +252,42 @@ namespace BPRCoronaFighter.Controllers
 
         //    return View(cp);
         //}
-
+        public ActionResult MyPost(Post model)
+        {
+            string UserID = AccountController.userID;
+            var data = LoadPostsByUser(UserID);
+            List<Post> posts = new List<Post>();
+            foreach (var item in data)
+            {
+                posts.Add(new Post
+                {
+                    PostTitle = item.PostTitle,
+                    PostContent = item.PostContent,
+                    PostDate = item.PostDate,
+                    PostAuthor = item.PostAuthor,
+                    UserID = item.UserID,
+                });
+                posts.Reverse();
+            }
+            return View(posts);
+        }
+        public ActionResult GroupList(Group model)
+        {
+            var data = LoadGroups();
+            List<Group> groups = new List<Group>();
+            foreach (var item in data)
+            {
+                groups.Add(new Group
+                {
+                    GroupName = item.GroupName,
+                    GroupTime = item.GroupTime,
+                    GroupCreater = item.GroupCreater,
+                });
+                groups.Reverse();
+            }
+            return View(groups);
+        }
+        
         public ActionResult SearchPost(Post model)
         {
             ModelState.Remove("PostAuthor");
@@ -356,6 +381,60 @@ namespace BPRCoronaFighter.Controllers
                 posts.Reverse();
             }
             return View(posts);
+        }
+        public ActionResult DeletePost()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(Post model)
+        {
+            ModelState.Remove("PostAuthor");
+            ModelState.Remove("PostContent");
+            if (ModelState.IsValid)
+            {
+                    int recordsCreated = DeletePosts(model.PostTitle);
+                    return RedirectToAction("Index", "Groups");
+                
+            }
+            return View();
+        }
+        public ActionResult JoinGroup(UserGroup model)
+        {
+            ModelState.Remove("UserId");
+            ModelState.Remove("UserName");
+            ModelState.Remove("GroupId");
+            if (ModelState.IsValid)
+            {
+                model.UserId = int.Parse(AccountController.userID);
+                model.UserName = AccountController.username;
+                model.GroupId = int.Parse(GetGroupID(model.GroupName));
+                
+                int recordsCreated = JoinGroups(model.UserId, model.UserName, model.GroupId, model.GroupName);
+                postTitle = model.GroupName;
+                return RedirectToAction("Index", "Groups");
+            }
+            return View();
+        }
+        public ActionResult LeaveGroup()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LeaveGroup(UserGroup model)
+        {
+            ModelState.Remove("UserId");
+            ModelState.Remove("UserName");
+            ModelState.Remove("GroupId");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = LeaveGroupss(model.GroupName);
+                return RedirectToAction("Index", "Groups");
+
+            }
+            return View();
         }
         public static string postID;
         public static string groupID;

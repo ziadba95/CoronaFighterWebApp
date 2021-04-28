@@ -85,5 +85,44 @@ namespace BPRCoronaFighter.Controllers
             return RedirectToAction("Index");
         }
         public static string lectureID;
+        public ActionResult DeleteLecture()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteLecture(Lecture model)
+        {
+            ModelState.Remove("LectureDescription");
+            ModelState.Remove("LectureLink");
+            ModelState.Remove("LectureDate");
+            ModelState.Remove("LectureTime");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = DeleteLectures(model.LectureTitle);
+                return RedirectToAction("MyLecture", "Lecture");
+
+            }
+            return View();
+        }
+        public ActionResult EditLecture()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditLecture(Lecture model)
+        {
+            ModelState.Remove("LectureDescription");
+            ModelState.Remove("LectureLink");
+            if (ModelState.IsValid)
+            {
+                    int recordsCreated = EditLectures(model.LectureTitle, model.LectureDate, model.LectureTime);
+                    return RedirectToAction("Index", "Lecture");
+                
+            }
+            return View();
+        }
     }
+   
 }

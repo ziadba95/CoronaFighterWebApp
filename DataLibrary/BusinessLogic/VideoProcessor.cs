@@ -33,10 +33,15 @@ namespace DataLibrary.BusinessLogic
             return DAO.LoadData<VideoModel>(sql);
         }
 
-        public static void DeleteVideos(int index)
+        public static int RemoveVideo(string videoTitle)
         {
-            string sql = @"DELETE FROM dbo.Video WHERE videoID=" + index;
-            DAO.DeleteData(sql);	
+            VideoModel data = new VideoModel
+            {
+                VideoTitle = videoTitle,
+            };
+            string sql = @"delete from dbo.[Video] where videoTitle ='" + @videoTitle + "'";
+
+            return DAO.SaveData(sql, data);
         }
     }
 }

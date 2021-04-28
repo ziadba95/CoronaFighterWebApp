@@ -16,7 +16,13 @@ namespace BPRCoronaFighter.Controllers
         {
             return View();
         }
-
+        
+        public ActionResult Logout(User model)
+        {
+            username = "New user";
+            ViewBag.UserName = "Welcome: New user";
+            return RedirectToAction("Index", "Home");
+        }
         public ActionResult ChangePass(User model)
         {
             ModelState.Remove("FirstName");
@@ -101,7 +107,8 @@ namespace BPRCoronaFighter.Controllers
                     //string ID = GetUserID(model.Email);
                     //userID = ID;
                     username = "Admin";
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.UserName = "Welcome: Admin";
+                    return RedirectToAction("AdminPanel", "Admin");
                 }
                 else
                 {
@@ -138,6 +145,7 @@ namespace BPRCoronaFighter.Controllers
                         userID = ID;
                         username = fname + " " + lname + " (" + role + ")";
                         userRole = role;
+                        ViewBag.UserRole = userRole;
                         return RedirectToAction("Index", "Home");
                     }
                     if (status == "waiting")

@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<BPRCoronaFighter.Models.Application> 
 
 @{
-	ViewBag.Title = "Admin Dashboard";
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/layoutNo.cshtml";
 }
 <html>
 <head>
@@ -15,13 +16,15 @@
 {
     @Html.AntiForgeryToken()
 	<!-- Side navigation -->
+
 	<div class="sidenav">
 		<a href="AdminPanel">Dashboard</a>
 		<a href="AdminMyAccount">My account</a>
 		<a href="AdminApprovedUsers">Go to approve</a>
 		<a href="AdminDeclinedUsers">Go to Decline</a>
 		<a href="AdminVideoLibrary">Add Videos</a>
-		<a href="VideoLibrary">Video Library</a>
+        <a href="RemoveVideos">Remove Videos</a>
+        <a href="VideoLibrary">Video Library</a>
 	</div>
     
 	<div class="main">

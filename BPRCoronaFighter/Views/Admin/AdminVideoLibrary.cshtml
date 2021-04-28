@@ -1,4 +1,4 @@
-@model BPRCoronaFighter.Models.Video
+﻿@model BPRCoronaFighter.Models.Video
 
 @{
 	ViewBag.Title = "Admin Video Library";
@@ -14,10 +14,14 @@
 	<script src="~/scripts/bootstrap-4.0.0-dist.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js" integrity="sha512-y2iivzeabwxg1wsv7f13plqlmfox8mdjuhyyfvoyzhyrr3nh/nmdjtbsswijzaddnzmywnetblmfopipl6cv9g==" crossorigin="anonymous"></script>
 	<script language="javascript" type="text/javascript" src="~/scripts/admin-video-library.js"></script>
+    @{
+        Layout = "~/Views/Shared/layoutNo.cshtml";
+    }
+    
 </head>
 <body>
 
-	<!-- Side navigation -->
+    <label>@ViewBag.UserName</label>
 	<div class="sidenav">
 		<a href="AdminPanel">Dashboard</a>
 		<a href="AdminMyAccount">My account</a>

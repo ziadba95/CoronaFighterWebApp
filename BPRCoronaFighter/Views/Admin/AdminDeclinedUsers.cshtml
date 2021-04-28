@@ -4,9 +4,12 @@
     <script src="https://kit.fontawesome.com/a166556e40.js"></script>
     <link href="~/Content/group.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    @{
+        Layout = "~/Views/Shared/layoutNo.cshtml";
+    }
+    
 </head>
-<h2>Create</h2>
+<h2>Decline</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
