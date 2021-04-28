@@ -14,6 +14,7 @@ namespace BPRCoronaFighter.Controllers
         // GET: AdminPanel
         public ActionResult AdminPanel(Application model)
         {
+            ViewBag.UserName=AccountController.username;
             var data = LoadDoctorsWaiting();
             List<Application> application = new List<Application>();
             foreach (var item in data)
@@ -86,6 +87,7 @@ namespace BPRCoronaFighter.Controllers
         // GET: AdminVideoLibrary
         public ActionResult VideoLibrary()
         {
+            ViewBag.UserName = AccountController.username;
             ViewBag.Message = "Video List";
             var data = LoadVideos();
             List<Video> videos = new List<Video>();

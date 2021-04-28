@@ -38,16 +38,16 @@
 							<ul class="list-group list-group-flush">
 
 								<li class="list-group-item">
-									<div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
-									@foreach (var item in Model.Groups)
+									<div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group Members</div>
+									@foreach (var item in Model.UserGroups)
 									{
 										@*<ul>@Html.DisplayFor(modelItem => item.GroupName)></ul>*@
 
 										<ul>
 											@*<button type="button" onclick="location.href='@Url.Action("OwnGroup", "Groups")'" />*@
-											@Html.DisplayFor(modelItem => item.GroupName)
+											@Html.DisplayFor(modelItem => item.UserName)
 										</ul>
-										ViewBag.GroupName = item.GroupName;
+										//ViewBag.GroupName = item.UserName;
 									}
 
 								</li>

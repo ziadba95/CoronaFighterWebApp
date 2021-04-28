@@ -96,16 +96,17 @@ namespace BPRCoronaFighter.Controllers
                 });
                 listOfOwnPosts.Reverse();
             }
-            var data1 = LoadJoinedGroups(AccountController.username);
-            List<UserGroup> listOfGroups = new List<UserGroup>();
+            //var data1 = LoadJoinedGroups(AccountController.username);
+            var data1 = LoadJoinedGroupsMembers(groupID);
+            List<UserGroup> listOfGroupsMembers = new List<UserGroup>();
             for (int i = 0; i < data1.Count; i++)
             {
-                listOfGroups.Add(new UserGroup
+                listOfGroupsMembers.Add(new UserGroup
                 {
                     GroupName = data1[i].GroupName,
                     UserName = data1[i].UserName,
                 });
-                listOfGroups.Reverse();
+                listOfGroupsMembers.Reverse();
             }
             //var data3 = LoadComments(int.Parse(groupID));
             //List<Comment> listOfComments = new List<Comment>();
@@ -122,7 +123,7 @@ namespace BPRCoronaFighter.Controllers
             //}
             GroupAndPost cp = new GroupAndPost();
             //cp.Comments = listOfComments;
-            cp.UserGroups = listOfGroups;
+            cp.UserGroups = listOfGroupsMembers;
             cp.Posts = listOfOwnPosts;
             return View(cp);
         }

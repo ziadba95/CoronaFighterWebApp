@@ -7,15 +7,20 @@
     @{
         if (ViewBag.UserName == "Welcome: Admin")
         {
-            Layout = "~/Views/Shared/layout3.cshtml";
+            Layout = "~/Views/Shared/layoutNo.cshtml";
         }
         else if (ViewBag.UserName=="Welcome: New user")
         {
-            Layout = "~/Views/Shared/_Layout.cshtml";
+            Layout = "~/Views/Shared/layoutNew.cshtml";
+        }
+        else if (ViewBag.UserRole =="Doctor")
+        {
+            Layout = "~/Views/Shared/layoutDoctor.cshtml";
         }
         else
         {
-            Layout = "~/Views/Shared/layout2.cshtml";
+            Layout = "~/Views/Shared/_Layout.cshtml";
+
         }
     }
     <h1>Corona Statistics</h1>

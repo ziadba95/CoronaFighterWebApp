@@ -91,6 +91,11 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select groupName from dbo.[UserGroup] where userName= '" + @userName + "'";
             return DAO.LoadData<UserGroupModel>(sql);
         }
+        public static List<UserGroupModel> LoadJoinedGroupsMembers(string groupID)
+        {
+            string sql = @"select userName from dbo.[UserGroup] where groupID= '" + @groupID + "'";
+            return DAO.LoadData<UserGroupModel>(sql);
+        }
         public static bool LogIn(string email, string password)
         {
             //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";

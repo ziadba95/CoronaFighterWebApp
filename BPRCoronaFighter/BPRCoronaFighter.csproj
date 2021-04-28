@@ -176,6 +176,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Views\Shared\layoutDoctor.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -212,7 +213,7 @@
     <Content Include="Views\Groups\SearchPost.cshtml" />
     <Content Include="Views\Groups\ListSearchP.cshtml" />
     <Content Include="Views\Groups\OwnGroup.cshtml" />
-    <Content Include="Views\Shared\layout2.cshtml" />
+    <Content Include="Views\Shared\layoutNew.cshtml" />
     <Content Include="Views\Account\Adminlogin.cshtml" />
     <Content Include="Views\Account\ChangeUserName.cshtml" />
     <Content Include="Views\Groups\SearchGroup.cshtml" />
@@ -228,6 +229,7 @@
     <Content Include="Views\Lecture\EditLecture.cshtml" />
     <Content Include="Views\Admin\RemoveVideos.cshtml" />
     <Content Include="Views\Groups\LeaveGroup.cshtml" />
+    <Content Include="Views\Shared\layoutNo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
