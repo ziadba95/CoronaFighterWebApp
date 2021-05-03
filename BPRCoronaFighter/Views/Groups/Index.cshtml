@@ -39,7 +39,7 @@
                                 <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
                             
                                 @*<ul>@Html.DisplayFor(modelItem => item.GroupName)</ul>*@
-                            @*//ViewBag.GroupName = item.GroupName;*@
+                                @*//ViewBag.GroupName = item.GroupName;*@
                                 <ul>
                                 @foreach (var item in Model.UserGroups)
                                 {
@@ -81,6 +81,9 @@
                             </li>
                             <li class="list-group-item mb-5">
                                 @Html.ActionLink("Leave group", "LeaveGroup", "Groups")
+                            </li>
+                            <li class="list-group-item mb-5">
+                                @Html.ActionLink("Saved posts", "Savedpost", "Groups")
                             </li>
                         </ul>
                     </div>

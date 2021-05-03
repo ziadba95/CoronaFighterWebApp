@@ -7,7 +7,7 @@ using Dapper;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Collections.Generic;
 
 namespace DataLibrary.DataAccess
 {
@@ -19,24 +19,39 @@ namespace DataLibrary.DataAccess
         }
         public static List<T> LoadData<T>(string sql)
         {
+
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
-            {
+            { 
                 return cnn.Query<T>(sql).ToList();
             }
+
+
+
         }
         public static List<T> LoadData<T>(string sql, T data)
         {
+
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
                 return cnn.Query<T>(sql,data).ToList();
             }
+
         }
         public static int SaveData<T>(string sql, T data)
         {
-            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            try
             {
-                return cnn.Execute(sql, data);
+                using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+                {
+                    return cnn.Execute(sql, data);
+                }
             }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+            
         }
         public static void DeleteData(string sql)
         {
@@ -63,10 +78,18 @@ namespace DataLibrary.DataAccess
         }
         public static string GetUserName(string sql)
         {
-            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            try
             {
-                return cnn.QueryFirst<string>(sql);
+                using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+                {
+                    return cnn.QueryFirst<string>(sql);
+                }
             }
+            catch (Exception)
+            {
+                return "Nothing";
+            }
+            
         }
     }
 }

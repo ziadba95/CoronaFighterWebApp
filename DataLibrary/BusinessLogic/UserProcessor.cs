@@ -200,6 +200,44 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.SaveData(sql, data);
         }
+        public static int SearchPostsForSave(int userID, string username, int postID, string postTitle)
+        {
+            UserPostModel data = new UserPostModel
+            {
+                UserId = userID,
+                UserName = username,
+                PostId = postID,
+                PostTitle = postTitle,
+            };
+            string sql = @"insert into dbo.[UserPost] (userID, userName, postID, postTitle)
+                                  values(@UserId, @UserName, @PostId, @PostTitle);"; 
+            return DAO.SaveData(sql, data);
+        }
+        //public static int SearchPostsForSave2(string postTitle)
+        //{
+        //    UserPostModel data = new UserPostModel
+        //    {
+        //        PostTitle = postTitle,
+        //    };
+        //    string sql = @"UPDATE dbo.[UserPost] set postContent=BPRCF.dbo.[Post].postContent,postDate=BPRCF.dbo.[Post].postDate,postAuthor=BPRCF.dbo.[Post].postAuthor
+        //     where postTitle ='" + @postTitle + "'";
+        //    return DAO.SaveData(sql, data);
+        //}
+        public static List<UserPostModel> SavedPosts(string userName)
+        {
+            string sql = @"select postTitle,postContent,postDate,postAuthor from dbo.[UserPost] where userName= '" + @userName + "'";
+            return DAO.LoadData<UserPostModel>(sql);
+        }
+        public static int DeleteSavedPosts(string postTitle)
+        {
+            UserPostModel data = new UserPostModel
+            {
+                PostTitle = postTitle,
+            };
+            string sql = @"delete from dbo.[UserPost] where postTitle ='" + @postTitle + "'";
+
+            return DAO.SaveData(sql, data);
+        }
     }
 }
  
