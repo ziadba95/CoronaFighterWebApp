@@ -53,26 +53,7 @@ namespace BPRCoronaFighter.Controllers
             cp.Posts = listOfPosts;
             return View(cp);
         }
-        //public ActionResult ViewGroup(Group model)
-        //{
-        //    var data = LoadGroups();
-        //    List<Group> listOfGroups = new List<Group>();
-        //    for (int i = 0; i < data.Count; i++)
-        //    {
-        //        listOfGroups.Add(new Group
-        //        {
-        //            GroupName = data[i].GroupName,
-        //            GroupTime = data[i].GroupTime,
-        //            GroupCreater = data[i].GroupCreater,
-        //            UserID = data[i].UserID,
-        //        });
-        //        listOfGroups.Reverse();
-        //    }
-        //    GroupAndPost cp = new GroupAndPost();
-        //    cp.Groups = listOfGroups;
 
-        //    return View(cp);
-        //}
         public ActionResult OwnGroup(Post model, UserGroup model1)
         {
             ViewBag.UserName = AccountController.username;
@@ -204,11 +185,6 @@ namespace BPRCoronaFighter.Controllers
             return View();
         }
 
-        public ActionResult LeaveGroups()
-		{
-            return RedirectToAction("Index", "Groups");
-        }
-
 
         public ActionResult CreateComments(Post model)
         {
@@ -226,8 +202,8 @@ namespace BPRCoronaFighter.Controllers
                 model.PostID = postID;
                 //model.PostID = GetPostID(model1.PostTitle);
                 int recordsCreated = CreateComment( model.CommentText,model.UserID,model.PostID, DateTime.Now.ToString(), model.CommentAuthor);
-                return RedirectToAction("Index", "Groups");
-                
+                return View();
+
             }
             return View();
         }
@@ -295,8 +271,10 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 int recordsCreated = SearchPosts(model.PostTitle);
-               postTitle = model.PostTitle;
-                return RedirectToAction("ListSearchP", "Groups");
+               
+                    postTitle = model.PostTitle;
+                    return RedirectToAction("ListSearchP", "Groups");
+                
             }
             return View();
         }
@@ -305,10 +283,20 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 groupID = GetGroupID(model.GroupName);
-                int recordsCreated = SearchGroups(int.Parse(groupID));
-                GroupName = model.GroupName;
-                ViewBag.GroupName = GroupName;
-                return RedirectToAction("OwnGroup", "Groups");
+                if (groupID == "Nothing")
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                     int recordsCreated = SearchGroups(int.Parse(groupID));
+               
+                    GroupName = model.GroupName;
+                    ViewBag.GroupName = GroupName;
+                    return RedirectToAction("OwnGroup", "Groups");
+                }
+               
+                
             }
             return View();
         }
@@ -319,10 +307,18 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 postID = GetPostID(model.PostTitle);
-                int recordsCreated = Postdetail(int.Parse(postID));
-                postTitle = model.PostTitle;
-                ViewBag.PostTitle = postTitle;
-                return RedirectToAction("PostDetail", "Groups");
+                if (postID == "Nothing")
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    int recordsCreated = Postdetail(int.Parse(postID));
+
+                    postTitle = model.PostTitle;
+                    ViewBag.PostTitle = postTitle;
+                    return RedirectToAction("PostDetail", "Groups");
+                }
             }
             return View();
         }
@@ -394,9 +390,17 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("PostContent");
             if (ModelState.IsValid)
             {
-                    int recordsCreated = DeletePosts(model.PostTitle);
-                    return RedirectToAction("Index", "Groups");
-                
+                int recordsCreated = DeletePosts(model.PostTitle);
+                if (recordsCreated==0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    return RedirectToAction("MyPost", "Groups");
+                }
+
+                    
             }
             return View();
         }
@@ -409,11 +413,17 @@ namespace BPRCoronaFighter.Controllers
             {
                 model.UserId = int.Parse(AccountController.userID);
                 model.UserName = AccountController.username;
-                model.GroupId = int.Parse(GetGroupID(model.GroupName));
-                
-                int recordsCreated = JoinGroups(model.UserId, model.UserName, model.GroupId, model.GroupName);
-                postTitle = model.GroupName;
-                return RedirectToAction("Index", "Groups");
+                if (GetGroupID(model.GroupName) == "Nothing")
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    model.GroupId = int.Parse(GetGroupID(model.GroupName));
+                    int recordsCreated = JoinGroups(model.UserId, model.UserName, model.GroupId, model.GroupName);
+                    postTitle = model.GroupName;
+                    return RedirectToAction("GroupList", "Groups");
+                }      
             }
             return View();
         }
@@ -431,8 +441,84 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 int recordsCreated = LeaveGroupss(model.GroupName);
-                return RedirectToAction("Index", "Groups");
-
+                if (recordsCreated == 0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    return RedirectToAction("GroupList", "Groups");
+                }
+                
+                
+            }
+            return View();
+        }
+        public ActionResult Savedpost(UserPost model)
+        {
+            string userName = AccountController.username;
+            var data = SavedPosts(userName);
+            List<UserPost> posts = new List<UserPost>();
+            foreach (var item in data)
+            {
+                posts.Add(new UserPost
+                {
+                    PostTitle = item.PostTitle,
+                    PostContent = item.PostContent,
+                    PostDate = item.PostDate,
+                    PostAuthor = item.PostAuthor,
+                    UserId = item.UserId,
+                });
+                posts.Reverse();
+            }
+            return View(posts);
+        }
+        public ActionResult SearchPostForSave(UserPost model)
+        {
+            ModelState.Remove("UserId");
+            ModelState.Remove("UserName");
+            ModelState.Remove("PostId");
+            if (ModelState.IsValid)
+            {
+                model.UserId = int.Parse(AccountController.userID);
+                model.UserName = AccountController.username;
+                if (GetPostID(model.PostTitle) == "Nothing")
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                model.PostId = int.Parse(GetPostID(model.PostTitle));
+                    int recordsCreated = SearchPostsForSave(model.UserId, model.UserName, model.PostId, model.PostTitle);
+                    //int recordsCreated2 = SearchPostsForSave2(model.PostTitle);
+                    postTitle = model.PostTitle;
+                    return RedirectToAction("Savedpost", "Groups");
+                }
+            }
+            return View();
+        }
+        public ActionResult DeleteSavedPost()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteSavedPost(UserPost model)
+        {
+            ModelState.Remove("UserId");
+            ModelState.Remove("UserName");
+            ModelState.Remove("PostId");
+            if (ModelState.IsValid)
+            {
+                int recordsCreated = DeleteSavedPosts(model.PostTitle);
+                if (recordsCreated == 0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    return RedirectToAction("Savedpost", "Groups");
+                }
             }
             return View();
         }

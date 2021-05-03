@@ -99,6 +99,7 @@ namespace BPRCoronaFighter.Controllers
         [HttpPost]
         public ActionResult Adminlogin(Admin model)//insert into dbo.[Admin] (email,password) values ('Admin01@coronafighter.com','111111')
         {
+            ModelState.Remove("PasswordConfirm");
             if (ModelState.IsValid)
             {
                 bool recordsCreated = AdminLogIn(model.Email, model.Password);
@@ -130,6 +131,7 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("Gender");
             ModelState.Remove("RoleType");
             ModelState.Remove("Dob");
+            ModelState.Remove("PasswordConfirm");
             if (ModelState.IsValid)
             {
                 bool recordsCreated = LogInDoctor(model.Email, model.Password);

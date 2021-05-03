@@ -147,6 +147,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGroup.cs" />
+    <Compile Include="Models\UserPost.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +177,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Groups\Savedpost.cshtml" />
+    <Content Include="Views\Groups\SearchPostForSave.cshtml" />
+    <Content Include="Views\Groups\DeleteSavedPost.cshtml" />
     <None Include="Views\Shared\layoutDoctor.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

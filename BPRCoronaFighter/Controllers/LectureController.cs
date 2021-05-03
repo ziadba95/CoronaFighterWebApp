@@ -100,7 +100,15 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 int recordsCreated = DeleteLectures(model.LectureTitle);
-                return RedirectToAction("MyLecture", "Lecture");
+                if (recordsCreated == 0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    return RedirectToAction("MyLecture", "Lecture");
+                }
+
 
             }
             return View();
@@ -117,9 +125,15 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("LectureLink");
             if (ModelState.IsValid)
             {
-                    int recordsCreated = EditLectures(model.LectureTitle, model.LectureDate, model.LectureTime);
+                int recordsCreated = EditLectures(model.LectureTitle, model.LectureDate, model.LectureTime);
+                if (recordsCreated == 0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
                     return RedirectToAction("Index", "Lecture");
-                
+                }
             }
             return View();
         }

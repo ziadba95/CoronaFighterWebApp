@@ -53,7 +53,14 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 int recordsCreated = ApproveApp(model.Email);
-                return RedirectToAction("AdminPanel", "Admin");
+                if (recordsCreated == 0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    return RedirectToAction("AdminPanel", "Admin");
+                }
             }
             return View();
         }
@@ -69,7 +76,14 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 int recordsCreated = DeclineApp(model.Email);
-                return RedirectToAction("AdminPanel", "Admin");
+                if (recordsCreated == 0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    return RedirectToAction("AdminPanel", "Admin");
+                }
             }
             return View();
         }
@@ -115,7 +129,14 @@ namespace BPRCoronaFighter.Controllers
             if (ModelState.IsValid)
             {
                 int recordsCreated = RemoveVideo(model.VideoTitle);
-                return RedirectToAction("VideoLibrary");
+                if (recordsCreated == 0)
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }
+                else
+                {
+                    return RedirectToAction("VideoLibrary");
+                } 
 
             }
             return View();

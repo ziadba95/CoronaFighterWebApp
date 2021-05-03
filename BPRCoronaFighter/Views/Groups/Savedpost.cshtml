@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BPRCoronaFighter.Models.UserPost>
+@{
+    ViewBag.Title = "Savedpost";
+}
+
+<h2>Savedpost</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+
+    <link href="~/Content/group.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="jumbotron">
+            <b>Saved posts</b>
+            <div class="container px-1 py-3">
+                <div class="row">
+                    <div class="col-md-3" id="profile">
+                        <div class="card pl-3">
+                            <div class="card-body">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="50" src="assets/images/7.jpg" alt="">
+                                </div>
+                                <div class="h5 mt-4">@ViewBag.UserName </div>
+
+                            </div>
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item">
+                                    <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
+
+
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Search Posts", "SearchPost", "Groups")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Go to post", "SeePost", "Groups")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("My post", "MyPost", "Groups")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Save new posts", "SearchPostForSave", "Groups")
+                                </li>
+                                <li class="list-group-item mb-5">
+                                    @Html.ActionLink("Delete posts", "DeleteSavedPost", "Groups")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-9 gedf-main">
+
+                        @foreach (var item in Model)
+                        {
+                            <table class="table" border="1">
+                                <tr>
+                                    <td>
+                                        @Html.DisplayNameFor(model => model.PostTitle)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PostTitle)
+                                    </td>  
+                                </tr>
+                            </table>
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+    }
+</body>
+</html>
