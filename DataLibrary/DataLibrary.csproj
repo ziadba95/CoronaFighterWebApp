@@ -67,11 +67,5 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoronaFighterDB\CoronaFighterDB.sqlproj">
-      <Project>{fbbc4f25-fce1-4619-b7be-67bf210c4a56}</Project>
-      <Name>CoronaFighterDB</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

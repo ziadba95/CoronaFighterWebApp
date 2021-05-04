@@ -70,4 +70,20 @@
     <Build Include="dbo\Tables\Lecture.sql" />
     <Build Include="dbo\Tables\Post.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPRCoronaFighter\BPRCoronaFighter.csproj">
+      <Name>BPRCoronaFighter</Name>
+      <Project>{429de5b2-a95a-4913-921d-3b0cf75476b8}</Project>
+      <Private>True</Private>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLibrary\DataLibrary.csproj">
+      <Name>DataLibrary</Name>
+      <Project>{0541280e-d0b2-4626-9bce-7daf618e6bc0}</Project>
+      <Private>True</Private>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
