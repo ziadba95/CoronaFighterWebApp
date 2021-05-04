@@ -1,9 +1,9 @@
 ﻿using System;
 //using NUnit.Framework;
-
+using Microsoft.
 namespace NUnitTestProject1
 {
-    //[TestFixture]
+    [TestClass]
     public class NUnitTest1
     {
         //[Test]
