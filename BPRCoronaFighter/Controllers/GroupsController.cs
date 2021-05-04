@@ -270,10 +270,17 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("PostContent");
             if (ModelState.IsValid)
             {
-                int recordsCreated = SearchPosts(model.PostTitle);
-               
+                if (isPrivate(model.PostTitle) == null)
+                {
+                    int recordsCreated = SearchPosts(model.PostTitle);
                     postTitle = model.PostTitle;
                     return RedirectToAction("ListSearchP", "Groups");
+                }
+                else
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('It is a private post！');history.go(-1);location.reload();</script>");
+                }
+               
                 
             }
             return View();

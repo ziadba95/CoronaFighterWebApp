@@ -41,6 +41,12 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetData(sql);
         }
+        public static string isPrivate(string postTitle)
+        {
+            string sql = @"select groupID from dbo.[Post] where postTitle='" + @postTitle + "'";
+
+            return DAO.GetUserName(sql);
+        }
         public static int SearchGroups(int groupID)
         {
             GroupModel data = new GroupModel
