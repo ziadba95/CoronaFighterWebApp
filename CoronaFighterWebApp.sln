@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BPRCoronaFighter", "BPRCoro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{0541280E-D0B2-4626-9BCE-7DAF618E6BC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject3", "UnitTestProject3\UnitTestProject3.csproj", "{96CC67C7-2BB5-46C5-84D1-CDFA6B4E6B9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{531DB150-0C22-4EF5-97F2-72B0843891B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{0541280E-D0B2-4626-9BCE-7DAF618E6BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0541280E-D0B2-4626-9BCE-7DAF618E6BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0541280E-D0B2-4626-9BCE-7DAF618E6BC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96CC67C7-2BB5-46C5-84D1-CDFA6B4E6B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96CC67C7-2BB5-46C5-84D1-CDFA6B4E6B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96CC67C7-2BB5-46C5-84D1-CDFA6B4E6B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96CC67C7-2BB5-46C5-84D1-CDFA6B4E6B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{531DB150-0C22-4EF5-97F2-72B0843891B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531DB150-0C22-4EF5-97F2-72B0843891B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531DB150-0C22-4EF5-97F2-72B0843891B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531DB150-0C22-4EF5-97F2-72B0843891B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
