@@ -1,9 +1,9 @@
-﻿@model IEnumerable<BPRCoronaFighter.Models.Group>
+﻿
 @{
-    ViewBag.Title = "GroupList";
+    ViewBag.Title = "Help list";
 }
+@model IEnumerable<BPRCoronaFighter.Models.OfferHelp>
 
-<h2>GroupList</h2>
 <html>
 <head>
 
@@ -19,6 +19,7 @@
     {
         @Html.AntiForgeryToken()
         <div class="jumbotron">
+            <b>Help List</b>
             <div class="container px-1 py-3">
                 <div class="row">
                     <div class="col-md-3" id="profile">
@@ -26,26 +27,29 @@
                             @*white area*@
                             <div class="card-body">
                                 @*up area*@
+                                <div class="input-group mb-5">
+                                    @*one line*@
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" placeholder="Search" id="search" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </div>
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="50" src="assets/images/7.jpg" alt="">
+                                </div>
+                                <div class="h5 mt-4">@ViewBag.UserName</div>
+                                <div class="h6 text-muted mb-5">Patient</div>
                             </div>
                             <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item">
+                                    <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
+                                </li>
                                 <li class="list-group-item">
                                     <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
-                                </li>
-                                <li class="list-group-item mb-5">
-                                    @Html.ActionLink("Search Posts", "SearchPost", "Groups")
-                                </li>
-                                <li class="list-group-item mb-5">
-                                    @Html.ActionLink("Go to group", "SearchGroup", "Groups")
-                                </li>
-                                @*<li class="list-group-item mb-5">
-                                    @Html.ActionLink("Go to post", "SeePost", "Groups")
-                                </li>*@
-                                @*<li class="list-group-item mb-5">
-                                    @Html.ActionLink("My post", "MyPost", "Groups")
-                                </li>*@
-                                <li class="list-group-item mb-5">
-                                    @Html.ActionLink("Join group", "JoinGroup", "Groups")
-                                </li>
+                                </li>   
                             </ul>
                         </div>
                     </div>
@@ -61,28 +65,63 @@
                                     <table class="table" border="1">
                                         <tr>
                                             <td>
-                                                @Html.DisplayNameFor(model => model.GroupName)
+                                                @Html.DisplayNameFor(model => model.UserName)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.GroupName)
+                                                @Html.DisplayFor(modelItem => item.UserName)
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                @Html.DisplayNameFor(model => model.GroupTime)
+                                                @Html.DisplayNameFor(model => model.HelpTitle)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.GroupTime)
+                                                @Html.DisplayFor(modelItem => item.HelpTitle)
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                @Html.DisplayNameFor(model => model.GroupCreater)
+                                                @Html.DisplayNameFor(model => model.HelpDescription)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.GroupCreater)
+                                                @Html.DisplayFor(modelItem => item.HelpDescription)
                                             </td>
-                                        </tr>   
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.HelpDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HelpDate)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.HelpTime)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HelpTime)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.FreeHour)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FreeHour)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.Contact)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Contact)
+                                            </td>
+                                        </tr>
+                                        
+
+
                                     </table>
                                 }
                             </div>

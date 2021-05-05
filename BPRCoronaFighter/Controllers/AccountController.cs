@@ -86,6 +86,7 @@ namespace BPRCoronaFighter.Controllers
                     userID = ID;
                     username = fname+" "+ lname + " (" + role + ")";
                     userRole = role;
+                    ViewBag.UserRole = userRole;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -152,11 +153,11 @@ namespace BPRCoronaFighter.Controllers
                     }
                     if (status == "waiting")
                     {
-                        return Content("<script language='javascript' type='text/javascript'>alert('Please wait！');history.go(-1);location.reload();</script>");
+                        return Content("<script language='javascript' type='text/javascript'>alert('Please wait for approval！');history.go(-1);location.reload();</script>");
                     }
                     if (status == "Decline")
                     {
-                        return Content("<script language='javascript' type='text/javascript'>alert('You are declined！');history.go(-1);location.reload();</script>");
+                        return Content("<script language='javascript' type='text/javascript'>alert('You have been declined！');history.go(-1);location.reload();</script>");
                     }
 
 

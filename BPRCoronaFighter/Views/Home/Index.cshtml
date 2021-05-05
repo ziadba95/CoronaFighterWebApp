@@ -17,6 +17,10 @@
         {
             Layout = "~/Views/Shared/layoutDoctor.cshtml";
         }
+        else if (ViewBag.UserRole == "Volunteer")
+        {
+            Layout = "~/Views/Shared/layoutVolunteer.cshtml";
+        }
         else
         {
             Layout = "~/Views/Shared/_Layout.cshtml";

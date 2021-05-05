@@ -134,6 +134,7 @@
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LectureController.cs" />
+    <Compile Include="Controllers\OfferHelpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,6 +145,7 @@
     <Compile Include="Models\GroupAndPost.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Lecture.cs" />
+    <Compile Include="Models\OfferHelp.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGroup.cs" />
@@ -180,6 +182,10 @@
     <Content Include="Views\Groups\Savedpost.cshtml" />
     <Content Include="Views\Groups\SearchPostForSave.cshtml" />
     <Content Include="Views\Groups\DeleteSavedPost.cshtml" />
+    <Content Include="Views\OfferHelp\Create.cshtml" />
+    <Content Include="Views\OfferHelp\Index.cshtml" />
+    <Content Include="Views\OfferHelp\MyOfferHelp.cshtml" />
+    <Content Include="Views\OfferHelp\DeleteOfferHelp.cshtml" />
     <None Include="Views\Shared\layoutDoctor.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -234,6 +240,7 @@
     <Content Include="Views\Admin\RemoveVideos.cshtml" />
     <Content Include="Views\Groups\LeaveGroup.cshtml" />
     <Content Include="Views\Shared\layoutNo.cshtml" />
+    <Content Include="Views\Shared\layoutVolunteer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

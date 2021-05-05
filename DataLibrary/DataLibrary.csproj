@@ -48,6 +48,7 @@
     <Compile Include="BusinessLogic\CommentProcessor.cs" />
     <Compile Include="BusinessLogic\GroupProcessor.cs" />
     <Compile Include="BusinessLogic\LectureProcessor.cs" />
+    <Compile Include="BusinessLogic\OfferHelpProcessor.cs" />
     <Compile Include="BusinessLogic\PostProcessor.cs" />
     <Compile Include="BusinessLogic\UserProcessor.cs" />
     <Compile Include="BusinessLogic\VideoProcessor.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\LectureModel.cs" />
+    <Compile Include="Models\OfferHelpModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\UserGroupModel.cs" />
     <Compile Include="Models\UserModel.cs" />

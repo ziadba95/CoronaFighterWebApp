@@ -12,6 +12,7 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
+        [TestMethod]
         public void Index()
         {
             // Arrange
@@ -22,6 +23,14 @@ namespace UnitTestProject1
 
             // Assert
             Assert.IsNotNull(result);
+            
+        }
+        [TestMethod]
+        public void Index2()
+        {
+            OfferHelpController controller = new OfferHelpController();
+            ViewResult result = controller.DeleteOfferHelp() as ViewResult;
+            Assert.AreEqual(0, result);
         }
 
 

@@ -278,7 +278,7 @@ namespace BPRCoronaFighter.Controllers
                 }
                 else
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('It is a private post！');history.go(-1);location.reload();</script>");
+                    return Content("<script language='javascript' type='text/javascript'>alert('It is a private post or post not found！');history.go(-1);location.reload();</script>");
                 }
                
                 

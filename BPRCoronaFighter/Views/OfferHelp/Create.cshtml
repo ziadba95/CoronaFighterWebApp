@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@model  BPRCoronaFighter.Models.OfferHelp
+<head>
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/a166556e40.js"></script>
+    <link href="~/Content/group.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="card gedf-card">
+
+        <div class="card-body" id="postcard">
+            <div class="tab-content" id="myTabContent">
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HelpTitle, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.HelpTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HelpTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HelpDescription, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.HelpDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HelpDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HelpDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <br />
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.HelpDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HelpDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HelpTime, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <br />
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.HelpTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HelpTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FreeHour, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.FreeHour, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FreeHour, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Create" class="btn btn-primary" style="display:block;margin:0 auto" />
+            @Html.ActionLink("Back to OfferHelp List", "Index")
+
+        </div>
+
+    </div>
+}
