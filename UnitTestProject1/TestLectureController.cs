@@ -6,9 +6,7 @@ using System.Web.Mvc;
 using BPRCoronaFighter.Controllers;
 namespace UnitTestProject1
 {
-    /// <summary>
-    /// UnitTest2 的摘要说明
-    /// </summary>
+
     [TestClass]
     public class UnitTest1
     {
