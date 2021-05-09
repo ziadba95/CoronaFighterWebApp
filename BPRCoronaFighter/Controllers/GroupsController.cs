@@ -270,16 +270,16 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("PostContent");
             if (ModelState.IsValid)
             {
-                if (isPrivate(model.PostTitle) == null)
-                {
+                //if (isPrivate(model.PostTitle) == null)
+                //{
                     int recordsCreated = SearchPosts(model.PostTitle);
                     postTitle = model.PostTitle;
                     return RedirectToAction("ListSearchP", "Groups");
-                }
-                else
-                {
-                    return Content("<script language='javascript' type='text/javascript'>alert('It is a private post or post not found！');history.go(-1);location.reload();</script>");
-                }
+                //}
+                //else
+                //{
+                //    return Content("<script language='javascript' type='text/javascript'>alert('It is a private post or post not found！');history.go(-1);location.reload();</script>");
+                //}
                
                 
             }
@@ -292,18 +292,16 @@ namespace BPRCoronaFighter.Controllers
                 groupID = GetGroupID(model.GroupName);
                 if (groupID == "Nothing")
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                    return Content("<script language='javascript' type='text/javascript'>"+
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
                 }
                 else
                 {
-                     int recordsCreated = SearchGroups(int.Parse(groupID));
-               
+                    int recordsCreated = SearchGroups(int.Parse(groupID));
                     GroupName = model.GroupName;
                     ViewBag.GroupName = GroupName;
                     return RedirectToAction("OwnGroup", "Groups");
                 }
-               
-                
             }
             return View();
         }
@@ -422,10 +420,9 @@ namespace BPRCoronaFighter.Controllers
                 model.UserName = AccountController.username;
                 if (GetGroupID(model.GroupName) == "Nothing")
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
-                }
-                else
-                {
+                    return Content("<script language='javascript' type='text/javascript'>"+
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }else{
                     model.GroupId = int.Parse(GetGroupID(model.GroupName));
                     int recordsCreated = JoinGroups(model.UserId, model.UserName, model.GroupId, model.GroupName);
                     postTitle = model.GroupName;
@@ -450,14 +447,11 @@ namespace BPRCoronaFighter.Controllers
                 int recordsCreated = LeaveGroupss(model.GroupName);
                 if (recordsCreated == 0)
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
-                }
-                else
-                {
+                    return Content("<script language='javascript' type='text/javascript'>"+
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }else{
                     return RedirectToAction("GroupList", "Groups");
-                }
-                
-                
+                }  
             }
             return View();
         }

@@ -59,7 +59,7 @@ namespace DataLibrary.BusinessLogic
                 AppStatus= appStatus,
                 ApplicationDate = subDate
             };
-            string sql = @"insert into dbo.[Applications] (firstName, lastName, gender, email, password, dob, appStatus,subDate)
+            string sql = @"insert into dbo.[Doctor] (firstName, lastName, gender, email, password, dob, appStatus,subDate)
                                   values(@FirstName, @LastName, @Gender, @Email, @Password, @Dob, @AppStatus,@ApplicationDate);";
             return DAO.SaveData(sql, data);
         }
@@ -70,7 +70,7 @@ namespace DataLibrary.BusinessLogic
         }
         public static List<DoctorModel> LoadDoctorsWaiting()
         {
-            string sql = @"select  appID,firstName,lastName,email,subDate,appStatus,gender,password,dob from dbo.[Applications] where appStatus='waiting';";
+            string sql = @"select  appID,firstName,lastName,email,subDate,appStatus,gender,password,dob from dbo.[Doctor] where appStatus='waiting';";
             return DAO.LoadData<DoctorModel>(sql);
         }
         public static int JoinGroups(int userID, string username, int groupID, string groupname)
@@ -106,14 +106,14 @@ namespace DataLibrary.BusinessLogic
         public static bool LogInDoctor(string email, string password)
         {
             //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
-            string sql = @"select count(appID) from dbo.[Applications] where email='" + @email + "'and password= '" + @password + "'";
+            string sql = @"select count(appID) from dbo.[Doctor] where email='" + @email + "'and password= '" + @password + "'";
 
             return DAO.GetData(sql);
         }
         public static string ckeckDoctor(string email)
         {
             //string sql = @"select count(userID) from dbo.[User] where email='@email' and pass='@password' ;";
-            string sql = @"select appStatus from dbo.[Applications] where email='" + @email+"'";
+            string sql = @"select appStatus from dbo.[Doctor] where email='" + @email+"'";
 
             return DAO.GetDataString(sql);
         }
@@ -150,19 +150,19 @@ namespace DataLibrary.BusinessLogic
         }
         public static string GetDoctorFName(string email)
         {
-            string sql = @"select firstName from dbo.[Applications] where email='" + @email + "'";
+            string sql = @"select firstName from dbo.[Doctor] where email='" + @email + "'";
 
             return DAO.GetUserName(sql);
         }
         public static string GetDoctorLName(string email)
         {
-            string sql = @"select lastName from dbo.[Applications] where email='" + @email + "'";
+            string sql = @"select lastName from dbo.[Doctor] where email='" + @email + "'";
 
             return DAO.GetUserName(sql);
         }
         public static string GetDoctorID(string email)
         {
-            string sql = @"select appID from dbo.[Applications] where email='" + @email + "'";
+            string sql = @"select appID from dbo.[Doctor] where email='" + @email + "'";
 
             return DAO.GetUserName(sql);
         }
@@ -178,7 +178,7 @@ namespace DataLibrary.BusinessLogic
             {        
                 Email = email,
             };
-            string sql = @"UPDATE  dbo.[Applications] set appStatus='Approve' where email= '" + @email + "'";
+            string sql = @"UPDATE  dbo.[Doctor] set appStatus='Approve' where email= '" + @email + "'";
             return DAO.SaveData(sql, data);
         }
         public static int DeclineApp(string email)
@@ -187,7 +187,7 @@ namespace DataLibrary.BusinessLogic
             {
                 Email = email,
             };
-            string sql = @"UPDATE  dbo.[Applications] set appStatus='Decline' where email= '" + @email + "'";
+            string sql = @"UPDATE  dbo.[Doctor] set appStatus='Decline' where email= '" + @email + "'";
             return DAO.SaveData(sql, data);
         }
         public static int LeaveGroupss(string groupName)

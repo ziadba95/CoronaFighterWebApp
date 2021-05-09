@@ -47,6 +47,7 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetUserName(sql);
         }
+        
         public static int SearchGroups(int groupID)
         {
             GroupModel data = new GroupModel

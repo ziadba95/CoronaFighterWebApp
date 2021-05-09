@@ -17,7 +17,7 @@ namespace BPRCoronaFighter.Controllers
             return View();
         }
         
-        public ActionResult Logout(User model)
+        public ActionResult Logout()
         {
             username = "New user";
             ViewBag.UserName = "Welcome: New user";
