@@ -10,7 +10,7 @@ namespace DataLibrary.BusinessLogic
 {
     public static class GroupProcessor
     {
-        public static int CreateGroup(string groupName, string groupTime, string groupCreater, string userID)
+        public static int CreateGroup(string groupName, string groupTime, string groupCreater, string userID,string city,string description)
         {
             GroupModel data = new GroupModel
             {
@@ -18,14 +18,16 @@ namespace DataLibrary.BusinessLogic
                 GroupTime = groupTime,
                 GroupCreater = groupCreater,
                 UserID = userID,
+                City = city,
+                Description=description,
             };
-            string sql = @"insert into dbo.[Group] (groupName, groupTime, groupCreater,userID)
-                                  values(@GroupName, @GroupTime,@GroupCreater,@UserID);";
+            string sql = @"insert into dbo.[Group] (groupName, groupTime, groupCreater,userID,city,description)
+                                  values(@GroupName, @GroupTime,@GroupCreater,@UserID,@City,@Description);";
             return DAO.SaveData(sql, data);
         }
         public static List<GroupModel> LoadGroups()
         {
-            string sql = @"select  groupName, groupTime, groupCreater,userID
+            string sql = @"select  groupName, groupTime, groupCreater,userID,city,description
                               from dbo.[Group];";
             return DAO.LoadData<GroupModel>(sql);
         }

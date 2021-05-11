@@ -40,6 +40,10 @@ namespace BPRCoronaFighter.Models
         [Required]
         [Display(Name = "Contact")]
         public string Contact { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
         public string UserID { get; set; }
         public string UserName { get; set; }
     }

@@ -13,5 +13,7 @@ namespace DataLibrary.Models
         public string UserID { get; set; }
         public string GroupTime { get; set; }
         public string GroupCreater { get; set; }
+        public string City { get; set; }
+        public string Description { get; set; }
     }
 }

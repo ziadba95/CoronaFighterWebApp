@@ -21,6 +21,10 @@
         {
             Layout = "~/Views/Shared/layoutVolunteer.cshtml";
         }
+        else if (ViewBag.UserRole == "Patient")
+        {
+            Layout = "~/Views/Shared/layoutPatient.cshtml";
+        }
         else
         {
             Layout = "~/Views/Shared/_Layout.cshtml";

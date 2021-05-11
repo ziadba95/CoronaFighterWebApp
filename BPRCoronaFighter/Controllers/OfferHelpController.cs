@@ -29,7 +29,7 @@ namespace BPRCoronaFighter.Controllers
                 {
                     model.UserID = AccountController.userID;
                     model.UserName = AccountController.username;
-                    int recordsCreated = CreateOfferHelp(model.UserID, model.UserName, model.HelpDescription, model.HelpDate, model.HelpTime, model.FreeHour, model.Contact, model.HelpTitle);
+                    int recordsCreated = CreateOfferHelp(model.UserID, model.UserName, model.HelpDescription, model.HelpDate, model.HelpTime, model.FreeHour, model.Contact, model.HelpTitle,model.City);
                     return RedirectToAction("Index", "OfferHelp");
                 }
                 
@@ -53,6 +53,7 @@ namespace BPRCoronaFighter.Controllers
                     HelpTime = item.HelpTime,
                     FreeHour = item.FreeHour,
                     Contact = item.Contact,
+                    City=item.City,
                 });
                 offerHelps.Reverse();
             }
@@ -75,6 +76,7 @@ namespace BPRCoronaFighter.Controllers
                     HelpTime = item.HelpTime,
                     FreeHour = item.FreeHour,
                     Contact = item.Contact,
+                    City = item.City,
                 });
                 offerHelps.Reverse();
             }
@@ -96,6 +98,7 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("HelpTime");
             ModelState.Remove("FreeHour");
             ModelState.Remove("Contact");
+            ModelState.Remove("City");
             if (ModelState.IsValid)
             {
                 int recordsCreated = DeleteOfferHelps(model.HelpTitle);

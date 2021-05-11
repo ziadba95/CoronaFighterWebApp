@@ -42,6 +42,15 @@
                     </div>
                     <hr />
                     <div class="form-group">
+                        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <br />
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
                         @Html.LabelFor(model => model.HelpDate, htmlAttributes: new { @class = "control-label col-md-4" })
                         <br />
                         <div class="col-md-8">

@@ -17,5 +17,6 @@ namespace DataLibrary.Models
         public string Contact { get; set; }
         public string UserID { get; set; }
         public string UserName { get; set; }
+        public string City { get; set; }
     }
 }

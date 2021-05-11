@@ -23,9 +23,6 @@ namespace DataLibrary.DataAccess
             { 
                 return cnn.Query<T>(sql).ToList();
             }
-
-
-
         }
         public static List<T> LoadData<T>(string sql, T data)
         {

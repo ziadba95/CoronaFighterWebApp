@@ -60,7 +60,7 @@ namespace BPRCoronaFighter.Controllers
             ViewBag.UserRole = AccountController.userRole;
             ViewBag.GroupName = GroupName;
             //string groupN = ViewBag.GroupName;
-           //model.GroupID= groupID ;
+            //model.GroupID= groupID ;
             var data = LoadOwnPosts(groupID);
             List<Post> listOfOwnPosts = new List<Post>();
             for (int i = 0; i < data.Count; i++)
@@ -175,7 +175,7 @@ namespace BPRCoronaFighter.Controllers
                     model1.UserName = AccountController.username;
                     model.UserID = AccountController.userID;
                     model.GroupCreater = AccountController.username;
-                    int recordsCreated = CreateGroup(model.GroupName,DateTime.Now.ToString(), model.GroupCreater, model.UserID);
+                    int recordsCreated = CreateGroup(model.GroupName,DateTime.Now.ToString(), model.GroupCreater, model.UserID,model.City,model.Description);
                     groupID = GetGroupID(model.GroupName);
                     GroupName = model.GroupName;
                     int recordsCreated1 = JoinGroups(model1.UserId, model1.UserName, int.Parse(groupID), model.GroupName);
@@ -258,6 +258,8 @@ namespace BPRCoronaFighter.Controllers
                     GroupName = item.GroupName,
                     GroupTime = item.GroupTime,
                     GroupCreater = item.GroupCreater,
+                    City=item.City,
+                    Description=item.Description
                 });
                 groups.Reverse();
             }
@@ -287,6 +289,8 @@ namespace BPRCoronaFighter.Controllers
         }
         public ActionResult SearchGroup(Group model)
         {
+            ModelState.Remove("City");
+            ModelState.Remove("Description");
             if (ModelState.IsValid)
             {
                 groupID = GetGroupID(model.GroupName);

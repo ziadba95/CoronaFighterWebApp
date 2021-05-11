@@ -10,7 +10,7 @@ namespace DataLibrary.BusinessLogic
 {
     public static class OfferHelpProcessor
     {
-        public static int CreateOfferHelp(string UserID, string UserName, string HelpDescription, DateTime HelpDate, DateTime HelpTime, string FreeHour, string Contact, string HelpTitle)
+        public static int CreateOfferHelp(string UserID, string UserName, string HelpDescription, DateTime HelpDate, DateTime HelpTime, string FreeHour, string Contact, string HelpTitle,string City)
         {
             OfferHelpModel data = new OfferHelpModel
             {
@@ -22,20 +22,21 @@ namespace DataLibrary.BusinessLogic
                 FreeHour = FreeHour,
                 Contact = Contact,
                 HelpTitle= HelpTitle,
+                City=City,
             };
-            string sql = @"insert into dbo.[OfferHelp] (userID, userName, helpDescription,helpDate,helpTime,freeHour,Contact,helpTitle)
-                                  values(@UserID, @UserName,@HelpDescription ,@HelpDate,@HelpTime,@FreeHour,@Contact,@HelpTitle);";
+            string sql = @"insert into dbo.[OfferHelp] (userID, userName, helpDescription,helpDate,helpTime,freeHour,Contact,helpTitle,city)
+                                  values(@UserID, @UserName,@HelpDescription ,@HelpDate,@HelpTime,@FreeHour,@Contact,@HelpTitle,@City);";
             return DAO.SaveData(sql, data);
         }
         public static List<OfferHelpModel> LoadOfferHelp()
         {
-            string sql = @"select userID, userName, helpDescription,helpDate,helpTime,freeHour,Contact,helpTitle
+            string sql = @"select userID, userName, helpDescription,helpDate,helpTime,freeHour,Contact,helpTitle,city
                               from dbo.[OfferHelp];";
             return DAO.LoadData<OfferHelpModel>(sql);
         }
         public static List<OfferHelpModel> LoadOfferHelpByUser(string UserID)
         {
-            string sql = @"select  userID, userName, helpDescription,helpDate,helpTime,freeHour,Contact,helpTitle
+            string sql = @"select  userID, userName, helpDescription,helpDate,helpTime,freeHour,Contact,helpTitle,city
                               from dbo.[OfferHelp] where userID=" + @UserID;
             return DAO.LoadData<OfferHelpModel>(sql);
         }
