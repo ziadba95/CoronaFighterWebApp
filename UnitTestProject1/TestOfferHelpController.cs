@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 using BPRCoronaFighter.Controllers;
-using static DataLibrary.BusinessLogic.LectureProcessor;
+using static DataLibrary.BusinessLogic.OfferHelpProcessor;
 using static DataLibrary.BusinessLogic.VideoProcessor;
 using BPRCoronaFighter.Models;
 using System.ComponentModel.DataAnnotations;
 namespace UnitTestProject
 {
     /// <summary>
-    /// TestLectureController 的摘要说明
+    /// TestOfferHelpController 的摘要说明
     /// </summary>
     [TestClass]
-    public class TestLectureController
+    public class TestOfferHelpController
     {
-        public TestLectureController()
+        public TestOfferHelpController()
         {
             //
             //TODO:  在此处添加构造函数逻辑
@@ -62,11 +62,13 @@ namespace UnitTestProject
         // public void MyTestCleanup() { }
         //
         #endregion
+
         [TestMethod]
-        public void LectureIndexTest()
+        public void OfferHelpIndexTest()
         {
-            LectureController controller = new LectureController();
-            var model = new Lecture();
+            OfferHelpController controller = new OfferHelpController();
+            var model = new OfferHelp();
+            
             // Act
             ViewResult result = controller.Index(model) as ViewResult;
             // Assert
@@ -75,49 +77,39 @@ namespace UnitTestProject
 
         }
         [TestMethod]
-        public void CreateLectureTest()
+        public void MyOfferHelpTest()
         {
-            var model = new Lecture()
+            AccountController.userID="40";
+            OfferHelpController controller = new OfferHelpController();
+            var model = new OfferHelp();
+            
+            // Act
+            ViewResult result = controller.MyOfferHelp(model) as ViewResult;
+            var results2 = LoadOfferHelpByUser(AccountController.userID);
+            // Assert
+            Assert.IsNotNull(result);
+
+
+        }
+        [TestMethod]
+        public void CreateOfferHelpTest()
+        {
+            var model = new OfferHelp()
             {
-                LectureTitle = "test",
-                LectureDescription = "test",
-                LectureLink = "test",
-                LectureDate = DateTime.Now,
-                LectureTime = DateTime.Now,
-                LectureAuthor = "test",
-                UserID="40",
+                UserID = "40",
+                UserName = "bj cui (Volunteer)",
+                HelpTitle = "test1",
+                HelpDescription = "test",
+                HelpDate = DateTime.Now,
+                HelpTime = DateTime.Now,
+                FreeHour = "1h",
+                Contact = "test",
+                City = "test",
             };
 
-            var controller = new LectureController();
+            var controller = new OfferHelpController();
             var results = controller.Create(model) as ViewResult;
-            var results2 = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink, model.LectureDate, model.LectureTime, model.LectureAuthor, model.UserID);
-            Assert.AreEqual(1, results2);
-        }
-        [TestMethod]
-        public void DeleteLectureTest()
-        {
-            var model = new Lecture()
-            {
-                LectureTitle = "some",
-            };
-
-            var controller = new LectureController();
-            var results = controller.DeleteLecture(model) as ViewResult;
-            var results2 = DeleteLectures(model.LectureTitle);
-            Assert.AreEqual(1, results2);
-        }
-        [TestMethod]
-        public void EditLectureTest()
-        {
-            var model = new Lecture()
-            {
-                LectureTitle = "11",
-                LectureDate = DateTime.Now,
-                LectureTime = DateTime.Now,
-            };
-            var controller = new LectureController();
-            var results = controller.EditLecture(model) as ViewResult;
-            var results2 = EditLectures(model.LectureTitle, model.LectureDate, model.LectureTime);
+            var results2 = CreateOfferHelp(model.UserID, model.UserName, model.HelpDescription, model.HelpDate, model.HelpTime, model.FreeHour, model.Contact, model.HelpTitle, model.City);
             Assert.AreEqual(1, results2);
         }
     }

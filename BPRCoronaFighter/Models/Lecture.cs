@@ -11,7 +11,7 @@ namespace BPRCoronaFighter.Models
     public class Lecture
     {
         [HiddenInput(DisplayValue = false)]
-        public int? LectureId { get; set; }
+        public int LectureId { get; set; }
         [Required]
         [Display(Name ="Lecture Title")]
         public string LectureTitle { get; set; }

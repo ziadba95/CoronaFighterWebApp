@@ -14,7 +14,7 @@ namespace BPRCoronaFighter.Controllers
 {
     public class GroupsController : Controller
     {
-        private BPRCoronaFighterContext db = new BPRCoronaFighterContext();
+        //private BPRCoronaFighterContext db = new BPRCoronaFighterContext();
        
         // GET: Groups 
         public ActionResult Index(Post model, UserGroup model1)
@@ -448,7 +448,8 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("GroupId");
             if (ModelState.IsValid)
             {
-                int recordsCreated = LeaveGroupss(model.GroupName);
+                model.UserId = int.Parse(AccountController.userID);
+                int recordsCreated = LeaveGroupss(model.GroupName, model.UserId);
                 if (recordsCreated == 0)
                 {
                     return Content("<script language='javascript' type='text/javascript'>"+
@@ -493,7 +494,7 @@ namespace BPRCoronaFighter.Controllers
                 }
                 else
                 {
-                model.PostId = int.Parse(GetPostID(model.PostTitle));
+                    model.PostId = int.Parse(GetPostID(model.PostTitle));
                     int recordsCreated = SearchPostsForSave(model.UserId, model.UserName, model.PostId, model.PostTitle);
                     //int recordsCreated2 = SearchPostsForSave2(model.PostTitle);
                     postTitle = model.PostTitle;

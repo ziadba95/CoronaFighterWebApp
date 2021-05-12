@@ -13,7 +13,7 @@ namespace BPRCoronaFighter.Models
     public class User
     {
         [HiddenInput(DisplayValue = false)]
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         [Required]
         [DisplayName("First Name")]
         public string FirstName { get; set; }

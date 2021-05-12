@@ -9,19 +9,19 @@ using static DataLibrary.BusinessLogic.VideoProcessor;
 using BPRCoronaFighter.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace UnitTestProject1
+namespace UnitTestProject
 {
     [TestClass]
     public class TestAccountController
     {
-        public static IList<ValidationResult> Validate(object model)
-        {
-            var results = new List<ValidationResult>();
-            var validationContext = new ValidationContext(model, null, null);
-            Validator.TryValidateObject(model, validationContext, results, true);
-            if (model is IValidatableObject) (model as IValidatableObject).Validate(validationContext);
-            return results;
-        }
+        //public static IList<ValidationResult> Validate(object model)
+        //{
+        //    var results = new List<ValidationResult>();
+        //    var validationContext = new ValidationContext(model, null, null);
+        //    Validator.TryValidateObject(model, validationContext, results, true);
+        //    if (model is IValidatableObject) (model as IValidatableObject).Validate(validationContext);
+        //    return results;
+        //}
         [TestMethod]
         public void IndexTest()
         {
@@ -79,36 +79,6 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void GroupIndexTest()
-        {
-            GroupsController controller = new GroupsController();
-            var model = new Post();
-            var model1 = new UserGroup();
-            // Act
-            ViewResult result = controller.Index(model,model1) as ViewResult;
-            // Assert
-            Assert.IsNotNull(result);
-
-
-        }
-
-        [TestMethod]
-        public void AddVideoTest()
-        {
-            var model = new Video()
-            {
-                VideoTitle = "com",
-                VideoURL = "111111",
-                ImageLink="123",
-            };
-            
-            var controller = new AdminController();
-            var results = controller.AdminVideoLibrary(model) as ViewResult;
-            var results2 = AddVideo(model.VideoTitle, model.VideoURL, model.ImageLink);
-            //Assert.AreEqual("VideoLibrary", results.ViewName);
-            Assert.AreEqual(1, results2);
-        }
-        [TestMethod]
         public void LoginTest()
         {
             var model = new User()
@@ -123,6 +93,7 @@ namespace UnitTestProject1
             //Assert.AreEqual("VideoLibrary", results.ViewName);
             Assert.AreEqual(true, results2);
         }
+
         [TestMethod]
         public void SignUpTest()
         {

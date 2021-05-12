@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 using BPRCoronaFighter.Controllers;
-using static DataLibrary.BusinessLogic.LectureProcessor;
 using static DataLibrary.BusinessLogic.VideoProcessor;
+using static DataLibrary.BusinessLogic.UserProcessor;
 using BPRCoronaFighter.Models;
 using System.ComponentModel.DataAnnotations;
 namespace UnitTestProject
 {
     /// <summary>
-    /// TestLectureController 的摘要说明
+    /// TestAdminController 的摘要说明
     /// </summary>
     [TestClass]
-    public class TestLectureController
+    public class TestAdminController
     {
-        public TestLectureController()
+        public TestAdminController()
         {
             //
             //TODO:  在此处添加构造函数逻辑
@@ -63,61 +63,57 @@ namespace UnitTestProject
         //
         #endregion
         [TestMethod]
-        public void LectureIndexTest()
+        public void VideoIndexTest()
         {
-            LectureController controller = new LectureController();
-            var model = new Lecture();
+            AdminController controller = new AdminController();
+            //var model = new Video();
             // Act
-            ViewResult result = controller.Index(model) as ViewResult;
+            ViewResult result = controller.VideoLibrary() as ViewResult;
             // Assert
             Assert.IsNotNull(result);
 
 
         }
         [TestMethod]
-        public void CreateLectureTest()
+        public void AddVideoTest()
         {
-            var model = new Lecture()
+            var model = new Video()
             {
-                LectureTitle = "test",
-                LectureDescription = "test",
-                LectureLink = "test",
-                LectureDate = DateTime.Now,
-                LectureTime = DateTime.Now,
-                LectureAuthor = "test",
-                UserID="40",
+                VideoTitle = "com",
+                VideoURL = "111111",
+                ImageLink = "123",
             };
 
-            var controller = new LectureController();
-            var results = controller.Create(model) as ViewResult;
-            var results2 = CreateLecture(model.LectureTitle, model.LectureDescription, model.LectureLink, model.LectureDate, model.LectureTime, model.LectureAuthor, model.UserID);
+            var controller = new AdminController();
+            var results = controller.AdminVideoLibrary(model) as ViewResult;
+            var results2 = AddVideo(model.VideoTitle, model.VideoURL, model.ImageLink);
+            //Assert.AreEqual("VideoLibrary", results.ViewName);
             Assert.AreEqual(1, results2);
         }
         [TestMethod]
-        public void DeleteLectureTest()
+        public void AdminApprovedUsersTest()
         {
-            var model = new Lecture()
+            var model = new Application()
             {
-                LectureTitle = "some",
+                Email= "aaa@qq.com",
             };
 
-            var controller = new LectureController();
-            var results = controller.DeleteLecture(model) as ViewResult;
-            var results2 = DeleteLectures(model.LectureTitle);
+            var controller = new AdminController();
+            var results = controller.AdminApprovedUsers(model) as ViewResult;
+            var results2 = ApproveApp(model.Email);
             Assert.AreEqual(1, results2);
         }
         [TestMethod]
-        public void EditLectureTest()
+        public void AdminDeclinedTest()
         {
-            var model = new Lecture()
+            var model = new Application()
             {
-                LectureTitle = "11",
-                LectureDate = DateTime.Now,
-                LectureTime = DateTime.Now,
+                Email = "aaa@qq.com",
             };
-            var controller = new LectureController();
-            var results = controller.EditLecture(model) as ViewResult;
-            var results2 = EditLectures(model.LectureTitle, model.LectureDate, model.LectureTime);
+
+            var controller = new AdminController();
+            var results = controller.AdminDeclinedUsers(model) as ViewResult;
+            var results2 = DeclineApp(model.Email);
             Assert.AreEqual(1, results2);
         }
     }

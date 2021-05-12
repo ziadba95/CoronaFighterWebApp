@@ -190,14 +190,15 @@ namespace DataLibrary.BusinessLogic
             string sql = @"UPDATE  dbo.[Doctor] set appStatus='Decline' where email= '" + @email + "'";
             return DAO.SaveData(sql, data);
         }
-        public static int LeaveGroupss(string groupName)
+        public static int LeaveGroupss(string groupName,int userID)
         {
             UserGroupModel data = new UserGroupModel
             {
                 GroupName = groupName,
+                UserId=userID,
             };
-            string sql = @"delete from dbo.[UserGroup] where groupName ='" + @groupName + "'";
-
+            string sql = @"delete from dbo.[UserGroup] where groupName ='" + @groupName + "'and userID = '" + @userID + "'";
+            
             return DAO.SaveData(sql, data);
         }
         public static int SearchPostsForSave(int userID, string username, int postID, string postTitle)
