@@ -32,7 +32,7 @@ namespace BPRCoronaFighter.Controllers
             {
                 model.AppStatus = "waiting";
                 int recordsCreated = CreateDoctor(model.FirstName, model.LastName, model.Email, model.Password, model.Dob, model.Gender, model.AppStatus, DateTime.Now.ToString());
-                return Content("<script language='javascript' type='text/javascript'>alert('Please wait for approvement！');</script>");
+                return Content("<script language='javascript' type='text/javascript'>alert('Please wait for approval！');history.go(-1);location.reload();</script>");
                 //return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index", "Home");

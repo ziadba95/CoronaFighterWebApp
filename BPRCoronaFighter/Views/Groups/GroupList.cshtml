@@ -31,9 +31,6 @@
                                 <li class="list-group-item">
                                     <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
                                 </li>
-                                <li class="list-group-item">
-                                    @Html.ActionLink("Create New Group", "CreateGroups")
-                                </li>
                                 <li class="list-group-item mb-5">
                                     @Html.ActionLink("Search Posts", "SearchPost", "Groups")
                                 </li>
@@ -84,6 +81,22 @@
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.GroupCreater)
+                                            </td>
+                                        </tr>   
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.City)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.City)
+                                            </td>
+                                        </tr>   
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayNameFor(model => model.Description)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
                                             </td>
                                         </tr>   
                                     </table>

@@ -54,13 +54,13 @@ namespace DataLibrary.BusinessLogic
         }
         public static string GetPostID(string postTitle)
         {
-            string sql = @"select postID from dbo.[Post] where postTitle='" + postTitle + "'";
+            string sql = @"select postID from dbo.[Post] where postTitle='" + @postTitle + "'";
 
             return DAO.GetUserName(sql);
         }
         public static bool CheckDupP(string postTitle)
         {
-            string sql = @"select count(postTitle) from dbo.[Post] where postTitle='" + postTitle + "'";
+            string sql = @"select count(postTitle) from dbo.[Post] where postTitle='" + @postTitle + "'";
 
             return DAO.GetData(sql);
         }

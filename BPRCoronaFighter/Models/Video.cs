@@ -13,7 +13,7 @@ namespace BPRCoronaFighter.Models
 	public class Video
 	{
 		[HiddenInput(DisplayValue = false)]
-		public int? VideoId { get; set; }
+		public int VideoId { get; set; }
 
 		[Required]
 		[DisplayName("Video Title")]

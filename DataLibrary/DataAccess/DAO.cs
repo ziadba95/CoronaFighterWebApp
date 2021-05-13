@@ -7,7 +7,6 @@ using Dapper;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections.Generic;
 
 namespace DataLibrary.DataAccess
 {
@@ -24,9 +23,6 @@ namespace DataLibrary.DataAccess
             { 
                 return cnn.Query<T>(sql).ToList();
             }
-
-
-
         }
         public static List<T> LoadData<T>(string sql, T data)
         {

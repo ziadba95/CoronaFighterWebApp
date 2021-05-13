@@ -17,5 +17,11 @@ namespace BPRCoronaFighter.Models
         public string UserID { get; set; }
         public string GroupTime { get; set; }
         public string GroupCreater { get; set; }
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+        [Required]
+        [Display(Name = "Description")]
+        public string Description { get; set; }
     }
 }

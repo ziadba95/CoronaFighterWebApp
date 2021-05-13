@@ -14,7 +14,7 @@ namespace BPRCoronaFighter.Controllers
 {
     public class GroupsController : Controller
     {
-        private BPRCoronaFighterContext db = new BPRCoronaFighterContext();
+        //private BPRCoronaFighterContext db = new BPRCoronaFighterContext();
        
         // GET: Groups 
         public ActionResult Index(Post model, UserGroup model1)
@@ -60,7 +60,7 @@ namespace BPRCoronaFighter.Controllers
             ViewBag.UserRole = AccountController.userRole;
             ViewBag.GroupName = GroupName;
             //string groupN = ViewBag.GroupName;
-           //model.GroupID= groupID ;
+            //model.GroupID= groupID ;
             var data = LoadOwnPosts(groupID);
             List<Post> listOfOwnPosts = new List<Post>();
             for (int i = 0; i < data.Count; i++)
@@ -175,7 +175,7 @@ namespace BPRCoronaFighter.Controllers
                     model1.UserName = AccountController.username;
                     model.UserID = AccountController.userID;
                     model.GroupCreater = AccountController.username;
-                    int recordsCreated = CreateGroup(model.GroupName,DateTime.Now.ToString(), model.GroupCreater, model.UserID);
+                    int recordsCreated = CreateGroup(model.GroupName,DateTime.Now.ToString(), model.GroupCreater, model.UserID,model.City,model.Description);
                     groupID = GetGroupID(model.GroupName);
                     GroupName = model.GroupName;
                     int recordsCreated1 = JoinGroups(model1.UserId, model1.UserName, int.Parse(groupID), model.GroupName);
@@ -258,6 +258,8 @@ namespace BPRCoronaFighter.Controllers
                     GroupName = item.GroupName,
                     GroupTime = item.GroupTime,
                     GroupCreater = item.GroupCreater,
+                    City=item.City,
+                    Description=item.Description
                 });
                 groups.Reverse();
             }
@@ -270,33 +272,40 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("PostContent");
             if (ModelState.IsValid)
             {
-                int recordsCreated = SearchPosts(model.PostTitle);
-               
+                //if (isPrivate(model.PostTitle) == null)
+                //{
+                    int recordsCreated = SearchPosts(model.PostTitle);
                     postTitle = model.PostTitle;
                     return RedirectToAction("ListSearchP", "Groups");
+                //}
+                //else
+                //{
+                //    return Content("<script language='javascript' type='text/javascript'>alert('It is a private post or post not found！');history.go(-1);location.reload();</script>");
+                //}
+               
                 
             }
             return View();
         }
         public ActionResult SearchGroup(Group model)
         {
+            ModelState.Remove("City");
+            ModelState.Remove("Description");
             if (ModelState.IsValid)
             {
                 groupID = GetGroupID(model.GroupName);
                 if (groupID == "Nothing")
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                    return Content("<script language='javascript' type='text/javascript'>"+
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
                 }
                 else
                 {
-                     int recordsCreated = SearchGroups(int.Parse(groupID));
-               
+                    int recordsCreated = SearchGroups(int.Parse(groupID));
                     GroupName = model.GroupName;
                     ViewBag.GroupName = GroupName;
                     return RedirectToAction("OwnGroup", "Groups");
                 }
-               
-                
             }
             return View();
         }
@@ -415,10 +424,9 @@ namespace BPRCoronaFighter.Controllers
                 model.UserName = AccountController.username;
                 if (GetGroupID(model.GroupName) == "Nothing")
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
-                }
-                else
-                {
+                    return Content("<script language='javascript' type='text/javascript'>"+
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }else{
                     model.GroupId = int.Parse(GetGroupID(model.GroupName));
                     int recordsCreated = JoinGroups(model.UserId, model.UserName, model.GroupId, model.GroupName);
                     postTitle = model.GroupName;
@@ -440,17 +448,15 @@ namespace BPRCoronaFighter.Controllers
             ModelState.Remove("GroupId");
             if (ModelState.IsValid)
             {
-                int recordsCreated = LeaveGroupss(model.GroupName);
+                model.UserId = int.Parse(AccountController.userID);
+                int recordsCreated = LeaveGroupss(model.GroupName, model.UserId);
                 if (recordsCreated == 0)
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
-                }
-                else
-                {
+                    return Content("<script language='javascript' type='text/javascript'>"+
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                }else{
                     return RedirectToAction("GroupList", "Groups");
-                }
-                
-                
+                }  
             }
             return View();
         }
@@ -488,7 +494,7 @@ namespace BPRCoronaFighter.Controllers
                 }
                 else
                 {
-                model.PostId = int.Parse(GetPostID(model.PostTitle));
+                    model.PostId = int.Parse(GetPostID(model.PostTitle));
                     int recordsCreated = SearchPostsForSave(model.UserId, model.UserName, model.PostId, model.PostTitle);
                     //int recordsCreated2 = SearchPostsForSave2(model.PostTitle);
                     postTitle = model.PostTitle;
