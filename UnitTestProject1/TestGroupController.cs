@@ -229,12 +229,15 @@ namespace UnitTestProject
         [TestMethod]
         public void PostDetailTest()
         {
-            var model = new Post();
+            var model = new Post()
+            {
+                PostId=15,
+            };
             var model1 = new Comment();
             var controller = new GroupsController();
             var results = controller.PostDetail(model,model1) as ViewResult;
-            var results2 = Postdetails(15);
-            var results3 = LoadComments(15);
+            var results2 = Postdetails(model.PostId);
+            var results3 = LoadComments(model.PostId);
             Assert.IsNotNull(results);
         }
         [TestMethod]
@@ -265,7 +268,7 @@ namespace UnitTestProject
             var controller = new GroupsController();
             var results = controller.SearchPostForSave(model) as ViewResult;
             var results2 = SearchPostsForSave(model.UserId, model.UserName, model.PostId, model.PostTitle);
-            Assert.AreEqual(6, results2);
+            Assert.AreEqual(1, results2);
         }
     }
 }

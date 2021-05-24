@@ -55,7 +55,8 @@ namespace BPRCoronaFighter.Controllers
                 int recordsCreated = ApproveApp(model.Email);
                 if (recordsCreated == 0)
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                    return Content("<script language='javascript' type='text/javascript'>"+
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
                 }
                 else
                 {
@@ -78,7 +79,8 @@ namespace BPRCoronaFighter.Controllers
                 int recordsCreated = DeclineApp(model.Email);
                 if (recordsCreated == 0)
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Nothing Found！');history.go(-1);location.reload();</script>");
+                    return Content("<script language='javascript' type='text/javascript'>" + 
+                        "alert('Nothing Found！');history.go(-1);location.reload();</script>");
                 }
                 else
                 {
