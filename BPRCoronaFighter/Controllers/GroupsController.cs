@@ -47,7 +47,6 @@ namespace BPRCoronaFighter.Controllers
                 });
                 listOfGroups.Reverse();
             }
-
             GroupAndPost cp = new GroupAndPost();
             cp.UserGroups = listOfGroups;
             cp.Posts = listOfPosts;
@@ -89,19 +88,6 @@ namespace BPRCoronaFighter.Controllers
                 });
                 listOfGroupsMembers.Reverse();
             }
-            //var data3 = LoadComments(int.Parse(groupID));
-            //List<Comment> listOfComments = new List<Comment>();
-            //for (int i = 0; i < data3.Count; i++)
-            //{
-            //    listOfComments.Add(new Comment()
-            //    {
-            //        PostID = data3[i].PostID,
-            //        UserID = data3[i].UserID,
-            //        CommentText = data3[i].CommentText,
-            //        CommentDate = data3[i].CommentDate,
-            //    });
-            //    listOfComments.Reverse();
-            //}
             GroupAndPost cp = new GroupAndPost();
             //cp.Comments = listOfComments;
             cp.UserGroups = listOfGroupsMembers;
@@ -167,7 +153,8 @@ namespace BPRCoronaFighter.Controllers
                 bool isdup = CheckDupG(model.GroupName);
                 if (isdup)
                 {
-                    return Content("<script language='javascript' type='text/javascript'>alert('Group already exist！');history.go(-1);location.reload();</script>");
+                    return Content("<script language='javascript' type='text/javascript'>alert('Group already exist！');"+
+                        "history.go(-1);location.reload();</script>");
                 }
                 else
                 {
@@ -323,7 +310,6 @@ namespace BPRCoronaFighter.Controllers
                 else
                 {
                     int recordsCreated = Postdetail(int.Parse(postID));
-
                     postTitle = model.PostTitle;
                     ViewBag.PostTitle = postTitle;
                     return RedirectToAction("PostDetail", "Groups");
