@@ -34,15 +34,6 @@
 
                             </div>
                             <ul class="list-group list-group-flush">
-
-                                <li class="list-group-item">
-                                    <div class="h6 text-muted"><i class="fa fa-users mr-4"></i>Group joined</div>
-
-
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
-                                </li>
                                 <li class="list-group-item mb-5">
                                     @Html.ActionLink("Search Posts", "SearchPost", "Groups")
                                 </li>
@@ -56,7 +47,7 @@
                                     @Html.ActionLink("Save new posts", "SearchPostForSave", "Groups")
                                 </li>
                                 <li class="list-group-item mb-5">
-                                    @Html.ActionLink("Delete posts", "DeleteSavedPost", "Groups")
+                                    @Html.ActionLink("Delete saved post", "DeleteSavedPost", "Groups")
                                 </li>
                             </ul>
                         </div>
@@ -65,7 +56,7 @@
 
                         @foreach (var item in Model)
                         {
-                            <table class="table" border="1">
+                            <table class="table" border="2">
                                 <tr>
                                     <td>
                                         @Html.DisplayNameFor(model => model.PostTitle)

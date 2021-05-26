@@ -21,7 +21,6 @@
 {
     @Html.AntiForgeryToken()
     <div class="jumbotron">
-        <b>Group</b>
         <div class="container px-1 py-3">
             <div class="row">
                 <div class="col-md-3" id="profile">
@@ -45,9 +44,6 @@
                                      </li>
                                 }
                                  </ul>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
                             </li>
                             <li class="list-group-item mb-5">
                                 @Html.ActionLink("Create New Post", "CreatePost")
@@ -116,7 +112,7 @@
             </p>
         </div>
         <div class="card-footer">         
-            <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />  
+            <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />Comment  
         </div>
     <br />
 }

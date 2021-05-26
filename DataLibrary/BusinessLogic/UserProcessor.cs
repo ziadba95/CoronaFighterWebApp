@@ -148,6 +148,12 @@ namespace DataLibrary.BusinessLogic
 
             return DAO.GetUserName(sql);
         }
+        public static string GetAdminID(string email)
+        {
+            string sql = @"select adminID from dbo.[Admin] where email='" + @email + "'";
+
+            return DAO.GetUserName(sql);
+        }
         public static string GetDoctorFName(string email)
         {
             string sql = @"select firstName from dbo.[Doctor] where email='" + @email + "'";

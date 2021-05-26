@@ -27,6 +27,7 @@
                         <div class="d-flex justify-content-between align-items-center pt-5">
                             <div class="mr-2">
                             </div>
+
                             <div class="ml-2">
                                 <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
                                     Author:
@@ -56,33 +57,31 @@
                 </p>
             </div>
             <div class="card-footer">
-                <button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)
                 <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />
-                @*<a href="#" class="card-link"><i class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'"></i> </a>*@
             </div>
-            @*</div>*@
             <br />
         }
         foreach (var item in Model.Comments)
         {
-            <div class="ml-2">
-                <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
-                    Author:
-                    @Html.DisplayFor(modelItem => item.CommentAuthor)
-                </span>
-                <br />
-                <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
-                    Comment:
-                    @Html.DisplayFor(modelItem => item.CommentText)
-                </span>
-                <br />
-                <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
-                    Time:
-                    @Html.DisplayFor(modelItem => item.CommentDate)
-                </span>
+            
+                <div class="ml-2">
+                        <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                            Author:
+                            @Html.DisplayFor(modelItem => item.CommentAuthor)
+                        </span>
+                        <br />
+                        <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                            Comment:
+                            @Html.DisplayFor(modelItem => item.CommentText)
+                        </span>
+                        <br />
+                        <span class="text-muted h7" style="margin-left: 0px; font-size: 12px;">
+                            Time:
+                            @Html.DisplayFor(modelItem => item.CommentDate)
+                        </span>
             </div>
             <br />
-        }
-    }
-    </body>
+         }
+   }
+</body>
 </html>
