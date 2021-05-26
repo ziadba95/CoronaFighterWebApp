@@ -68,6 +68,7 @@ namespace UnitTestProject
         [TestMethod]
         public void GroupIndexTest()
         {
+            // Arrange
             GroupsController controller = new GroupsController();
             var model = new Post();
             var model1 = new UserGroup();
@@ -75,13 +76,12 @@ namespace UnitTestProject
             ViewResult result = controller.Index(model, model1) as ViewResult;
             // Assert
             Assert.IsNotNull(result);
-
-
         }
+
         [TestMethod]
         public void OwnGroupTest()
         {
-            
+            // Arrange
             GroupsController controller = new GroupsController();
             var model = new Post();
             var model1 = new UserGroup()
@@ -90,15 +90,15 @@ namespace UnitTestProject
             };
             // Act
             ViewResult result = controller.OwnGroup(model, model1) as ViewResult;
-            LoadOwnPosts(model1.GroupId.ToString());
+            //LoadOwnPosts(model1.GroupId.ToString());
             // Assert
             Assert.IsNotNull(result);
-
-
         }
+
         [TestMethod]
         public void CreatePostTest()
         {
+            // Arrange
             var model = new Post()
             {
                 PostTitle = "test",
@@ -108,12 +108,15 @@ namespace UnitTestProject
                 UserID = "15",
                 GroupID= "5"
             };
-
             var controller = new GroupsController();
+            // Act
             var results = controller.CreatePost(model) as ViewResult;
-            var results2 = CreatePosts(model.PostTitle, model.PostContent, DateTime.Now.ToString(), model.PostAuthor, model.UserID, model.GroupID);
+            var results2 = CreatePosts(model.PostTitle, model.PostContent, 
+                DateTime.Now.ToString(), model.PostAuthor, model.UserID, model.GroupID);
+            // Assert
             Assert.AreEqual(1, results2);
         }
+
         [TestMethod]
         public void CreateCommentTest()
         {
