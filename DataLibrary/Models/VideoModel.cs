@@ -12,5 +12,6 @@ namespace DataLibrary.Models
 		public string VideoTitle { get; set; }
 		public string VideoURL { get; set; }
 		public string ImageLink { get; set; }
-	}
+        public int AdminID { get; set; }
+    }
 }

@@ -94,7 +94,8 @@ namespace BPRCoronaFighter.Controllers
         {
             if (ModelState.IsValid)
             {
-                int recordsCreated = AddVideo(model.VideoTitle, model.VideoURL, model.ImageLink);
+                model.AdminID= int.Parse(AccountController.userID);
+                int recordsCreated = AddVideo(model.AdminID,model.VideoTitle, model.VideoURL, model.ImageLink);
                 return RedirectToAction("VideoLibrary", "Admin");
             }
             return View();

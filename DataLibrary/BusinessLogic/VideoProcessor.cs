@@ -10,17 +10,18 @@ namespace DataLibrary.BusinessLogic
 {
 	public static class VideoProcessor
 	{
-        public static int AddVideo(string vtitle, string vURL, string imgLink)
+        public static int AddVideo(int adminID,string vtitle, string vURL, string imgLink)
         {
             VideoModel data = new VideoModel
             {
+                AdminID = adminID,
                 VideoTitle = vtitle,
                 VideoURL = vURL,
                 ImageLink = imgLink,
              
             };
-            string sql = @"insert into dbo.[Video] (videoTitle, videoUrl, imageLink)
-                                  values(@VideoTitle, @VideoURL, @ImageLink);";
+            string sql = @"insert into dbo.[Video] (adminID,videoTitle, videoUrl, imageLink)
+                                  values(@AdminID,@VideoTitle, @VideoURL, @ImageLink);";
             
             return DAO.SaveData(sql, data);
         }

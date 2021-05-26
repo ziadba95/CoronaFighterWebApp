@@ -27,6 +27,7 @@ namespace BPRCoronaFighter.Models
 		[DisplayName("Image Link")]
 		public string ImageLink { get; set; }
         //public string UserID { get; set; }
+        public int AdminID { get; set; }
     }
 
 }

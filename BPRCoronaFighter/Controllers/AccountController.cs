@@ -108,6 +108,8 @@ namespace BPRCoronaFighter.Controllers
                 {
                     //string ID = GetUserID(model.Email);
                     //userID = ID;
+                    string ID = GetAdminID(model.Email);
+                    userID = ID;
                     username = "Admin";
                     ViewBag.UserName = "Welcome: Admin";
                     return RedirectToAction("AdminPanel", "Admin");
