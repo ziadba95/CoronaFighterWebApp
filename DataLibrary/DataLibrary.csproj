@@ -52,6 +52,7 @@
     <Compile Include="BusinessLogic\PostProcessor.cs" />
     <Compile Include="BusinessLogic\UserProcessor.cs" />
     <Compile Include="BusinessLogic\VideoProcessor.cs" />
+    <Compile Include="DataAccess\DAOS.cs" />
     <Compile Include="DataAccess\DAO.cs" />
     <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\CommentModel.cs" />

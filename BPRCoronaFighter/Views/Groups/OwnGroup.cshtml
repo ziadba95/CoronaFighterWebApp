@@ -48,9 +48,6 @@
 									}
 
 								</li>
-								<li class="list-group-item">
-									<div class="h6 text-muted"><i class="fa fa-envelope mr-4"></i>Message<span class="badge badge-primary ml-5">5</span></div>
-								</li>
 								<li class="list-group-item mb-5">
 									@Html.ActionLink("Create New Post", "CreatePost")
 								</li>
@@ -109,7 +106,6 @@
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <button type="button" class="fa fa-thumbs-up mr-2" onclick="location.href='@Url.Action("Like", "Groups")'" />@Html.DisplayFor(modelItem => item.numOfLike)
                                 <button type="button" class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'" />
                                 @*<a href="#" class="card-link"><i class="fa fa-comment mr-2" onclick="location.href='@Url.Action("CreateComments", "Groups")'"></i> </a>*@
                             </div>
